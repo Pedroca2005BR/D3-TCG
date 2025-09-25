@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class StartTurnState : TurnBaseState
+public class RevealingCardState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
-        controller.BuyCard(controller.gameRules.maxDrawCards);
+        
     }
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(controller.choosingState);
+        controller.SwitchState(controller.processingState);
     }
 }

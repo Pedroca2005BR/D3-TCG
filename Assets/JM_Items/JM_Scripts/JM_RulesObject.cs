@@ -11,6 +11,10 @@ public class JM_RulesObject : ScriptableObject
 
     public int arenaSlots;
 
+    public int maxCards;
+
+    public int maxDrawCards;
+
     //public int difficulty;
 
 

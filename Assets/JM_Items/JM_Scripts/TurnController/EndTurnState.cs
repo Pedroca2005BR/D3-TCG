@@ -9,6 +9,8 @@ public class EndTurnState : TurnBaseState
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(controller.startingState);
+        if(controller.lastTurn) controller.SwitchState(controller.finishingState);
+        else controller.SwitchState(controller.startingState);
+        return;
     }
 }

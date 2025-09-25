@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class StartTurnState : TurnBaseState
+public class EndGameState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
-        controller.BuyCard(controller.gameRules.maxDrawCards);
+        controller.initialTime = 0f;
+        controller.lastTurn = false;
+        controller.OrganizeDeck();
     }
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(controller.choosingState);
+
     }
 }
