@@ -10,5 +10,6 @@ public class CardData : ScriptableObject
     public int health;
     public int attack;
     public Effect[] effects;
-    //public string class;
+    public Sprite cardArt;
+    public Sprite backgroundArt;
 }
