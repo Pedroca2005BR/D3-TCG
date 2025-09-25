@@ -89,4 +89,9 @@ public class CardInstance : MonoBehaviour
         //backSideComponent.gameObject.SetActive(!backSideComponent.gameObject.activeInHierarchy);
         backSideComponent.enabled = !backSideComponent.enabled;
     }
+
+    public int GetAttackPower()
+    {
+        return cardData.attack;
+    }
 }
