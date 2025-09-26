@@ -19,7 +19,7 @@ public class JM_TurnController : MonoBehaviour
     public EndGameState finishingState = new EndGameState();
 
     [Header("Controle do Deck")]
-    public JM_DeckBase playerDeck;
+    public JM_DeckManager playerDeck;
     public List<CardData> playerHand = new List<CardData>();
 
     void Start()
