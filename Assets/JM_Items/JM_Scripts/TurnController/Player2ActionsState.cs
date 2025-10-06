@@ -13,6 +13,7 @@ public class Player2ActionsState : TurnBaseState
 
         if (controller.initialTime >= controller.gameRules.turnTime || controller.player2Played)
         {
+            controller.player2Played = true;
             controller.initialTime = 0f;
             controller.SwitchState(controller.revealingState);
             return;
