@@ -2,12 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardInstance : MonoBehaviour
+public class CardInstance : MonoBehaviour, IDamageable
 {
     public enum Mode
     {
         InHand = 0,
-        InPlay = 1
+        InPlay = 1,
+        Dead = 2
     }
 
     [Header("Card Info")]
@@ -21,9 +22,6 @@ public class CardInstance : MonoBehaviour
     [SerializeField] Image cardArtComponent;
     [SerializeField] Image backgroundComponent;
 
-    [Header("Fixed Info for all Prefabs")]
-    [SerializeField] Image backSideComponent;
-    [SerializeField] Sprite backSideArt;
 
     HealthSystem healthSystem;
     Mode mode;
@@ -47,7 +45,6 @@ public class CardInstance : MonoBehaviour
         // Prepara artes
         cardArtComponent.sprite = cardData.cardArt;
         backgroundComponent.sprite = cardData.backgroundArt;
-        backSideComponent.sprite = backSideArt;
     }
 
     #region HealthMethods
@@ -84,11 +81,6 @@ public class CardInstance : MonoBehaviour
     }
     #endregion
 
-    public void Flip()
-    {
-        //backSideComponent.gameObject.SetActive(!backSideComponent.gameObject.activeInHierarchy);
-        backSideComponent.enabled = !backSideComponent.enabled;
-    }
 
     public int GetAttackPower()
     {
