@@ -4,8 +4,9 @@ public class StartGameState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
-        controller.ShuffleDeck(controller.playerDeck.cards);
-        controller.BuyCard(controller.gameRules.initialHandSize);
+        controller.ShuffleDeck(controller.player1Deck.cards);
+        controller.ShuffleDeck(controller.player2Deck.cards);
+        controller.initializeHands();
     }
 
     public override void UpdateState(JM_TurnController controller)
