@@ -15,7 +15,7 @@ public class Player1ActionsState : TurnBaseState
         {
             controller.player1Played = true;
             controller.initialTime = 0f;
-            controller.SwitchState(controller.p2choosingState);
+            controller.SwitchState(GameStates.p2Choosing);
             return;
         }
     }

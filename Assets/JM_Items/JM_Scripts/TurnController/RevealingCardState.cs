@@ -9,6 +9,6 @@ public class RevealingCardState : TurnBaseState
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(controller.processingState);
+        controller.SwitchState(GameStates.processing);
     }
 }

@@ -10,6 +10,6 @@ public class StartTurnState : TurnBaseState
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(controller.p1choosingState);
+        controller.SwitchState(GameStates.p1Choosing);
     }
 }

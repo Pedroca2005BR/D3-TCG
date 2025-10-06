@@ -1,49 +1,72 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
+public enum GameStates
+{
+    opening,
+    startingTurn,
+    p1Choosing,
+    p2Choosing,
+    revealing,
+    processing,
+    endingTurn,
+    finishingGame
+}
+
 public class JM_TurnController : MonoBehaviour
 {
     [Header("Regras do Jogo")]
     public JM_RulesObject gameRules;
     public float initialTime = 0f;
+    public bool iaGame = false;
     public bool lastTurn = false;
     public bool player1Played = false;
     public bool player2Played = false;
 
     [Header("State Machine")]
-    TurnBaseState currentState;
-    public StartGameState openingState = new StartGameState();
-    public StartTurnState startingState = new StartTurnState();
-    public Player1ActionsState p1choosingState = new Player1ActionsState();
-    public Player2ActionsState p2choosingState = new Player2ActionsState();
-    public RevealingCardState revealingState = new RevealingCardState();
-    public ProcessingGameState processingState = new ProcessingGameState();
-    public EndTurnState endingState = new EndTurnState();
-    public EndGameState finishingState = new EndGameState();
+    public GameStates currentState;
+    private Dictionary<GameStates, TurnBaseState> stateMap = new Dictionary<GameStates, TurnBaseState>();
 
     [Header("Controle do Deck")]
     public JM_DeckManager player1Deck;
     public JM_DeckManager player2Deck;
-    public List<CardData> player1Hand = new List<CardData>(); 
+    public List<CardData> player1Hand = new List<CardData>();
     public List<CardData> player2Hand = new List<CardData>();
 
     void Start()
     {
-        currentState = openingState;
+        InitializeStates();
 
-        currentState.EnterState(this);
-
+        SwitchState(GameStates.opening);
     }
 
     void Update()
     {
-        currentState.UpdateState(this);
+        TurnBaseState currentStateObject = stateMap[currentState];
+
+        currentStateObject.UpdateState(this);
     }
 
-    public void SwitchState(TurnBaseState state)
+    public void SwitchState(GameStates newState)
     {
-        currentState = state;
-        state.EnterState(this);
+        currentState = newState;
+
+        TurnBaseState newStateObject = stateMap[newState];
+
+        newStateObject.EnterState(this);
+    }
+
+    private void InitializeStates()
+    {
+        stateMap.Add(GameStates.opening, new StartGameState());
+        stateMap.Add(GameStates.startingTurn, new StartTurnState());
+        stateMap.Add(GameStates.p1Choosing, new Player1ActionsState());
+        stateMap.Add(GameStates.p2Choosing, new Player2ActionsState());
+        stateMap.Add(GameStates.revealing, new RevealingCardState());
+        stateMap.Add(GameStates.processing, new ProcessingGameState());
+        stateMap.Add(GameStates.endingTurn, new EndTurnState());
+        stateMap.Add(GameStates.finishingGame, new EndGameState());
     }
 
     public void initializeHands()
@@ -73,9 +96,9 @@ public class JM_TurnController : MonoBehaviour
 
     public void ShuffleDeck(List<CardData> deck)
     {
-        for (int i = deck.Count-1; i>0; i--)
+        for (int i = deck.Count - 1; i > 0; i--)
         {
-            int j = Random.Range(0, i+1);
+            int j = Random.Range(0, i + 1);
 
             CardData aux = deck[i];
             deck[i] = deck[j];
@@ -88,7 +111,7 @@ public class JM_TurnController : MonoBehaviour
         player1Deck.cards.AddRange(player1Deck.usedCards);
         player1Deck.usedCards.Clear();
         ShuffleDeck(player1Deck.cards);
-        
+
         player2Deck.cards.AddRange(player2Deck.usedCards);
         player2Deck.usedCards.Clear();
         ShuffleDeck(player2Deck.cards);

@@ -5,6 +5,13 @@ public class Player2ActionsState : TurnBaseState
     public override void EnterState(JM_TurnController controller)
     {
         controller.initialTime = 0f;
+
+        if (controller.iaGame && !controller.player2Played)
+        {
+            //chama a ia;
+
+            controller.player2Played = true;
+        }
     }
 
     public override void UpdateState(JM_TurnController controller)
@@ -15,7 +22,7 @@ public class Player2ActionsState : TurnBaseState
         {
             controller.player2Played = true;
             controller.initialTime = 0f;
-            controller.SwitchState(controller.revealingState);
+            controller.SwitchState(GameStates.revealing);
             return;
         }
     }
