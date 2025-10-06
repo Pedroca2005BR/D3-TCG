@@ -50,23 +50,25 @@ public class JM_TurnController : MonoBehaviour
 
     public void SwitchState(GameStates newState)
     {
+        stateMap[currentState].ExitState(this);
+
         currentState = newState;
 
-        TurnBaseState newStateObject = stateMap[newState];
-
-        newStateObject.EnterState(this);
+        stateMap[newState].EnterState(this);
     }
 
     private void InitializeStates()
     {
-        stateMap.Add(GameStates.opening, new StartGameState());
-        stateMap.Add(GameStates.startingTurn, new StartTurnState());
-        stateMap.Add(GameStates.p1Choosing, new Player1ActionsState());
-        stateMap.Add(GameStates.p2Choosing, new Player2ActionsState());
-        stateMap.Add(GameStates.revealing, new RevealingCardState());
-        stateMap.Add(GameStates.processing, new ProcessingGameState());
-        stateMap.Add(GameStates.endingTurn, new EndTurnState());
-        stateMap.Add(GameStates.finishingGame, new EndGameState());
+        stateMap.Clear();
+
+        stateMap[GameStates.opening] = new StartGameState();
+        stateMap[GameStates.startingTurn] = new StartTurnState();
+        stateMap[GameStates.p1Choosing] = new Player1ActionsState();
+        stateMap[GameStates.p2Choosing] = new Player2ActionsState();
+        stateMap[GameStates.revealing] = new RevealingCardState();
+        stateMap[GameStates.processing] = new ProcessingGameState();
+        stateMap[GameStates.endingTurn] = new EndTurnState();
+        stateMap[GameStates.finishingGame] = new EndGameState();
     }
 
     public void initializeHands()

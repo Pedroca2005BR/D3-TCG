@@ -11,4 +11,9 @@ public class ProcessingGameState : TurnBaseState
     {
         controller.SwitchState(GameStates.endingTurn);
     }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
+    }
 }

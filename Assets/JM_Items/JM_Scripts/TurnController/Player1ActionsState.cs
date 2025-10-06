@@ -19,4 +19,9 @@ public class Player1ActionsState : TurnBaseState
             return;
         }
     }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
+    }
 }

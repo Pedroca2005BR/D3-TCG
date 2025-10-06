@@ -13,4 +13,9 @@ public class StartGameState : TurnBaseState
     {
         controller.SwitchState(GameStates.startingTurn);
     }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
+    }
 }

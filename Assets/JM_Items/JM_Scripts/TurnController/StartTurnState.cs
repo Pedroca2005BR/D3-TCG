@@ -12,4 +12,9 @@ public class StartTurnState : TurnBaseState
     {
         controller.SwitchState(GameStates.p1Choosing);
     }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
+    }
 }
