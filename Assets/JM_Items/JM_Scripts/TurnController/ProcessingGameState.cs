@@ -9,6 +9,11 @@ public class ProcessingGameState : TurnBaseState
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(controller.endingState);
+        controller.SwitchState(GameStates.endingTurn);
+    }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
     }
 }

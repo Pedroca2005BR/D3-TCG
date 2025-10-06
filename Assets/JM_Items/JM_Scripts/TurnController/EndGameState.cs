@@ -13,4 +13,9 @@ public class EndGameState : TurnBaseState
     {
 
     }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
+    }
 }

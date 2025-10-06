@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChooseActionsState : TurnBaseState
+public class Player1ActionsState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
@@ -11,11 +11,17 @@ public class ChooseActionsState : TurnBaseState
     {
         controller.initialTime += Time.deltaTime;
 
-        if (controller.initialTime >= controller.gameRules.turnTime)
+        if (controller.initialTime >= controller.gameRules.turnTime || controller.player1Played)
         {
+            controller.player1Played = true;
             controller.initialTime = 0f;
-            controller.SwitchState(controller.revealingState);
+            controller.SwitchState(GameStates.p2Choosing);
             return;
         }
+    }
+
+    public override void ExitState(JM_TurnController controller)
+    {
+        
     }
 }

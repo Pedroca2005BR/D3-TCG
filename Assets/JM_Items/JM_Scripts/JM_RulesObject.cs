@@ -17,5 +17,4 @@ public class JM_RulesObject : ScriptableObject
 
     //public int difficulty;
 
-
 }

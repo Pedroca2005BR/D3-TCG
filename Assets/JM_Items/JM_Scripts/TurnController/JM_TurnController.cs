@@ -1,73 +1,106 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
+public enum GameStates
+{
+    opening,
+    startingTurn,
+    p1Choosing,
+    p2Choosing,
+    revealing,
+    processing,
+    endingTurn,
+    finishingGame
+}
+
 public class JM_TurnController : MonoBehaviour
 {
     [Header("Regras do Jogo")]
     public JM_RulesObject gameRules;
     public float initialTime = 0f;
+    public bool iaGame = false;
     public bool lastTurn = false;
+    public bool player1Played = false;
+    public bool player2Played = false;
 
     [Header("State Machine")]
-    TurnBaseState currentState;
-    public StartGameState openingState = new StartGameState();
-    public StartTurnState startingState = new StartTurnState();
-    public ChooseActionsState choosingState = new ChooseActionsState();
-    public RevealingCardState revealingState = new RevealingCardState();
-    public ProcessingGameState processingState = new ProcessingGameState();
-    public EndTurnState endingState = new EndTurnState();
-    public EndGameState finishingState = new EndGameState();
+    public GameStates currentState;
+    private Dictionary<GameStates, TurnBaseState> stateMap = new Dictionary<GameStates, TurnBaseState>();
 
     [Header("Controle do Deck")]
-    public JM_DeckManager playerDeck;
-    public List<CardData> playerHand = new List<CardData>();
+    public JM_DeckManager player1Deck;
+    public JM_DeckManager player2Deck;
+    public List<CardData> player1Hand = new List<CardData>();
+    public List<CardData> player2Hand = new List<CardData>();
 
     void Start()
     {
-        currentState = openingState;
+        InitializeStates();
 
-        currentState.EnterState(this);
-
+        SwitchState(GameStates.opening);
     }
 
     void Update()
     {
-        currentState.UpdateState(this);
+        TurnBaseState currentStateObject = stateMap[currentState];
+
+        currentStateObject.UpdateState(this);
     }
 
-    public void SwitchState(TurnBaseState state)
+    public void SwitchState(GameStates newState)
     {
-        currentState = state;
-        state.EnterState(this);
+        stateMap[currentState].ExitState(this);
+
+        currentState = newState;
+
+        stateMap[newState].EnterState(this);
     }
 
-    public void BuyCard(int amount){
-        for(int i = 0; i<amount; i++)
+    private void InitializeStates()
+    {
+        stateMap.Clear();
+
+        stateMap[GameStates.opening] = new StartGameState();
+        stateMap[GameStates.startingTurn] = new StartTurnState();
+        stateMap[GameStates.p1Choosing] = new Player1ActionsState();
+        stateMap[GameStates.p2Choosing] = new Player2ActionsState();
+        stateMap[GameStates.revealing] = new RevealingCardState();
+        stateMap[GameStates.processing] = new ProcessingGameState();
+        stateMap[GameStates.endingTurn] = new EndTurnState();
+        stateMap[GameStates.finishingGame] = new EndGameState();
+    }
+
+    public void initializeHands()
+    {
+        for (int i = 0; i < gameRules.initialHandSize; i++)
         {
-            if(playerDeck.cards.Count <= 0) {
-                Debug.Log("Baralho acabou, tudo ou nada");
-                lastTurn = true;
-                break;
-            }
-            
-            if(playerHand.Count >= gameRules.handSize){
-                Debug.Log("Mao cheia");
-                break;
-            }
+            BuyCard(player1Deck, player1Hand);
+            BuyCard(player2Deck, player2Hand);
+        }
+    }
 
-            CardData choosenCard = playerDeck.cards[0];
-            playerDeck.cards.RemoveAt(0);
-            playerDeck.BoughtCard(choosenCard);
-            playerHand.Add(choosenCard);
-
+    public void BuyCard(JM_DeckManager deck, List<CardData> hand)
+    {
+        if (deck.cards.Count > 0 && hand.Count < gameRules.handSize)
+        {
+            CardData choosenCard = deck.cards[0];
+            deck.cards.RemoveAt(0);
+            deck.BoughtCard(choosenCard);
+            hand.Add(choosenCard);
+        }
+        else if (deck.cards.Count <= 0)
+        {
+            Debug.Log("Baralho vazio, agora eh tudo ou nada");
+            lastTurn = true;
         }
     }
 
     public void ShuffleDeck(List<CardData> deck)
     {
-        for (int i = deck.Count-1; i>0; i--)
+        for (int i = deck.Count - 1; i > 0; i--)
         {
-            int j = Random.Range(0, i+1);
+            int j = Random.Range(0, i + 1);
 
             CardData aux = deck[i];
             deck[i] = deck[j];
@@ -75,9 +108,14 @@ public class JM_TurnController : MonoBehaviour
         }
     }
 
-    public void OrganizeDeck(){
-        playerDeck.cards.AddRange(playerDeck.usedCards);
-        playerDeck.usedCards.Clear();
-        ShuffleDeck(playerDeck.cards);
+    public void OrganizeDeck()
+    {
+        player1Deck.cards.AddRange(player1Deck.usedCards);
+        player1Deck.usedCards.Clear();
+        ShuffleDeck(player1Deck.cards);
+
+        player2Deck.cards.AddRange(player2Deck.usedCards);
+        player2Deck.usedCards.Clear();
+        ShuffleDeck(player2Deck.cards);
     }
 }
