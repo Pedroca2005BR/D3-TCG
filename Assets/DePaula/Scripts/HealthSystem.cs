@@ -6,6 +6,11 @@ public class HealthSystem
     public int CurrentHealth { get; private set; }
     public bool WasBuffed { get; private set; }
 
+    public HealthSystem(int maxHealth, int currentHealth = -1)
+    {
+        Setup(maxHealth, currentHealth);
+    }
+
     public void Setup(int maxHealth, int currentHealth = -1)
     {
         MaxHealth = maxHealth;

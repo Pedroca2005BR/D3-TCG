@@ -3,14 +3,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DealDamageEffect", menuName = "Scriptable Objects/Effects/DealDamageEffect")]
 public class DealDamageEffect : EffectObject
 {
-    public int damage;
-    public TargetLimiterData limiter;
+    //public int damage;
 
-    public override void Resolve(CardInstance source, object target = null)
+    public override void Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
     {
-        IDamageable tg = target as IDamageable;
+        if (targets == null || targets.Length == 0)
+        {
+            Debug.LogError("Nothing to damage. Targets is empty or null.");
+        }
 
-        tg.TakeDamage(damage);
-        //throw new System.NotImplementedException();
+        for (int i = 0; i < targets.Length; i++)
+        {
+            IDamageable tg = targets[i] as IDamageable;
+            tg.TakeDamage(specialParam);
+        }
     }
 }

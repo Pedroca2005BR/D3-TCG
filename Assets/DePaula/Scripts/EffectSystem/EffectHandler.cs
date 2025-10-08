@@ -83,17 +83,19 @@ public struct ResolveEffectCommand
 {
     EffectObject effect;
     CardInstance source;
-    object target;
+    Targeting target;
     bool isBlocked;
     public int priority;
+    public int specialParam;
 
-    public ResolveEffectCommand(CardInstance source, object target, EffectObject function)
+    public ResolveEffectCommand(CardInstance source, EffectActivationData data)
     {
         this.source = source;
-        this.target = target;
-        this.effect = function;
+        this.target = data.targeting;
+        this.effect = data.effect;
         isBlocked = false;
-        priority = (int)function.priority;
+        priority = (int)effect.priority;
+        this.specialParam = data.specialParameter;
     }
     public ResolveEffectCommand(ResolveEffectCommand other)
     {
@@ -102,6 +104,7 @@ public struct ResolveEffectCommand
         target = other.target;
         isBlocked = other.isBlocked;
         priority = other.priority;
+        specialParam = other.specialParam;
     }
 
     public void BlockEffect(bool blockState = true)
@@ -114,7 +117,10 @@ public struct ResolveEffectCommand
     {
         if (isBlocked) return false;
 
-        effect.Resolve(source, target);
+        // Transforma o objeto desconhecido target em uma(s) game entity conhecida
+        IGameEntity[] tgs = TargetSelector.GetTargets(source, target);
+
+        effect.Resolve(source, tgs, specialParam);
         
         return true;
     }

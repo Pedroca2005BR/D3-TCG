@@ -4,7 +4,7 @@ using UnityEngine;
 public struct TargetLimiterData
 {
     public bool enemiesMinions;
-    public bool allyMiniond;
+    public bool allyMinions;
     public bool enemyHero;
     public bool allyHero;
     public bool self;

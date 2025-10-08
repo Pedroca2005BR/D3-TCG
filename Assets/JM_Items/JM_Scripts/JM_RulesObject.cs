@@ -15,6 +15,8 @@ public class JM_RulesObject : ScriptableObject
 
     public int maxDrawCards;
 
+    public int heroHealth;
+
     //public int difficulty;
 
 }
