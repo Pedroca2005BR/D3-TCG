@@ -15,8 +15,7 @@ public class HealDamageEffect : EffectObject
 
         for(int i=0; i<targets.Length; i++)
         {
-            IDamageable tg = targets[i] as IDamageable;
-            tg.Heal(specialParam);
+            targets[i].Heal(specialParam);
         }
     }
 }

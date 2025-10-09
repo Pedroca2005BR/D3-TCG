@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 
-public class CardInstance : MonoBehaviour, IGameEntity, IDamageable
+public class CardInstance : MonoBehaviour, IGameEntity
 {
     public enum Mode
     {
@@ -27,8 +27,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDamageable
     [SerializeField] Image backgroundComponent;
 
 
-    HealthSystem healthSystem;
+    HealthSystemTemplate healthSystem, attackSystem;
     Mode mode;
+    int turnsToSleep = 0;
 
     // ------------------------------------------------------------------------------------------GameEntity Stuff
     public bool IsPlayer1 => isPlayer1;
@@ -44,7 +45,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDamageable
         cardData = data;
 
         // Prepara componentes nao visuais
-        healthSystem = new HealthSystem(cardData.health);
+        healthSystem = new HealthSystemTemplate(cardData.health);
+        attackSystem = new HealthSystemTemplate(cardData.attack);
         mode = Mode.InHand;
         this.isPlayer1 = isPlayer1;
         id = Guid.NewGuid().ToString();
@@ -53,7 +55,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDamageable
         nameComponent.text = cardData.cardName;
         descriptionComponent.text = cardData.cardDescription;
         ChangeHealthComponent();
-        attackComponent.text = cardData.attack.ToString();
+        ChangeAttackComponent();
 
         // Prepara artes
         cardArtComponent.sprite = cardData.cardArt;
@@ -123,10 +125,67 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDamageable
         
     }
 
-    public int GetAttackPower()
+    public int GetCurrentAttack()
     {
-        return cardData.attack;
+        return attackSystem.CurrentHealth;
     }
 
-    
+    private void ChangeAttackComponent()
+    {
+        // Altera o valor do componente
+        attackComponent.text = attackSystem.CurrentHealth.ToString();
+
+        if (attackSystem.IsDamaged())
+        {
+            attackComponent.color = Color.red;
+        }
+        else if (attackSystem.WasBuffed)
+        {
+            attackComponent.color = Color.green;
+        }
+        else
+        {
+            attackComponent.color = Color.white;
+        }
+    }
+
+    public bool Buff(IGameEntity source, Stat stat, int amount)
+    {
+        if ((stat & Stat.Health) != 0)
+        {
+            healthSystem.BuffMaxHealth(source, amount, true);
+            return true;
+        }
+        if ((stat & Stat.Attack) != 0)
+        {
+            attackSystem.BuffMaxHealth(source, amount, true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool TryUndoBuff(IGameEntity source)
+    {
+        if (healthSystem.TryUndoBuff(source) || attackSystem.TryUndoBuff(source))
+        {
+            ChangeHealthComponent();
+            ChangeAttackComponent();
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool MakeInert(int amount)
+    {
+        turnsToSleep += amount;
+        return true;
+    }
+
+    public bool TryRevive()
+    {
+        // TO DO: Mecanica de reviver
+        throw new NotImplementedException();
+    }
 }

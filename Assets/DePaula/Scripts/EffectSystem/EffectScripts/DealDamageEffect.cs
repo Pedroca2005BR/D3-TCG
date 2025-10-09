@@ -14,8 +14,7 @@ public class DealDamageEffect : EffectObject
 
         for (int i = 0; i < targets.Length; i++)
         {
-            IDamageable tg = targets[i] as IDamageable;
-            tg.TakeDamage(specialParam);
+            targets[i].TakeDamage(specialParam);
         }
     }
 }

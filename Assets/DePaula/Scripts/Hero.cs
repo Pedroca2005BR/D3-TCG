@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hero : MonoBehaviour, IGameEntity, IDamageable
+public class Hero : MonoBehaviour, IGameEntity
 {
     [Header("Visuals")]
     [SerializeField] TextMeshProUGUI healthComponent;
@@ -17,11 +17,11 @@ public class Hero : MonoBehaviour, IGameEntity, IDamageable
     // ----------------------------------------------------------------IGameEntity stuff
 
 
-    HealthSystem healthSystem;
+    HealthSystemTemplate healthSystem;
 
     public void Setup()
     {
-        healthSystem = new HealthSystem(GameManager.Instance.rules.heroHealth);
+        healthSystem = new HealthSystemTemplate(GameManager.Instance.rules.heroHealth);
         ChangeHealthComponent();
 
         id = Guid.NewGuid().ToString();
@@ -65,5 +65,46 @@ public class Hero : MonoBehaviour, IGameEntity, IDamageable
             healthComponent.color = Color.white;
         }
     }
+
+    public bool Buff(IGameEntity source, Stat stat, int amount)
+    {
+        if ((stat & Stat.Health) != 0)
+        {
+            healthSystem.BuffMaxHealth(source, amount, true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool TryUndoBuff(IGameEntity source)
+    {
+        if(healthSystem.TryUndoBuff(source))
+        {
+            ChangeHealthComponent();
+            return true;
+        }
+        return false;
+    }
+
+    public bool MakeInert(int amount)
+    {
+        Debug.LogWarning("Heroes can't become Inert!");
+        return false;
+    }
+
+    public int GetCurrentAttack()
+    {
+        Debug.LogWarning("Heroes can't attack!");
+        return 0;
+    }
+
+    public bool TryRevive()
+    {
+        Debug.LogWarning("Heroes can't be revived!");
+        return false;
+    }
     #endregion
+
+
 }
