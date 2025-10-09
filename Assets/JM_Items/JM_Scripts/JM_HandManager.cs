@@ -24,6 +24,7 @@ public class JM_HandManager : MonoBehaviour
             CardInstance newCard = Instantiate(cardInstance, handUI);
             newCard.SetupCardInstance(chosenCard, isPlayer1);
             hand.Add(newCard);
+            Debug.Log("Carta comprada");
             return true;
         }
         else if (deck.cards.Count <= 0)
@@ -31,6 +32,7 @@ public class JM_HandManager : MonoBehaviour
             return false;
         }
 
+        Debug.Log("Mao cheia");
         return true;
     }
 }

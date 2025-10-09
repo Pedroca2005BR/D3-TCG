@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -104,10 +105,26 @@ public class JM_TurnController : MonoBehaviour
     {
         player1Deck.cards.AddRange(player1Deck.usedCards);
         player1Deck.usedCards.Clear();
+        player1Deck.deadCards.Clear();
         ShuffleDeck(player1Deck.cards);
 
         player2Deck.cards.AddRange(player2Deck.usedCards);
         player2Deck.usedCards.Clear();
+        player2Deck.deadCards.Clear();
         ShuffleDeck(player2Deck.cards);
+    }
+
+    public void Reveal()
+    {
+        StopAllCoroutines(); 
+        
+        StartCoroutine(CardRevealing());
+    }
+
+    IEnumerator CardRevealing()
+    {
+        yield return new WaitForSeconds(2f);
+        //Adiciona a funcao de virar as cartas
+        SwitchState(GameStates.processing);
     }
 }
