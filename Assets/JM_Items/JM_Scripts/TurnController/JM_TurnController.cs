@@ -31,8 +31,7 @@ public class JM_TurnController : MonoBehaviour
     [Header("Controle do Deck")]
     public JM_DeckManager player1Deck;
     public JM_DeckManager player2Deck;
-    public List<CardData> player1Hand = new List<CardData>();
-    public List<CardData> player2Hand = new List<CardData>();
+    [SerializeField] JM_HandManager handManager;
 
     void Start()
     {
@@ -75,21 +74,14 @@ public class JM_TurnController : MonoBehaviour
     {
         for (int i = 0; i < gameRules.initialHandSize; i++)
         {
-            BuyCard(player1Deck, player1Hand);
-            BuyCard(player2Deck, player2Hand);
+            BuyCard(player1Deck, true);
+            BuyCard(player2Deck, false);
         }
     }
 
-    public void BuyCard(JM_DeckManager deck, List<CardData> hand)
+    public void BuyCard(JM_DeckManager deck, bool isPlayer1)
     {
-        if (deck.cards.Count > 0 && hand.Count < gameRules.handSize)
-        {
-            CardData choosenCard = deck.cards[0];
-            deck.cards.RemoveAt(0);
-            deck.BoughtCard(choosenCard);
-            hand.Add(choosenCard);
-        }
-        else if (deck.cards.Count <= 0)
+        if (!handManager.AddCard(deck, isPlayer1))
         {
             Debug.Log("Baralho vazio, agora eh tudo ou nada");
             lastTurn = true;

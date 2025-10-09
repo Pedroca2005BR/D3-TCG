@@ -4,8 +4,8 @@ public class StartTurnState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
-        controller.BuyCard(controller.player1Deck, controller.player1Hand);
-        controller.BuyCard(controller.player2Deck, controller.player2Hand);
+        controller.BuyCard(controller.player1Deck, true);
+        controller.BuyCard(controller.player2Deck, false);
     }
 
     public override void UpdateState(JM_TurnController controller)
