@@ -20,7 +20,7 @@ public class EffectHandler : MonoBehaviour
     }
     #endregion
 
-    private List<ResolveEffectCommand> effectsToSolve = new List<ResolveEffectCommand>();
+    private List<GameAction> effectsToSolve = new List<GameAction>();
 
     // Finalmente executa os efeitos e depois os apaga
     public void ResolveEffects()
@@ -34,14 +34,14 @@ public class EffectHandler : MonoBehaviour
     }
 
     // Adiciona na lista o comando, e entao da sort na lista
-    public void EnqueueEffect(ResolveEffectCommand effect)
+    public void EnqueueEffect(GameAction effect)
     {
         effectsToSolve.Add(effect);
         SortListByPriority();
     }
 
 
-    public void RemoveEffect(ResolveEffectCommand effect)
+    public void RemoveEffect(GameAction effect)
     {
         effectsToSolve.Remove(effect);
     }
@@ -50,7 +50,7 @@ public class EffectHandler : MonoBehaviour
     {
         int n = effectsToSolve.Count;
         bool swapped;
-        ResolveEffectCommand temp;
+        GameAction temp;
 
         for (int i = 0; i < n - 1; i++)
         {
@@ -75,53 +75,5 @@ public class EffectHandler : MonoBehaviour
                 break;
             }
         }
-    }
-}
-
-// Struct de comando usada para controlar os parametros para a resolucao de efeitos no momento que quisermos
-public struct ResolveEffectCommand
-{
-    EffectObject effect;
-    CardInstance source;
-    Targeting target;
-    bool isBlocked;
-    public int priority;
-    public int specialParam;
-
-    public ResolveEffectCommand(CardInstance source, EffectActivationData data)
-    {
-        this.source = source;
-        this.target = data.targeting;
-        this.effect = data.effect;
-        isBlocked = false;
-        priority = (int)effect.priority;
-        this.specialParam = data.specialParameter;
-    }
-    public ResolveEffectCommand(ResolveEffectCommand other)
-    {
-        effect = other.effect;
-        source = other.source;
-        target = other.target;
-        isBlocked = other.isBlocked;
-        priority = other.priority;
-        specialParam = other.specialParam;
-    }
-
-    public void BlockEffect(bool blockState = true)
-    {
-        isBlocked = blockState;
-    }
-    
-    
-    public bool Execute()
-    {
-        if (isBlocked) return false;
-
-        // Transforma o objeto desconhecido target em uma(s) game entity conhecida
-        IGameEntity[] tgs = TargetSelector.GetTargets(source, target);
-
-        effect.Resolve(source, tgs, specialParam);
-        
-        return true;
     }
 }

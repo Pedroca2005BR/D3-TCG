@@ -72,6 +72,17 @@ public static class TargetSelector
                 }
             }
         }
+        if ((target & Targeting.AllEnemyCards) != 0)
+        {
+            source = source as CardInstance;
+            CardSlot[] enemySlots = GameManager.Instance.GetSlots(!source.IsPlayer1);
+            CardSlot[] allySlot = GameManager.Instance.GetSlots(source.IsPlayer1);
+
+            for (int i = 0; i < enemySlots.Length; i++)
+            {
+                processedTargets.Add(enemySlots[i].CardInstance);
+            }
+        }
 
         return processedTargets.ToArray();
     }

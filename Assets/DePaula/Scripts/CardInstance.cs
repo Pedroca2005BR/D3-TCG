@@ -118,7 +118,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
 
         foreach (EffectActivationData effect in effects)
         {
-            ResolveEffectCommand res = new ResolveEffectCommand(this, effect);
+            GameAction res = new GameAction(this, effect);
             EffectHandler.Instance.EnqueueEffect(res);
         }
 
