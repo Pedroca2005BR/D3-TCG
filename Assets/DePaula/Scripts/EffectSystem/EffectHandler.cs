@@ -23,11 +23,11 @@ public class EffectHandler : MonoBehaviour
     private List<GameAction> effectsToSolve = new List<GameAction>();
 
     // Finalmente executa os efeitos e depois os apaga
-    public void ResolveEffects()
+    public async void ResolveEffects()
     {
         for(int i = 0; i < effectsToSolve.Count; i++)
         {
-            effectsToSolve[i].Execute();
+            await effectsToSolve[i].Execute();
         }
 
         effectsToSolve.Clear();

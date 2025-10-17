@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using UnityEngine.EventSystems;
 
-public class CardInstance : MonoBehaviour, IGameEntity
+public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
-    public enum Mode
+    public enum CardMode
     {
         InHand = 0,
         InPlay = 1,
@@ -28,15 +29,24 @@ public class CardInstance : MonoBehaviour, IGameEntity
 
 
     HealthSystemTemplate healthSystem, attackSystem;
-    Mode mode;
+    public CardMode Mode { get; private set; }
     int turnsToSleep = 0;
 
     // ------------------------------------------------------------------------------------------GameEntity Stuff
     public bool IsPlayer1 => isPlayer1;
     public string Id => id;
+
+    public GameObject GameObject => gameObject;
+
     string id;
     bool isPlayer1;
     // ------------------------------------------------------------------------------------------GameEntity Stuff
+
+    // ----------------------------------- Draggable stuff
+    bool isBeingDragged;
+    Vector3 dragOffset;
+    bool canBeSelected;
+    GameObject targetPrefab;
 
 
     public void SetupCardInstance(CardData data, bool isPlayer1)
@@ -47,7 +57,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
         // Prepara componentes nao visuais
         healthSystem = new HealthSystemTemplate(cardData.health);
         attackSystem = new HealthSystemTemplate(cardData.attack);
-        mode = Mode.InHand;
+        Mode = CardMode.InHand;
         this.isPlayer1 = isPlayer1;
         id = Guid.NewGuid().ToString();
 
@@ -101,7 +111,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
     }
     #endregion
 
-    public void PlayCard()
+    public void FinishedPlayCard()
     {
         EnqueueEffects(TimeToActivate.OnReveal);
         // TO DO: Put card down
@@ -120,9 +130,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
         {
             GameAction res = new GameAction(this, effect);
             EffectHandler.Instance.EnqueueEffect(res);
-        }
-
-        
+        }        
     }
 
     public int GetCurrentAttack()
@@ -187,5 +195,79 @@ public class CardInstance : MonoBehaviour, IGameEntity
     {
         // TO DO: Mecanica de reviver
         throw new NotImplementedException();
+    }
+
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (!isBeingDragged) return;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+        transform.position = worldPos + dragOffset;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isBeingDragged = false;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (Mode == CardMode.InHand)
+        {
+            isBeingDragged = true;
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+            dragOffset = transform.position - worldPos;
+            GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+    }
+
+    public void ConfirmPlay()
+    {
+        Mode = CardMode.InPlay;
+
+        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnPlay);
+
+        foreach (EffectActivationData effect in effects)
+        {
+            GameAction res = new GameAction(this, effect);
+            RewindableActionsController.Instance.CardPlayed(res);
+        }
+    }
+
+    public void PossibleTargetToClick()
+    {
+        canBeSelected = true;
+    }
+
+    public void SelectionOver()
+    {
+        canBeSelected = false;
+        if (targetPrefab != null)
+        {
+            Destroy(targetPrefab);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (canBeSelected)
+        {            
+            OnPointerExit(eventData);
+
+            // Pega uma copia do alvo pra ficar la na carta
+            targetPrefab = Instantiate(TargetSelector.Instance.Selected(this), Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y)), Quaternion.identity, transform);
+            canBeSelected = false;
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // TODO : Animation for hovering
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // TODO: Stop animation for hovering
     }
 }

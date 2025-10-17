@@ -1,13 +1,15 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameAction
 {
-    EffectObject effect;
+    public EffectObject effect {  get; private set; }
     CardInstance source;
     Targeting target;
     bool isBlocked;
     public int priority;
     public int specialParam;
+    public TimeToActivate toActivate;
 
     public GameAction(CardInstance source, EffectActivationData data)
     {
@@ -17,6 +19,7 @@ public class GameAction
         isBlocked = false;
         priority = (int)effect.priority;
         this.specialParam = data.specialParameter;
+        toActivate = data.timeToActivate;
     }
     public GameAction(GameAction other)
     {
@@ -26,6 +29,7 @@ public class GameAction
         isBlocked = other.isBlocked;
         priority = other.priority;
         specialParam = other.specialParam;
+        toActivate = other.toActivate;
     }
 
     public void BlockEffect(bool blockState = true)
@@ -34,12 +38,21 @@ public class GameAction
     }
 
 
-    public bool Execute()
+    public async Task<bool> Execute()
     {
         if (isBlocked) return false;
 
         // Transforma o objeto desconhecido target em uma(s) game entity conhecida
-        IGameEntity[] tgs = TargetSelector.GetTargets(source, target);
+        IGameEntity[] tgs; 
+
+        if (toActivate == TimeToActivate.OnPlay)
+        {
+            tgs = await TargetSelector.Instance.SelectTargetsManually(source, target, specialParam);
+        }
+        else
+        {
+            tgs = TargetSelector.GetTargets(source, target);
+        }
 
         effect.Resolve(source, tgs, specialParam);
 

@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Hero : MonoBehaviour, IGameEntity
@@ -12,12 +13,19 @@ public class Hero : MonoBehaviour, IGameEntity
     // ----------------------------------------------------------------IGameEntity stuff
     public string Id => id;
     public bool IsPlayer1 => isPlayer1;
+
+    public GameObject GameObject => gameObject;
+
     string id;
     [SerializeField] bool isPlayer1;    // deixar pra settar no editor msm
     // ----------------------------------------------------------------IGameEntity stuff
 
 
     HealthSystemTemplate healthSystem;
+
+    // Target Selector stuff
+    GameObject targetPrefab;
+    bool canBeSelected;
 
     public void Setup()
     {
@@ -65,6 +73,8 @@ public class Hero : MonoBehaviour, IGameEntity
             healthComponent.color = Color.white;
         }
     }
+    #endregion
+
 
     public bool Buff(IGameEntity source, Stat stat, int amount)
     {
@@ -79,7 +89,7 @@ public class Hero : MonoBehaviour, IGameEntity
 
     public bool TryUndoBuff(IGameEntity source)
     {
-        if(healthSystem.TryUndoBuff(source))
+        if (healthSystem.TryUndoBuff(source))
         {
             ChangeHealthComponent();
             return true;
@@ -104,7 +114,40 @@ public class Hero : MonoBehaviour, IGameEntity
         Debug.LogWarning("Heroes can't be revived!");
         return false;
     }
-    #endregion
 
+    public void PossibleTargetToClick()
+    {
+        canBeSelected = true;
+    }
 
+    public void SelectionOver()
+    {
+        canBeSelected = false;
+        if (targetPrefab != null)
+        {
+            Destroy(targetPrefab);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (canBeSelected)
+        {
+            OnPointerExit(eventData);
+
+            // Pega uma copia do alvo pra ficar la na carta
+            targetPrefab = Instantiate(TargetSelector.Instance.Selected(this), Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y)), Quaternion.identity, transform);
+            canBeSelected = false;
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        throw new NotImplementedException();
+    }
 }

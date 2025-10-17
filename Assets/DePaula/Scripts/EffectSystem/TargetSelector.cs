@@ -1,9 +1,91 @@
-using UnityEngine;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 // A funcao do TargetSelector eh transformar uma ideia vaga de alvo em um alvo real
-public static class TargetSelector
+public class TargetSelector : MonoBehaviour
 {
+    #region Singleton
+    public static TargetSelector Instance { get; private set; }
+    // Singleton pattern
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
+    [Header("Visual")]
+    [SerializeField] GameObject targetSelectorPrefab;
+    GameObject targeter;
+    int targetsSelected;
+    List<IGameEntity> processedTargets;
+    GameObject source;
+    LineRenderer lineRenderer;
+
+    private void Start()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (targeter != null)
+        {
+            targeter.transform.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+            // Line renderer stuff
+            lineRenderer.SetPosition(1, source.transform.position);
+            lineRenderer.SetPosition(0, targeter.transform.position);
+        }
+    }
+
+    public GameObject Selected(IGameEntity sel)
+    {
+        processedTargets.Add(sel);
+        return targeter;
+    }
+
+    public async Task<IGameEntity[]> SelectTargetsManually(IGameEntity source, Targeting target, int amount)
+    {
+        IGameEntity[] targets = GetTargets(source, target);
+
+        if (targets == null || targets.Length < amount)
+        {
+            Debug.LogError("Not enough target candidates!");
+            return null;
+        }
+
+        // liga visuais
+        this.source = source.GameObject;
+        targeter = Instantiate(targetSelectorPrefab, transform.position, Quaternion.identity, transform);
+        lineRenderer.enabled = true;
+
+        foreach (var t in targets)
+        {
+            t.PossibleTargetToClick();
+        }
+
+        while(processedTargets.Count < amount)
+        {
+            await Task.Yield();
+        }
+
+        // Desliga visuais
+        Destroy(targetSelectorPrefab);
+        lineRenderer.enabled=false;
+
+        return processedTargets.ToArray();
+    }
+
     public static IGameEntity[] GetTargets(IGameEntity source, Targeting target)
     {
         // Se for special, o proprio EffectObject vai cuidar de conseguir o alvo
@@ -82,6 +164,10 @@ public static class TargetSelector
             {
                 processedTargets.Add(enemySlots[i].CardInstance);
             }
+        }
+        if ((target & Targeting.DeadCards) != 0)
+        {
+            // --------------------------------------------------------------------- TO DO --------------------------------
         }
 
         return processedTargets.ToArray();
