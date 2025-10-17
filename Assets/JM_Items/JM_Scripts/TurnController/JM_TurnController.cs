@@ -24,6 +24,7 @@ public class JM_TurnController : MonoBehaviour
     public bool lastTurn = false;
     public bool player1Played = false;
     public bool player2Played = false;
+    public int turn;
 
     [Header("State Machine")]
     public GameStates currentState;
