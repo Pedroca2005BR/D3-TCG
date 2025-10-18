@@ -115,6 +115,12 @@ public class JM_TurnController : MonoBehaviour
         ShuffleDeck(player2Deck.cards);
     }
 
+    public void EndTurn()
+    {
+        if (player1Played == false) player1Played = true;
+        else if (player2Played = false) player2Played = true;
+    }
+
     public void Reveal()
     {
         StopAllCoroutines(); 
