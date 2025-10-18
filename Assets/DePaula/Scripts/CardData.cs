@@ -47,5 +47,6 @@ public enum TimeToActivate
     OnAttack = 2,
     OnKill = 3,
     OnTakeDamage = 4,
-    OnDeath = 5
+    OnDeath = 5,
+    OnPlay = 6
 }

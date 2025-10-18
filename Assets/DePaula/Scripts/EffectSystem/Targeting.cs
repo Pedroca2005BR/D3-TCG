@@ -8,5 +8,7 @@ public enum Targeting
     OwnHero = 1 << 1,
     EnemyHero = 1 << 2,
     AdjacentAllies = 1 << 3,
-    EnemyInFront = 1 << 4
+    EnemyInFront = 1 << 4,
+    AllEnemyCards = 1 << 5,
+    DeadCards = 1 << 6
 }
