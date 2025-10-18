@@ -4,6 +4,7 @@ public class Player2ActionsState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
+        Debug.Log("P2TurnState");
         controller.initialTime = 0f;
 
         if (controller.iaGame && !controller.player2Played)

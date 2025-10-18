@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class JM_HandManager : MonoBehaviour
@@ -21,10 +22,8 @@ public class JM_HandManager : MonoBehaviour
             deck.BoughtCard(chosenCard);
 
             Transform handUI = isPlayer1 ? player1HandUI : player2HandUI;
-            CardInstance newCard = Instantiate(cardInstance, handUI);
-            newCard.SetupCardInstance(chosenCard, isPlayer1);
-            hand.Add(newCard);
-            Debug.Log("Carta comprada");
+            StartCoroutine(SpawnCardVisual(chosenCard, isPlayer1, handUI, hand));
+
             return true;
         }
         else if (deck.cards.Count <= 0)
@@ -35,4 +34,21 @@ public class JM_HandManager : MonoBehaviour
         Debug.Log("Mao cheia");
         return true;
     }
+    
+    public IEnumerator SpawnCardVisual(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
+    {
+        yield return new WaitForSeconds(2f);
+
+        CardInstance newCard = Instantiate(cardInstance, handUI);
+        newCard.SetupCardInstance(data, isPlayer1);
+
+        JM_HandUI handScript = handUI.GetComponent<JM_HandUI>();
+        handScript.cardsInHand.Add(newCard);
+        handScript.UpdateHandUI();
+
+        hand.Add(newCard);
+        
+        Debug.Log("Carta comprada");
+    }
+    
 }

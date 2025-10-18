@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsInHand: []
-  cardSpace: 0.5
+  cardSpace: 10
   maxAngle: 60
   yOffset: 0.1
   zDepth: 0.02
@@ -491,17 +491,25 @@ MonoBehaviour:
   turn: 0
   currentState: 0
   player1Deck:
-    cards: []
+    cards:
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
     usedCards: []
     deadCards: []
-    baseConfig: {fileID: 0}
-    cardDatabase: {fileID: 0}
+    baseConfig: {fileID: 11400000, guid: a7b98169d45267647bed1c0a5a76f8ec, type: 2}
+    cardDatabase: {fileID: 11400000, guid: c83955c5e1ebaa74588cf72ed7ab3ab8, type: 2}
   player2Deck:
-    cards: []
+    cards:
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+    - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
     usedCards: []
     deadCards: []
-    baseConfig: {fileID: 0}
-    cardDatabase: {fileID: 0}
+    baseConfig: {fileID: 11400000, guid: a7b98169d45267647bed1c0a5a76f8ec, type: 2}
+    cardDatabase: {fileID: 11400000, guid: c83955c5e1ebaa74588cf72ed7ab3ab8, type: 2}
   handManager: {fileID: 1680001602}
 --- !u!4 &381442059
 Transform:
@@ -513,7 +521,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1085.9862, y: 485.98825, z: 4.3058953}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 4.92, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -920,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameRules: {fileID: 11400000, guid: a7b98169d45267647bed1c0a5a76f8ec, type: 2}
-  cardInstance: {fileID: 0}
+  cardInstance: {fileID: 7374260524733409055, guid: db7fba47a290b4541b51c29bf497bc57, type: 3}
   player1HandUI: {fileID: 169850428}
   player2HandUI: {fileID: 1934692765}
   player1Hand: []
@@ -1056,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsInHand: []
-  cardSpace: 0.5
+  cardSpace: 10
   maxAngle: 60
   yOffset: 0.1
   zDepth: 0.02

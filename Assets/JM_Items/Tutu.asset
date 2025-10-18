@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
+  m_Name: Tutu
+  m_EditorClassIdentifier: 
+  cardName: Tutu Maramba
+  cardDescription: 
+  type: 1
+  health: 3
+  attack: 2
+  effects: []
+  cardArt: {fileID: 3326270148388576055, guid: 7ce60a9f4d2aa414cb3d12bf5bb766d6, type: 3}
+  backgroundArt: {fileID: -8783764712361679188, guid: 7ce60a9f4d2aa414cb3d12bf5bb766d6, type: 3}

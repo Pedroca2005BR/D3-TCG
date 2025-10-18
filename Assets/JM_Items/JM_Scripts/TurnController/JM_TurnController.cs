@@ -72,12 +72,19 @@ public class JM_TurnController : MonoBehaviour
         stateMap[GameStates.finishingGame] = new EndGameState();
     }
 
-    public void initializeHands()
+    public void InitializeHands()
+    {
+        StartCoroutine(InitializeHandsCor());
+    }
+
+    public IEnumerator InitializeHandsCor()
     {
         for (int i = 0; i < gameRules.initialHandSize; i++)
         {
             BuyCard(player1Deck, true);
             BuyCard(player2Deck, false);
+
+            yield return new WaitForSeconds(2f);
         }
     }
 

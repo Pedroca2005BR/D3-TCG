@@ -4,6 +4,7 @@ public class Player1ActionsState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
+        Debug.Log("P1TurnState");
         controller.initialTime = 0f;
     }
 
