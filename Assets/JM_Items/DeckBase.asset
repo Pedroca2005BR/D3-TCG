@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c661010ac4c8f594f813026ff020969a, type: 3}
+  m_Name: DeckBase
+  m_EditorClassIdentifier: 
+  allCards:
+  - {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}

@@ -4,6 +4,7 @@ public class EndTurnState : TurnBaseState
 {
     public override void EnterState(JM_TurnController controller)
     {
+        Debug.Log("EndTurnState");
         controller.player1Played = false;
         controller.player2Played = false;
     }
