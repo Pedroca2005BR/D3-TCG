@@ -24,6 +24,7 @@ public class JM_TurnController : MonoBehaviour
     public bool lastTurn = false;
     public bool player1Played = false;
     public bool player2Played = false;
+    public int turn;
 
     [Header("State Machine")]
     public GameStates currentState;
@@ -112,6 +113,12 @@ public class JM_TurnController : MonoBehaviour
         player2Deck.usedCards.Clear();
         player2Deck.deadCards.Clear();
         ShuffleDeck(player2Deck.cards);
+    }
+
+    public void EndTurn()
+    {
+        if (player1Played == false) player1Played = true;
+        else if (player2Played = false) player2Played = true;
     }
 
     public void Reveal()
