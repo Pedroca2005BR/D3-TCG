@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: c959b62ff432d0b4e88fa05b971938cc
+guid: 8f83e8c5e18ce294680b01c7e753022a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5103349446810867601
-    second: menuofc-export_0
+      213: 8061265348623799207
+    second: volumecheio-export_0
+  - first:
+      213: 5733845489769287506
+    second: volumecheio-export_1
+  - first:
+      213: 7982349788116412951
+    second: volumecheio-export_2
+  - first:
+      213: 2732564460047638361
+    second: volumecheio-export_3
+  - first:
+      213: -7933187826981655703
+    second: volumecheio-export_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,23 +125,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menuofc-export_0
+      name: volumecheio-export_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3840
-        height: 2160
+        x: 119
+        y: 79
+        width: 122
+        height: 152
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19719dd784db2d640800000000000000
-      internalID: 5103349446810867601
+      spriteID: 7a313e8cf1e5fdf60800000000000000
+      internalID: 8061265348623799207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volumecheio-export_1
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 109
+        width: 42
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f8caef716b29f40800000000000000
+      internalID: 5733845489769287506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volumecheio-export_2
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 89
+        width: 42
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71ae79907d007ce60800000000000000
+      internalID: 7982349788116412951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volumecheio-export_3
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 69
+        width: 230
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f1ffe06e40ce520800000000000000
+      internalID: 2732564460047638361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volumecheio-export_4
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 129
+        width: 762
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b2e4404b7a7e190800000000000000
+      internalID: -7933187826981655703
       vertices: []
       indices: 
       edges: []
@@ -138,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: afbf62738044008468319ed71066fde0
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      menuofc-export_0: 5103349446810867601
+      volumecheio-export_0: 8061265348623799207
+      volumecheio-export_1: 5733845489769287506
+      volumecheio-export_2: 7982349788116412951
+      volumecheio-export_3: 2732564460047638361
+      volumecheio-export_4: -7933187826981655703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

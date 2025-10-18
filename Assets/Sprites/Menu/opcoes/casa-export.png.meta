@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c959b62ff432d0b4e88fa05b971938cc
+guid: d09214594d879ef42bbf3baeb9824402
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5103349446810867601
-    second: menuofc-export_0
+      213: -2789489858478606833
+    second: casa-export_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menuofc-export_0
+      name: casa-export_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3840
-        height: 2160
+        x: 109
+        y: 99
+        width: 262
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19719dd784db2d640800000000000000
-      internalID: 5103349446810867601
+      spriteID: f06f3d8c0cdb949d0800000000000000
+      internalID: -2789489858478606833
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      menuofc-export_0: 5103349446810867601
+      casa-export_0: -2789489858478606833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

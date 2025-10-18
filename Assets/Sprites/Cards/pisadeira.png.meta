@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: c959b62ff432d0b4e88fa05b971938cc
+guid: ebcdadfe5aa06cb44a90877db7d41540
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5103349446810867601
-    second: menuofc-export_0
+      213: 3511117492905586781
+    second: pisadeira_0
+  - first:
+      213: 3231406202971725016
+    second: pisadeira_1
+  - first:
+      213: 2178388005731255552
+    second: pisadeira_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menuofc-export_0
+      name: pisadeira_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3840
-        height: 2160
+        x: 31
+        y: 127
+        width: 66
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19719dd784db2d640800000000000000
-      internalID: 5103349446810867601
+      spriteID: d503c41d1cef9b030800000000000000
+      internalID: 3511117492905586781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pisadeira_1
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 167
+        width: 58
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc9f1522d248dc20800000000000000
+      internalID: 3231406202971725016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pisadeira_2
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 31
+        width: 66
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 005459089503b3e10800000000000000
+      internalID: 2178388005731255552
       vertices: []
       indices: 
       edges: []
@@ -148,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      menuofc-export_0: 5103349446810867601
+      pisadeira_0: 3511117492905586781
+      pisadeira_1: 3231406202971725016
+      pisadeira_2: 2178388005731255552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
