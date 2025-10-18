@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
@@ -21,7 +22,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     [Header("Display Info")]
     [SerializeField] TextMeshProUGUI nameComponent;
-    [SerializeField] TextMeshProUGUI descriptionComponent;
+    [SerializeField] Image descriptionImage;
+    [SerializeField] TextMeshProUGUI descriptionText;
     [SerializeField] TextMeshProUGUI healthComponent;
     [SerializeField] TextMeshProUGUI attackComponent;
     [SerializeField] Image cardArtComponent;
@@ -48,6 +50,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     bool canBeSelected;
     GameObject targetPrefab;
 
+    // --------------------- Special visuals
+    IEnumerator descriptionCoroutine;
+
 
     public void SetupCardInstance(CardData data, bool isPlayer1)
     {
@@ -63,13 +68,17 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         // Prepara textos
         nameComponent.text = cardData.cardName;
-        descriptionComponent.text = cardData.cardDescription;
+        descriptionText.text = cardData.cardDescription;
         ChangeHealthComponent();
         ChangeAttackComponent();
 
         // Prepara artes
         cardArtComponent.sprite = cardData.cardArt;
         backgroundComponent.sprite = cardData.backgroundArt;
+        descriptionImage.gameObject.SetActive(false);
+
+        // Prepara corotinas
+        descriptionCoroutine = DescriptionAppearTimer();
     }
 
     #region HealthMethods
@@ -264,10 +273,19 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         // TODO : Animation for hovering
+        StartCoroutine(descriptionCoroutine);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         // TODO: Stop animation for hovering
+        StopCoroutine(descriptionCoroutine);
+        descriptionImage.gameObject.SetActive(false);
+    }
+
+    IEnumerator DescriptionAppearTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        descriptionImage.gameObject.SetActive(true);    // TO DO: Adicionar easing
     }
 }
