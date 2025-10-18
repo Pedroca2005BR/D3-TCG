@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: 0b732e971b79f7a42a8432409c0d42d6
+guid: 86dc60db0f43a334d8573b8329e05f20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3326270148388576055
-    second: mula_0
+      213: -7611610024889833953
+    second: Iara_0
   - first:
-      213: 5812557348200333802
-    second: mula_1
+      213: 8849472643159430248
+    second: Iara_1
   - first:
-      213: -815731789225061640
-    second: mula_2
-  - first:
-      213: -8783764712361679188
-    second: mula_3
-  - first:
-      213: 2615750096353072964
-    second: mula_4
+      213: 7104678358737551134
+    second: Iara_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,11 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mula_0
+      name: Iara_0
       rect:
         serializedVersion: 2
         x: 31
-        y: 159
+        y: 143
         width: 66
         height: 98
       alignment: 0
@@ -140,18 +134,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73bdfad9319492e20800000000000000
-      internalID: 3326270148388576055
+      spriteID: f16a3a9a2012e5690800000000000000
+      internalID: -7611610024889833953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mula_1
+      name: Iara_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 163
+        x: 131
+        y: 167
         width: 58
         height: 47
       alignment: 0
@@ -162,17 +156,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae14118ac1a5aa050800000000000000
-      internalID: 5812557348200333802
+      spriteID: 8641e018b74afca70800000000000000
+      internalID: 8849472643159430248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mula_2
+      name: Iara_2
       rect:
         serializedVersion: 2
-        x: 31
+        x: 127
         y: 31
         width: 66
         height: 98
@@ -184,52 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f21f377240fda4f0800000000000000
-      internalID: -815731789225061640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mula_3
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 106
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca62211588cc91680800000000000000
-      internalID: -8783764712361679188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mula_4
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 105
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44791529ad20d4420800000000000000
-      internalID: 2615750096353072964
+      spriteID: e1ff4f73353e89260800000000000000
+      internalID: 7104678358737551134
       vertices: []
       indices: 
       edges: []
@@ -248,11 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mula_0: 3326270148388576055
-      mula_1: 5812557348200333802
-      mula_2: -815731789225061640
-      mula_3: -8783764712361679188
-      mula_4: 2615750096353072964
+      Iara_0: -7611610024889833953
+      Iara_1: 8849472643159430248
+      Iara_2: 7104678358737551134
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

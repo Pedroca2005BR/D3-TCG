@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: 0b732e971b79f7a42a8432409c0d42d6
+guid: 65911916bc35fba4d954dea202af48b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3326270148388576055
-    second: mula_0
+      213: 2255761807126211446
+    second: homemDoSaco_0
   - first:
-      213: 5812557348200333802
-    second: mula_1
+      213: -9076786004051228140
+    second: homemDoSaco_1
   - first:
-      213: -815731789225061640
-    second: mula_2
-  - first:
-      213: -8783764712361679188
-    second: mula_3
-  - first:
-      213: 2615750096353072964
-    second: mula_4
+      213: -194979956833485923
+    second: homemDoSaco_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,11 +119,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mula_0
+      name: homemDoSaco_0
       rect:
         serializedVersion: 2
         x: 31
-        y: 159
+        y: 127
         width: 66
         height: 98
       alignment: 0
@@ -140,18 +134,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73bdfad9319492e20800000000000000
-      internalID: 3326270148388576055
+      spriteID: 67ba6ab79631e4f10800000000000000
+      internalID: 2255761807126211446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mula_1
+      name: homemDoSaco_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 163
+        x: 131
+        y: 168
         width: 58
         height: 47
       alignment: 0
@@ -162,17 +156,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae14118ac1a5aa050800000000000000
-      internalID: 5812557348200333802
+      spriteID: 41a0a4e5837c80280800000000000000
+      internalID: -9076786004051228140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mula_2
+      name: homemDoSaco_2
       rect:
         serializedVersion: 2
-        x: 31
+        x: 127
         y: 31
         width: 66
         height: 98
@@ -184,52 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f21f377240fda4f0800000000000000
-      internalID: -815731789225061640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mula_3
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 106
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca62211588cc91680800000000000000
-      internalID: -8783764712361679188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mula_4
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 105
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44791529ad20d4420800000000000000
-      internalID: 2615750096353072964
+      spriteID: d9b7e9623ca4b4df0800000000000000
+      internalID: -194979956833485923
       vertices: []
       indices: 
       edges: []
@@ -248,11 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mula_0: 3326270148388576055
-      mula_1: 5812557348200333802
-      mula_2: -815731789225061640
-      mula_3: -8783764712361679188
-      mula_4: 2615750096353072964
+      homemDoSaco_0: 2255761807126211446
+      homemDoSaco_1: -9076786004051228140
+      homemDoSaco_2: -194979956833485923
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
