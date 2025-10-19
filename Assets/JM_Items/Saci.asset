@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Saci
   m_EditorClassIdentifier: 
-  cardName: 
-  cardDescription: 
+  cardName: Saci Perere
+  cardDescription: Cria tornados
   type: 0
-  health: 0
-  attack: 0
+  health: 6
+  attack: 7
   effects: []
-  cardArt: {fileID: 0}
-  backgroundArt: {fileID: 0}
+  cardArt: {fileID: 7201128354403198847, guid: ffa6404d78fda774d811268b9414ce77, type: 3}
+  backgroundArt: {fileID: 4858340844512080475, guid: ffa6404d78fda774d811268b9414ce77, type: 3}

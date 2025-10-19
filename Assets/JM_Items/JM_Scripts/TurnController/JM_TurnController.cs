@@ -86,6 +86,8 @@ public class JM_TurnController : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
         }
+
+        SwitchState(GameStates.startingTurn);
     }
 
     public void BuyCard(JM_DeckManager deck, bool isPlayer1)
@@ -125,7 +127,7 @@ public class JM_TurnController : MonoBehaviour
     public void EndTurn()
     {
         if (player1Played == false) player1Played = true;
-        else if (player2Played = false) player2Played = true;
+        else if (player2Played == false) player2Played = true;
     }
 
     public void Reveal()

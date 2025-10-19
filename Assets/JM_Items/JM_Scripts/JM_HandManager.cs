@@ -37,7 +37,7 @@ public class JM_HandManager : MonoBehaviour
     
     public IEnumerator SpawnCardVisual(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         CardInstance newCard = Instantiate(cardInstance, handUI);
         newCard.SetupCardInstance(data, isPlayer1);

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Tutu
   m_EditorClassIdentifier: 
   cardName: Tutu Maramba
-  cardDescription: 
-  type: 1
+  cardDescription: Criatura com nariz de porco
+  type: 4
   health: 3
   attack: 2
   effects: []
-  cardArt: {fileID: 3326270148388576055, guid: 7ce60a9f4d2aa414cb3d12bf5bb766d6, type: 3}
-  backgroundArt: {fileID: -8783764712361679188, guid: 7ce60a9f4d2aa414cb3d12bf5bb766d6, type: 3}
+  cardArt: {fileID: 1951930859, guid: 734eba991ca439b4792ad836515e5a17, type: 3}
+  backgroundArt: {fileID: 1352224084, guid: 734eba991ca439b4792ad836515e5a17, type: 3}
