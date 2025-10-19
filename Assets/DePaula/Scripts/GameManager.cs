@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     public JM_RulesObject rules;
 
     [Header("Important Managers")]
-    [SerializeField] JM_TurnController turnController;
-    [SerializeField] EffectHandler effectHandler;
+    [SerializeField] public JM_TurnController turnController;
+    [SerializeField] public EffectHandler effectHandler;
 
     [Header("Card Slots")]
     [SerializeField] CardSlot[] slotsP1;

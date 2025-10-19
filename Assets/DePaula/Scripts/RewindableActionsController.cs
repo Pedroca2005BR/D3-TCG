@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class RewindableActionsController : MonoBehaviour 
@@ -21,10 +22,10 @@ public class RewindableActionsController : MonoBehaviour
 
     List<GameAction> actions = new List<GameAction>();
 
-    public void CardPlayed(GameAction gameAction)
+    public async Task CardPlayed(GameAction gameAction)
     {
         actions.Add(gameAction);
-        gameAction.Execute();
+        await gameAction.Execute();
     }
 
     public void RewindAction()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NextCardEffect", menuName = "Scriptable Objects/Effects/CompositeEffect")]
+[CreateAssetMenu(fileName = "CompositeEffect", menuName = "Scriptable Objects/Effects/CompositeEffect")]
 public class CompositeEffect : EffectObject
 {
     public EffectActivationData secondaryEffect;
