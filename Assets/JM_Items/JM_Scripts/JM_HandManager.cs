@@ -10,6 +10,7 @@ public class JM_HandManager : MonoBehaviour
     [SerializeField] Transform player2HandUI;
     public List<CardInstance> player1Hand = new List<CardInstance>();
     public List<CardInstance> player2Hand = new List<CardInstance>();
+    public bool isSpawning = false;
 
     public bool AddCard(JM_DeckManager deck, bool isPlayer1)
     {
@@ -22,7 +23,7 @@ public class JM_HandManager : MonoBehaviour
             deck.BoughtCard(chosenCard);
 
             Transform handUI = isPlayer1 ? player1HandUI : player2HandUI;
-            StartCoroutine(SpawnCardVisual(chosenCard, isPlayer1, handUI, hand));
+            StartCoroutine(SpawnCard(chosenCard, isPlayer1, handUI, hand));
 
             return true;
         }
@@ -35,8 +36,10 @@ public class JM_HandManager : MonoBehaviour
         return true;
     }
     
-    public IEnumerator SpawnCardVisual(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
+    public IEnumerator SpawnCard(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
     {
+        isSpawning = true;
+        
         yield return new WaitForSeconds(1f);
 
         CardInstance newCard = Instantiate(cardInstance, handUI);
@@ -47,8 +50,10 @@ public class JM_HandManager : MonoBehaviour
         handScript.UpdateHandUI();
 
         hand.Add(newCard);
-        
+
         Debug.Log("Carta comprada");
+
+        isSpawning = false;
     }
     
 }

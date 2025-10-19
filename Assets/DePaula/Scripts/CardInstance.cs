@@ -46,6 +46,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     // ----------------------------------- Draggable stuff
     public GameObject[] slotObjects;
+    private RectTransform currentSlot;
     public float snapRange = 1f;
     private static List<RectTransform> slots;
     private Vector3 velocity = Vector3.zero;
@@ -276,6 +277,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
                 closestSlot.position.y,
                 transform.position.z
             );
+
+            currentSlot = closestSlot;
+            slots.Remove(closestSlot);
             ConfirmPlay(); 
         }
         else
@@ -338,7 +342,16 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
             dragTargetPosition = transform.position;
 
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            }
+        }
+    }
+    
+    public void ReleaseSlot()
+    {
+        if (currentSlot != null && !slots.Contains(currentSlot))
+        {
+            slots.Add(currentSlot);
+            currentSlot = null;
+        }
     }
 
     public void ConfirmPlay()

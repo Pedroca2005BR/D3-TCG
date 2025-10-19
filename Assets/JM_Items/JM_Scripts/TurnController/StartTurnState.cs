@@ -17,6 +17,11 @@ public class StartTurnState : TurnBaseState
 
         yield return new WaitForSeconds(1.5f);
 
+        while (controller.handManager.isSpawning)
+        {
+            yield return null;
+        }
+
         controller.SwitchState(GameStates.p1Choosing);
     }
 

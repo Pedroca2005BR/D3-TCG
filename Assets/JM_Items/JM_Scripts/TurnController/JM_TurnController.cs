@@ -33,7 +33,7 @@ public class JM_TurnController : MonoBehaviour
     [Header("Controle do Deck")]
     public JM_DeckManager player1Deck;
     public JM_DeckManager player2Deck;
-    [SerializeField] JM_HandManager handManager;
+    [SerializeField] public JM_HandManager handManager;
 
     void Start()
     {
@@ -132,7 +132,7 @@ public class JM_TurnController : MonoBehaviour
 
     public void Reveal()
     {
-        StopAllCoroutines(); 
+        
         
         StartCoroutine(CardRevealing());
     }
