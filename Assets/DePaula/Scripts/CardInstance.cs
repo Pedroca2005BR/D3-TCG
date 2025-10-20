@@ -45,10 +45,19 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     // ------------------------------------------------------------------------------------------GameEntity Stuff
 
     // ----------------------------------- Draggable stuff
+    public GameObject[] slotObjects;
+    private RectTransform currentSlot;
+    public float snapRange = 1f;
+    private static List<RectTransform> slots;
+    private Vector3 velocity = Vector3.zero;
+    private Vector3 dragTargetPosition;
+    public float dragSmoothSpeed = 10f;
+    private static bool slotsInitialized = false;
     bool isBeingDragged;
     Vector3 dragOffset;
     bool canBeSelected;
     GameObject targetPrefab;
+    Vector3 initialPosition;
 
     // --------------------- Special visuals
     IEnumerator descriptionCoroutine;
@@ -79,6 +88,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         // Prepara corotinas
         descriptionCoroutine = DescriptionAppearTimer();
+
+        
     }
 
     #region HealthMethods
@@ -206,28 +217,140 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         throw new NotImplementedException();
     }
 
-
+    void Update()
+    {
+        if (isBeingDragged)
+        {
+            transform.position = Vector3.SmoothDamp(
+            transform.position,
+            dragTargetPosition,
+            ref velocity,
+            0.02f 
+        );
+        }
+    }
+    
     public void OnDrag(PointerEventData eventData)
     {
+        
         if (!isBeingDragged) return;
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        transform.position = worldPos + dragOffset;
+        Vector3 worldPoint;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            (RectTransform)transform.parent,
+            eventData.position,
+            Camera.main,
+            out worldPoint
+        );
+
+        dragTargetPosition = new Vector3(worldPoint.x, worldPoint.y, transform.position.z) + dragOffset;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         isBeingDragged = false;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        InitializeSlots();
+
+        RectTransform closestSlot = null;
+        float closestDistance = float.MaxValue;
+
+        Vector3 cardPos = transform.position;
+
+        foreach (RectTransform slot in slots)
+        {
+            float dist = Vector3.Distance(cardPos, slot.position);
+            if (dist < closestDistance)
+            {
+                closestDistance = dist;
+                closestSlot = slot;
+            }
+        }
+
+        
+
+        if (closestSlot != null && closestDistance < snapRange)
+        {
+            transform.SetParent(closestSlot);
+            transform.position = new Vector3(
+                closestSlot.position.x,
+                closestSlot.position.y,
+                transform.position.z
+            );
+
+            currentSlot = closestSlot;
+            slots.Remove(closestSlot);
+            ConfirmPlay(); 
+        }
+        else
+        {
+            StartCoroutine(Return());
+        }
+    }
+    
+    private void InitializeSlots()
+    {
+        if (slotsInitialized) return;
+
+        slots = new List<RectTransform>();
+
+        slotObjects = GameObject.FindGameObjectsWithTag("Slot");
+
+        foreach (GameObject go in slotObjects)
+        {
+            RectTransform rt = go.GetComponent<RectTransform>();
+            if (rt != null)
+            {
+                slots.Add(rt);
+            }
+        }
+
+        slotsInitialized = true;
+    }
+
+    IEnumerator Return()
+    {
+        float t = 0f;
+        Vector3 startPos = transform.position;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 5f;
+            transform.position = Vector3.Lerp(startPos, initialPosition, t);
+            yield return null;
+        }
+
+        transform.position = initialPosition;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (Mode == CardMode.InHand)
         {
+            initialPosition = transform.position;
             isBeingDragged = true;
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-            dragOffset = transform.position - worldPos;
+
+            Vector3 worldPoint;
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                (RectTransform)transform.parent,
+                eventData.position,
+                Camera.main,
+                out worldPoint
+            );
+            dragOffset = transform.position - worldPoint;
+
+            dragTargetPosition = transform.position;
+
             GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+    }
+    
+    public void ReleaseSlot()
+    {
+        if (currentSlot != null && !slots.Contains(currentSlot))
+        {
+            slots.Add(currentSlot);
+            currentSlot = null;
         }
     }
 

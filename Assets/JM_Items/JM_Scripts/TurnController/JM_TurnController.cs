@@ -33,7 +33,7 @@ public class JM_TurnController : MonoBehaviour
     [Header("Controle do Deck")]
     public JM_DeckManager player1Deck;
     public JM_DeckManager player2Deck;
-    [SerializeField] JM_HandManager handManager;
+    [SerializeField] public JM_HandManager handManager;
 
     void Start()
     {
@@ -86,6 +86,8 @@ public class JM_TurnController : MonoBehaviour
 
             yield return new WaitForSeconds(2f);
         }
+
+        SwitchState(GameStates.startingTurn);
     }
 
     public void BuyCard(JM_DeckManager deck, bool isPlayer1)
@@ -125,12 +127,12 @@ public class JM_TurnController : MonoBehaviour
     public void EndTurn()
     {
         if (player1Played == false) player1Played = true;
-        else if (player2Played = false) player2Played = true;
+        else if (player2Played == false) player2Played = true;
     }
 
     public void Reveal()
     {
-        StopAllCoroutines(); 
+        
         
         StartCoroutine(CardRevealing());
     }

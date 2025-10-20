@@ -13,7 +13,7 @@ public class StartGameState : TurnBaseState
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.SwitchState(GameStates.startingTurn);
+        
     }
 
     public override void ExitState(JM_TurnController controller)

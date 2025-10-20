@@ -11,14 +11,15 @@ public class JM_HandUI : MonoBehaviour
     
     public void UpdateHandUI()
     {
-        int totalCards = cardsInHand.Count;
+        List<CardInstance> cardsInHandMode = cardsInHand.FindAll(c => c.Mode == CardInstance.CardMode.InHand);
+        int totalCards = cardsInHandMode.Count;
         if (totalCards == 0) return;
 
         float centerIndex = (totalCards - 1) / 2f;
         
         for (int i = 0; i < totalCards; i++)
         {
-            CardInstance card = cardsInHand[i];
+            CardInstance card = cardsInHandMode[i];
             float xPosition = (i - centerIndex) * cardSpace;
             
             Vector3 targetLocalPosition = new Vector3(
