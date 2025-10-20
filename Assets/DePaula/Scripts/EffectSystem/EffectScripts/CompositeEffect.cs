@@ -14,7 +14,7 @@ public class CompositeEffect : EffectObject
         else
         {
             GameAction res = new GameAction(source, secondaryEffect);
-            EffectHandler.Instance.EnqueueEffect(res);
+            EffectHandler.Instance.EnqueueEffect(secondaryEffect.timeToActivate, res);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.EventSystems;
 using System.Collections;
+using System.Threading.Tasks;
 
 public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
@@ -138,6 +139,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     }
     public void Attack()
     {
+        if (turnsToSleep > 0)
+        {
+            turnsToSleep--;
+            return;
+        }
+
         EnqueueEffects(TimeToActivate.OnAttack);
         // TO DO: Attack stuff
     }
@@ -149,7 +156,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         foreach (EffectActivationData effect in effects)
         {
             GameAction res = new GameAction(this, effect);
-            EffectHandler.Instance.EnqueueEffect(res);
+            EffectHandler.Instance.EnqueueEffect(effect.timeToActivate, res);
         }        
     }
 
@@ -354,7 +361,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         }
     }
 
-    public void ConfirmPlay()
+    public async Task ConfirmPlay()
     {
         Mode = CardMode.InPlay;
 
@@ -363,8 +370,10 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         foreach (EffectActivationData effect in effects)
         {
             GameAction res = new GameAction(this, effect);
-            RewindableActionsController.Instance.CardPlayed(res);
+            await RewindableActionsController.Instance.CardPlayed(res);
         }
+
+        //return Task.CompletedTask;
     }
 
     public void PossibleTargetToClick()

@@ -20,33 +20,40 @@ public class EffectHandler : MonoBehaviour
     }
     #endregion
 
-    private List<GameAction> effectsToSolve = new List<GameAction>();
+    private Dictionary<GameStates, List<GameAction>> effectsToSolve = new Dictionary<GameStates, List<GameAction>>();
 
     // Finalmente executa os efeitos e depois os apaga
-    public async void ResolveEffects()
+    public async void ResolveEffects(GameStates state)
     {
-        for(int i = 0; i < effectsToSolve.Count; i++)
+        for(int i = 0; i < effectsToSolve[state].Count; i++)
         {
-            await effectsToSolve[i].Execute();
+            await effectsToSolve[state][i].Execute();
         }
 
-        effectsToSolve.Clear();
+        effectsToSolve[state].Clear();
     }
 
     // Adiciona na lista o comando, e entao da sort na lista
-    public void EnqueueEffect(GameAction effect)
+    public void EnqueueEffect(TimeToActivate time, GameAction effect)
     {
-        effectsToSolve.Add(effect);
-        SortListByPriority();
+        GameStates state = ConvertTimeToActivateToGameState(time);
+
+        effectsToSolve[state].Add(effect);
+
+        if (state != GameManager.Instance.turnController.currentState)
+        {
+            SortListByPriority(effectsToSolve[state]);
+        }
     }
 
 
-    public void RemoveEffect(GameAction effect)
+    public void RemoveEffect(TimeToActivate time, GameAction effect)
     {
-        effectsToSolve.Remove(effect);
+        GameStates state = ConvertTimeToActivateToGameState(time);
+        effectsToSolve[state].Remove(effect);
     }
 
-    private void SortListByPriority()
+    private void SortListByPriority(List<GameAction> lt)
     {
         int n = effectsToSolve.Count;
         bool swapped;
@@ -58,12 +65,12 @@ public class EffectHandler : MonoBehaviour
             for (int j = 0; j < n - 1 - i; j++)
             {
                 // Compare adjacent elements
-                if (effectsToSolve[j].priority > effectsToSolve[j + 1].priority)
+                if (lt[j].priority > lt[j + 1].priority)
                 {
                     // Swap them if they are in the wrong order
-                    temp = effectsToSolve[j];
-                    effectsToSolve[j] = effectsToSolve[j + 1];
-                    effectsToSolve[j + 1] = temp;
+                    temp = lt[j];
+                    lt[j] = lt[j + 1];
+                    lt[j + 1] = temp;
                     swapped = true;
                 }
             }
@@ -75,5 +82,13 @@ public class EffectHandler : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private GameStates ConvertTimeToActivateToGameState(TimeToActivate time)
+    {
+        if (time == TimeToActivate.OnReveal) return GameStates.revealing;
+        else if (time == TimeToActivate.Passive) return GameManager.Instance.turnController.currentState;
+        else if (time == TimeToActivate.OnStartOfTurn) return GameStates.startingTurn;
+        else return GameStates.processing;
     }
 }

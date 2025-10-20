@@ -12,7 +12,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag.TryGetComponent<CardInstance>(out CardInstance cardInstance))
         {
             CardInstance = cardInstance;
-            CardInstance.ConfirmPlay();
+            //CardInstance.ConfirmPlay();
         }
         else
         {
