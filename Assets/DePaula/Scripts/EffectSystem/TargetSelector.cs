@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // A funcao do TargetSelector eh transformar uma ideia vaga de alvo em um alvo real
+[RequireComponent(typeof(LineRenderer))]
 public class TargetSelector : MonoBehaviour
 {
     #region Singleton
@@ -56,6 +57,7 @@ public class TargetSelector : MonoBehaviour
 
     public async Task<IGameEntity[]> SelectTargetsManually(IGameEntity source, Targeting target, int amount)
     {
+        processedTargets = new List<IGameEntity>();
         IGameEntity[] targets = GetTargets(source, target);
 
         if (targets == null || targets.Length < amount)

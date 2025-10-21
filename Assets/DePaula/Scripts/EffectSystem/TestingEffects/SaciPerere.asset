@@ -22,5 +22,5 @@ MonoBehaviour:
     timeToActivate: 6
     targeting: 9
     specialParameter: 0
-  cardArt: {fileID: 0}
-  backgroundArt: {fileID: 0}
+  cardArt: {fileID: 7201128354403198847, guid: ffa6404d78fda774d811268b9414ce77, type: 3}
+  backgroundArt: {fileID: 4858340844512080475, guid: ffa6404d78fda774d811268b9414ce77, type: 3}
