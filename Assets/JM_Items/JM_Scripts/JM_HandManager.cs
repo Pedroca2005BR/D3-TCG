@@ -10,7 +10,7 @@ public class JM_HandManager : MonoBehaviour
     [SerializeField] Transform player2HandUI;
     public List<CardInstance> player1Hand = new List<CardInstance>();
     public List<CardInstance> player2Hand = new List<CardInstance>();
-    public bool isSpawning = false;
+    public int activeCoroutine = 0;
 
     public bool AddCard(JM_DeckManager deck, bool isPlayer1)
     {
@@ -38,9 +38,9 @@ public class JM_HandManager : MonoBehaviour
     
     public IEnumerator SpawnCard(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
     {
-        isSpawning = true;
+        activeCoroutine++;
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         CardInstance newCard = Instantiate(cardInstance, handUI);
         newCard.SetupCardInstance(data, isPlayer1);
@@ -53,7 +53,7 @@ public class JM_HandManager : MonoBehaviour
 
         Debug.Log("Carta comprada");
 
-        isSpawning = false;
+        activeCoroutine--;
     }
     
 }

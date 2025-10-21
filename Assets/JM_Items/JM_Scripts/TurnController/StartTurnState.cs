@@ -15,9 +15,7 @@ public class StartTurnState : TurnBaseState
         controller.BuyCard(controller.player1Deck, true);
         controller.BuyCard(controller.player2Deck, false);
 
-        yield return new WaitForSeconds(1.5f);
-
-        while (controller.handManager.isSpawning)
+        while (controller.handManager.activeCoroutine > 0)
         {
             yield return null;
         }

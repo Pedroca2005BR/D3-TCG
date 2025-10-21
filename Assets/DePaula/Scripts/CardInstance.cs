@@ -46,14 +46,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     // ------------------------------------------------------------------------------------------GameEntity Stuff
 
     // ----------------------------------- Draggable stuff
-    public GameObject[] slotObjects;
-    private RectTransform currentSlot;
+    public List<GameObject> slotObjects;
+    private GameObject currentSlot;
+    public bool dropped = false;
     public float snapRange = 1f;
-    private static List<RectTransform> slots;
     private Vector3 velocity = Vector3.zero;
     private Vector3 dragTargetPosition;
-    public float dragSmoothSpeed = 10f;
-    private static bool slotsInitialized = false;
     bool isBeingDragged;
     Vector3 dragOffset;
     bool canBeSelected;
@@ -259,63 +257,24 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         InitializeSlots();
 
-        RectTransform closestSlot = null;
+        GameObject closestSlot = null;
         float closestDistance = float.MaxValue;
 
-        Vector3 cardPos = transform.position;
-
-        foreach (RectTransform slot in slots)
+        if(!dropped)
         {
-            float dist = Vector3.Distance(cardPos, slot.position);
-            if (dist < closestDistance)
-            {
-                closestDistance = dist;
-                closestSlot = slot;
-            }
-        }
-
-        
-
-        if (closestSlot != null && closestDistance < snapRange)
-        {
-            transform.SetParent(closestSlot);
-            transform.position = new Vector3(
-                closestSlot.position.x,
-                closestSlot.position.y,
-                transform.position.z
-            );
-
-            currentSlot = closestSlot;
-            slots.Remove(closestSlot);
-            ConfirmPlay(); 
-        }
-        else
-        {
-            StartCoroutine(Return());
+            StartCoroutine(ReturnToHand());
         }
     }
     
     private void InitializeSlots()
     {
-        if (slotsInitialized) return;
+        if (slotObjects != null && slotObjects.Count > 0) return;
 
-        slots = new List<RectTransform>();
+        slotObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Slot"));
 
-        slotObjects = GameObject.FindGameObjectsWithTag("Slot");
-
-        foreach (GameObject go in slotObjects)
-        {
-            RectTransform rt = go.GetComponent<RectTransform>();
-            if (rt != null)
-            {
-                slots.Add(rt);
-            }
-        }
-
-        slotsInitialized = true;
     }
 
-    IEnumerator Return()
+    public IEnumerator ReturnToHand()
     {
         float t = 0f;
         Vector3 startPos = transform.position;
@@ -336,6 +295,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         {
             initialPosition = transform.position;
             isBeingDragged = true;
+            dropped = false;
 
             Vector3 worldPoint;
             RectTransformUtility.ScreenPointToWorldPointInRectangle(
@@ -354,9 +314,10 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     
     public void ReleaseSlot()
     {
-        if (currentSlot != null && !slots.Contains(currentSlot))
+        CardSlot currentCardSlot = currentSlot.GetComponent<CardSlot>();
+        if (currentSlot != null && !currentCardSlot.empty)
         {
-            slots.Add(currentSlot);
+            currentCardSlot.empty = true;
             currentSlot = null;
         }
     }

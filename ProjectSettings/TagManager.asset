@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Slot
+  - P1Hand
   layers:
   - Default
   - TransparentFX

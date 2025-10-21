@@ -84,7 +84,10 @@ public class JM_TurnController : MonoBehaviour
             BuyCard(player1Deck, true);
             BuyCard(player2Deck, false);
 
-            yield return new WaitForSeconds(2f);
+            while(handManager.activeCoroutine > 0)
+            {
+                yield return null;
+            }
         }
 
         SwitchState(GameStates.startingTurn);

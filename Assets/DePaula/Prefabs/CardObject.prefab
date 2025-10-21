@@ -1124,8 +1124,7 @@ MonoBehaviour:
   cardArtComponent: {fileID: 5850225580870793524}
   backgroundComponent: {fileID: 8403079598964022015}
   slotObjects: []
-  snapRange: 500
-  dragSmoothSpeed: 10
+  snapRange: 450
 --- !u!225 &1216037275957110204
 CanvasGroup:
   m_ObjectHideFlags: 0
