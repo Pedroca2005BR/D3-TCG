@@ -4,16 +4,18 @@ using UnityEngine;
 public class BuffEffect : EffectObject
 {
     public Stat statToBuff;
-    public override void Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
+    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
     {
         if (statToBuff == Stat.Nothing)
         {
-            return;
+            return -1;
         }
 
         foreach (var target in targets)
         {
             target.Buff(source, statToBuff, specialParam);
         }
+
+        return 0;
     }
 }

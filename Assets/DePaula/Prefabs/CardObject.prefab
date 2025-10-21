@@ -1117,13 +1117,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardData: {fileID: 0}
   nameComponent: {fileID: 4432446536249109098}
-  descriptionImage: {fileID: 7455078652017847382}
+  descriptionImage: {fileID: 1022629279018070693}
   descriptionText: {fileID: 7998973464204355130}
   healthComponent: {fileID: 3265418086685706253}
   attackComponent: {fileID: 856147293120734388}
   cardArtComponent: {fileID: 5850225580870793524}
   backgroundComponent: {fileID: 8403079598964022015}
   slotObjects: []
+  dropped: 0
   snapRange: 450
 --- !u!225 &1216037275957110204
 CanvasGroup:

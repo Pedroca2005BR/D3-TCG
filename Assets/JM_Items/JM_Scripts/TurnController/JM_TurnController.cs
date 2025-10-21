@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 public enum GameStates
@@ -145,5 +146,10 @@ public class JM_TurnController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         //Adiciona a funcao de virar as cartas
         SwitchState(GameStates.processing);
+    }
+
+    public async Task ResolveEffectBus(GameStates state)
+    {
+        await EffectHandler.Instance.ResolveEffects(state);
     }
 }

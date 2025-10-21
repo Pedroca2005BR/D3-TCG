@@ -13,13 +13,13 @@ public interface IGameEntity : IPointerClickHandler, IPointerEnterHandler, IPoin
     public bool MakeInert(int amount);
 
     // IDamageable
-    public void TakeDamage(int amount);
+    public void TakeDamage(IGameEntity source, int amount);
     public void Heal(int amount);
     public int GetCurrentHealth();
     public bool TryRevive();
 
     // Attack Stuff
-    public int GetCurrentAttack();
+    public int GetAttackDamage(IGameEntity tg);
 
     // Target Selector stuff
 

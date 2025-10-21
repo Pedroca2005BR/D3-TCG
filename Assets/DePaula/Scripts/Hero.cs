@@ -38,7 +38,7 @@ public class Hero : MonoBehaviour, IGameEntity
 
     #region HealthMethods
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(IGameEntity source, int amount)
     {
         healthSystem.TakeDamage(amount);
         ChangeHealthComponent();
@@ -103,7 +103,7 @@ public class Hero : MonoBehaviour, IGameEntity
         return false;
     }
 
-    public int GetCurrentAttack()
+    public int GetAttackDamage(IGameEntity tg)
     {
         Debug.LogWarning("Heroes can't attack!");
         return 0;

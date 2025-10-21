@@ -4,7 +4,7 @@ using UnityEngine;
 public class ReviveEffect : EffectObject
 {
     public bool directToBattlefield;
-    public override void Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
+    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
     {
         if (targets != null)
         {
@@ -16,5 +16,7 @@ public class ReviveEffect : EffectObject
                 }
             }
         }
+
+        return -1;
     }
 }

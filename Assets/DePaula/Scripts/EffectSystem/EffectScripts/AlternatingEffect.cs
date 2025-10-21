@@ -6,7 +6,7 @@ public class AlternatingEffect : EffectObject
     public EffectActivationData evenTurnEffect;
     public EffectActivationData oddTurnEffect;
 
-    public override void Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
+    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
     {
         GameAction res;
         TimeToActivate tm;
@@ -23,5 +23,7 @@ public class AlternatingEffect : EffectObject
         }
 
         EffectHandler.Instance.EnqueueEffect(tm, res);
+
+        return 0;
     }
 }

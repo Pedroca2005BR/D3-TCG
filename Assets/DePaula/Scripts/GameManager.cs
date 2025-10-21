@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class GameManager : MonoBehaviour
 {
@@ -65,5 +67,23 @@ public class GameManager : MonoBehaviour
     {
         if (!isPlayer1) return slotsP2;
         return slotsP1;
+    }
+
+    public CardInstance[] GetAllCards()
+    {
+        List<CardInstance> cards = new List<CardInstance>();
+        CardSlot[] enemySlots = GetSlots(false);
+        CardSlot[] allySlot = GetSlots(true);
+
+        for (int i = 0; i < enemySlots.Length; i++)
+        {
+            cards.Add(enemySlots[i].CardInstance);
+        }
+        for (int i = 0; i < allySlot.Length; i++)
+        {
+            cards.Add(allySlot[i].CardInstance);
+        }
+
+        return cards.ToArray();
     }
 }

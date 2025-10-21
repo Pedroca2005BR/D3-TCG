@@ -1,11 +1,12 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using System;
 using UnityEngine.EventSystems;
-using System.Collections;
-using System.Threading.Tasks;
+using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
@@ -23,7 +24,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     [Header("Display Info")]
     [SerializeField] TextMeshProUGUI nameComponent;
-    [SerializeField] Image descriptionImage;
+    [SerializeField] GameObject descriptionImage;
     [SerializeField] TextMeshProUGUI descriptionText;
     [SerializeField] TextMeshProUGUI healthComponent;
     [SerializeField] TextMeshProUGUI attackComponent;
@@ -93,8 +94,16 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     #region HealthMethods
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(IGameEntity source, int amount)
     {
+        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnTakeDamage);
+
+        foreach (EffectActivationData effect in effects)
+        {
+            IGameEntity[] ige = { source };
+            EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, amount);
+        }
+
         healthSystem.TakeDamage(amount);
         ChangeHealthComponent();
     }
@@ -135,17 +144,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         EnqueueEffects(TimeToActivate.OnReveal);
         // TO DO: Put card down
     }
-    public void Attack()
-    {
-        if (turnsToSleep > 0)
-        {
-            turnsToSleep--;
-            return;
-        }
 
-        EnqueueEffects(TimeToActivate.OnAttack);
-        // TO DO: Attack stuff
-    }
 
     private void EnqueueEffects(TimeToActivate state)
     {
@@ -158,9 +157,24 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         }        
     }
 
-    public int GetCurrentAttack()
+    public int GetAttackDamage(IGameEntity tg)
     {
-        return attackSystem.CurrentHealth;
+        if (turnsToSleep > 0)
+        {
+            turnsToSleep--;
+            return 0;
+        }
+
+        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnTakeDamage);
+        int dmg = attackSystem.CurrentHealth;
+
+        foreach (EffectActivationData effect in effects)
+        {
+            IGameEntity[] ige = { tg };
+            dmg += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, attackSystem.CurrentHealth);
+        }
+
+        return dmg;
     }
 
     private void ChangeAttackComponent()
@@ -373,12 +387,13 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     {
         // TODO: Stop animation for hovering
         StopCoroutine(descriptionCoroutine);
-        descriptionImage.gameObject.SetActive(false);
+        descriptionImage.SetActive(false);
     }
 
     IEnumerator DescriptionAppearTimer()
     {
         yield return new WaitForSeconds(1f);
-        descriptionImage.gameObject.SetActive(true);    // TO DO: Adicionar easing
+        descriptionImage.SetActive(true);    // TO DO: Adicionar easing
+        Debug.Log("Description!");
     }
 }

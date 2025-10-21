@@ -5,7 +5,7 @@ public class DealDamageEffect : EffectObject
 {
     //public int damage;
 
-    public override void Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
+    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
     {
         if (targets == null || targets.Length == 0)
         {
@@ -14,7 +14,9 @@ public class DealDamageEffect : EffectObject
 
         for (int i = 0; i < targets.Length; i++)
         {
-            targets[i].TakeDamage(specialParam);
+            targets[i].TakeDamage(source, specialParam);
         }
+
+        return 0;
     }
 }

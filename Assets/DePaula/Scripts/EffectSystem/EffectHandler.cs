@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EffectHandler : MonoBehaviour
@@ -23,7 +24,7 @@ public class EffectHandler : MonoBehaviour
     private Dictionary<GameStates, List<GameAction>> effectsToSolve = new Dictionary<GameStates, List<GameAction>>();
 
     // Finalmente executa os efeitos e depois os apaga
-    public async void ResolveEffects(GameStates state)
+    public async Task ResolveEffects(GameStates state)
     {
         for(int i = 0; i < effectsToSolve[state].Count; i++)
         {
@@ -44,6 +45,12 @@ public class EffectHandler : MonoBehaviour
         {
             SortListByPriority(effectsToSolve[state]);
         }
+    }
+
+    // Geralmente usado apenas pelos scripts de ataque
+    public int ActivateEffectImmediatly(EffectObject eo, CardInstance source, IGameEntity[] targets, int specialParam)
+    {
+        return eo.Resolve(source, targets, specialParam);
     }
 
 

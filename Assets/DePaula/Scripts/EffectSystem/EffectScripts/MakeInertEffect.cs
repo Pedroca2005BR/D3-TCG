@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MakeInertEffect", menuName = "Scriptable Objects/Effects/MakeInertEffect")]
 public class MakeInertEffect : EffectObject
 {
-    public override void Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
+    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
     {
         if (targets != null)
         {
@@ -12,5 +12,7 @@ public class MakeInertEffect : EffectObject
                 target.MakeInert(specialParam);
             }
         }
+
+        return -1;
     }
 }
