@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
+  m_Name: Cumacanga001
+  m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 562ab06b517c2df4bb93f7a328062dc7
+  cardName: Cumacanga
+  cardDescription: Caveirona pegando fogo UAU!
+  type: 1
+  health: 20
+  attack: 47
+  effects:
+  - effect: {fileID: 11400000, guid: da403c677011a42498dcbf689eabe4d1, type: 2}
+    timeToActivate: 1
+    targeting: 16
+    specialParameter: 15
+  cardArt: {fileID: -5200917730806282002, guid: 857375ce59ad511438db23fdeb7457ee, type: 3}
+  backgroundArt: {fileID: -4943182418226671090, guid: 857375ce59ad511438db23fdeb7457ee, type: 3}

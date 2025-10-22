@@ -2,8 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "Scriptable Objects/CardData")]
+[System.Serializable]
 public class CardData : ScriptableObject
 {
+    public string id; // GUID persistente (preencher no editor)
+    public string addressableKey; // opcional: key se usar Addressables
+
     public string cardName;
     [TextArea] public string cardDescription;
     public CardType type;

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: d521f94e1ef686043b29298300f6b8eb
+  m_SerializeEntries:
+  - m_GUID: 562ab06b517c2df4bb93f7a328062dc7
+    m_Address: 562ab06b517c2df4bb93f7a328062dc7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1f7f7484f8fa3d4cb84bc4f1eb1f1bc
+    m_Address: a1f7f7484f8fa3d4cb84bc4f1eb1f1bc
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd29e43e80906244ca86c94548784ca4
+    m_Address: Assets/DePaula/Scripts/DataPersistance/Test/DeckTest.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da403c677011a42498dcbf689eabe4d1
+    m_Address: Assets/DePaula/Scripts/DataPersistance/Test/DirectDamageEffect.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4cf2b34d32fb6b546b951a9136ec63b3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0202e67f399fcba499bdc46cc290f10d, type: 2}
+    - {fileID: 11400000, guid: 79c54332f04f58042bb1b1f522c60937, type: 2}

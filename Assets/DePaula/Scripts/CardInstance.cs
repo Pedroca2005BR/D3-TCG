@@ -380,6 +380,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         // TODO : Animation for hovering
+        descriptionCoroutine = DescriptionAppearTimer();
         StartCoroutine(descriptionCoroutine);
     }
 
