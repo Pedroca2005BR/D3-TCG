@@ -8,6 +8,7 @@ public class JM_HandManager : MonoBehaviour
     [SerializeField] CardInstance cardInstance;
     [SerializeField] Transform player1HandUI;
     [SerializeField] Transform player2HandUI;
+    public JM_TurnController turnController;    
     public List<CardInstance> player1Hand = new List<CardInstance>();
     public List<CardInstance> player2Hand = new List<CardInstance>();
     public int activeCoroutine = 0;
@@ -21,6 +22,13 @@ public class JM_HandManager : MonoBehaviour
             CardData chosenCard = deck.cards[0];
             deck.cards.RemoveAt(0);
             deck.BoughtCard(chosenCard);
+
+            if (isPlayer1)
+                turnController.player1DeckCount = deck.cards.Count;
+            else
+                turnController.player2DeckCount = deck.cards.Count;
+
+            turnController.UpdateDeckText();
 
             Transform handUI = isPlayer1 ? player1HandUI : player2HandUI;
             StartCoroutine(SpawnCard(chosenCard, isPlayer1, handUI, hand));

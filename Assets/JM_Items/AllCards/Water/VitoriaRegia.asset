@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
+  m_Name: VitoriaRegia
+  m_EditorClassIdentifier: 
+  cardName: Vitoria Regia
+  cardDescription: Vida aumenta em 10 HP
+  type: 2
+  health: 3
+  attack: 2
+  effects: []
+  cardArt: {fileID: -2572818398229748972, guid: 6a21723458714404f891f80b13593737, type: 3}
+  backgroundArt: {fileID: 4523928568741525559, guid: 6a21723458714404f891f80b13593737, type: 3}

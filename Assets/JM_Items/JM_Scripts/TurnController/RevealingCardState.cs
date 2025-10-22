@@ -5,6 +5,8 @@ public class RevealingCardState : TurnBaseState
     public override void EnterState(JM_TurnController controller)
     {
         Debug.Log("RevealCardState");
+        controller.p1Hand.UpdateHandUI();
+        controller.p2Hand.UpdateHandUI();
         controller.Reveal();
     }
 

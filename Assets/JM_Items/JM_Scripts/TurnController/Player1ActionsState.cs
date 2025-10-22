@@ -5,6 +5,8 @@ public class Player1ActionsState : TurnBaseState
     public override void EnterState(JM_TurnController controller)
     {
         Debug.Log("P1TurnState");
+        controller.p1Hand.UpdateHandUI();
+        controller.p2Hand.UpdateHandUI();
         controller.initialTime = 0f;
     }
 

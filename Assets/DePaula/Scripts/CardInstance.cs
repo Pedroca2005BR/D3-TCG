@@ -40,6 +40,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public bool IsPlayer1 => isPlayer1;
     public string Id => id;
 
+    public GameObject frontSide;
+    public GameObject backSide;
+
     public GameObject GameObject => gameObject;
 
     string id;
