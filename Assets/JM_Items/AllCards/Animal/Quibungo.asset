@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: e52d288d56b5b4f4d8b9e88cbebaab69
   cardName: Quibungo
-  cardDescription: Ataque aumenta em 15 contra cartas do tipo Terra
+  cardDescription: "Ca\xE7a Terrestre:\nAtaque aumenta em 3 contra cartas do tipo
+    Terra"
   type: 4
-  health: 6
-  attack: 7
+  health: 9
+  attack: 10
   effects: []
   cardArt: {fileID: 0}
   backgroundArt: {fileID: 0}

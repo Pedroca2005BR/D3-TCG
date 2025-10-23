@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   addressableKey: 6c8de988f1bd54d41bbf67aaedb66505
-  cardName: Boitata
-  cardDescription: Quando atingido retorna um dano de 20
+  cardName: "Boitat\xE1"
+  cardDescription: 'Espinhos de Fogo:
+
+    Quando atingido retorna 3 de dano'
   type: 1
-  health: 3
-  attack: 2
+  health: 9
+  attack: 9
   effects: []
   cardArt: {fileID: 5072288358562479025, guid: 0d749734e4e95104f809d83e32034d2c, type: 3}
   backgroundArt: {fileID: -1278883875557760341, guid: 0d749734e4e95104f809d83e32034d2c, type: 3}

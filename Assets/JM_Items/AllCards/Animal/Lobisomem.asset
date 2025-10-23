@@ -15,11 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: 269dd4204ebd9634ab3abd9c72a425be
   cardName: Lobisomem
-  cardDescription: Em turnos pares o ataque aumenta em 10, em turnos impares a vida
-    aumenta em 10 HP
+  cardDescription: "Ciclo Lunar:\nEm turnos pares o ataque aumenta em 5, em turnos
+    \xEDmpares a vida aumenta em 5 HP"
   type: 4
-  health: 6
-  attack: 7
+  health: 10
+  attack: 9
   effects: []
   cardArt: {fileID: -2773655572048025814, guid: a224da322a004744a86c7565e8a8aa9a, type: 3}
   backgroundArt: {fileID: -4188944349730840552, guid: a224da322a004744a86c7565e8a8aa9a, type: 3}

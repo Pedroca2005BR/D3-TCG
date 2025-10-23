@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   addressableKey: 16d5d1bd03553294b84c92cfc01d7379
-  cardName: Cabeca de Cuia
-  cardDescription: Ataque aumenta em 15 ao matar uma carta oponente
+  cardName: "Cabe\xE7a de Cuia"
+  cardDescription: 'Sede de Sangue:
+
+    Ataque aumenta em 5 ao derrotar uma carta
+    oponente'
   type: 2
-  health: 3
-  attack: 2
+  health: 9
+  attack: 10
   effects: []
   cardArt: {fileID: 0}
   backgroundArt: {fileID: 0}

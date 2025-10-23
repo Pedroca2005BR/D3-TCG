@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   addressableKey: b40a44ac55c543f41bb501cad4bc4eb9
-  cardName: Tutu Maramba
-  cardDescription: Reduz ataque inimigo em 8
+  cardName: "Tutu Maramb\xE1"
+  cardDescription: 'Aura Manipuladora:
+
+    Reduz ataque inimigo em 3'
   type: 5
-  health: 3
-  attack: 2
+  health: 7
+  attack: 11
   effects: []
   cardArt: {fileID: 1951930859, guid: 734eba991ca439b4792ad836515e5a17, type: 3}
   backgroundArt: {fileID: 1352224084, guid: 734eba991ca439b4792ad836515e5a17, type: 3}

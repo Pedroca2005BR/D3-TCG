@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 
   addressableKey: 0426051e4f94d1940b280576a3fbf7b6
   cardName: Mae do Ouro
-  cardDescription: Causa dano extra de 15 em cartas do tipo Animal
+  cardDescription: "Ca\xE7a Animal:\nCausa dano extra de 3 em cartas do tipo Animal"
   type: 1
-  health: 3
-  attack: 2
+  health: 11
+  attack: 8
   effects: []
   cardArt: {fileID: 0}
   backgroundArt: {fileID: 0}

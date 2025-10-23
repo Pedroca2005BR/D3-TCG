@@ -15,10 +15,12 @@ MonoBehaviour:
   id: 
   addressableKey: 511d7899e1172f84e8ed6f26cae9dc82
   cardName: Cumacanga
-  cardDescription: Escolha o alvo do ataque
+  cardDescription: 'Ataque Direto:
+
+    Escolha o alvo do ataque'
   type: 1
-  health: 3
-  attack: 2
+  health: 12
+  attack: 7
   effects: []
   cardArt: {fileID: -5200917730806282002, guid: 857375ce59ad511438db23fdeb7457ee, type: 3}
   backgroundArt: {fileID: -4943182418226671090, guid: 857375ce59ad511438db23fdeb7457ee, type: 3}

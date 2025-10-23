@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: 1506e3fa213983e4e87e2ca3903f9a74
   cardName: Cuca
-  cardDescription: Ataque aumenta em 13 ao matar carta oponente
+  cardDescription: "Sede de Sangue:\nAumenta o ataque em 5 ap\xF3s derrotar outra
+    carta"
   type: 5
-  health: 3
-  attack: 2
+  health: 10
+  attack: 9
   effects: []
   cardArt: {fileID: 7902746502783744396, guid: 0544d567b5bd8134ca71e2dfc6c1831d, type: 3}
   backgroundArt: {fileID: 4735746008953321041, guid: 0544d567b5bd8134ca71e2dfc6c1831d, type: 3}

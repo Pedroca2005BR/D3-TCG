@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: f5679ace40c5e5945b72179612df5076
   cardName: Homem do Saco
-  cardDescription: Causa 10 a mais de dano contra cartas do tipo agua
+  cardDescription: "Ca\xE7a Aqu\xE1tica:\nCausa 3 de dano extra contra cartas do
+    tipo \xC1gua"
   type: 5
-  health: 3
-  attack: 2
+  health: 8
+  attack: 11
   effects: []
   cardArt: {fileID: -9076786004051228140, guid: 65911916bc35fba4d954dea202af48b4, type: 3}
   backgroundArt: {fileID: -194979956833485923, guid: 65911916bc35fba4d954dea202af48b4, type: 3}

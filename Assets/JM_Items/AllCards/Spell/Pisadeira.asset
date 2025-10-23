@@ -15,10 +15,13 @@ MonoBehaviour:
   id: 
   addressableKey: 299e3cffae5b8d448babc8efbd303542
   cardName: Pisadeira
-  cardDescription: A carta oponente fica paralisada durante o proximo turno
+  cardDescription: 'Paralisia do Sono:
+
+    A carta oponente fica paralisada durante
+    o proximo turno'
   type: 5
-  health: 3
-  attack: 2
+  health: 8
+  attack: 10
   effects: []
   cardArt: {fileID: 3231406202971725016, guid: ebcdadfe5aa06cb44a90877db7d41540, type: 3}
   backgroundArt: {fileID: 2178388005731255552, guid: ebcdadfe5aa06cb44a90877db7d41540, type: 3}

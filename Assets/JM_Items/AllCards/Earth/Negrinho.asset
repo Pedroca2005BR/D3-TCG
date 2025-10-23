@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: c192b5890915b6a469dc55e22e2e1633
   cardName: Negrinho do Pastoreio
-  cardDescription: Essa carta pode ser reutilizada apos morrer 1 vez
+  cardDescription: "Segunda Chance:\nEssa carta pode ser reutilizada 1 vez ap\xF3s
+    morrer"
   type: 3
-  health: 6
-  attack: 7
+  health: 11
+  attack: 8
   effects: []
   cardArt: {fileID: 9173367717556157783, guid: 958491192cbc13348be6e471927fa80f, type: 3}
   backgroundArt: {fileID: 2477295730835467383, guid: 958491192cbc13348be6e471927fa80f, type: 3}

@@ -15,10 +15,12 @@ MonoBehaviour:
   id: 
   addressableKey: db17bc1e727fb0242851e844600def0f
   cardName: Mapinguari
-  cardDescription: Todo dano recebido e reduzido em 9
+  cardDescription: 'Couro Grosso:
+
+    Todo dano recebido e reduzido em 3'
   type: 4
-  health: 6
-  attack: 7
+  health: 14
+  attack: 6
   effects: []
   cardArt: {fileID: -8181131990984333718, guid: 419967796a05efd4aa83df347ac95f8b, type: 3}
   backgroundArt: {fileID: -6296799873815501503, guid: 419967796a05efd4aa83df347ac95f8b, type: 3}

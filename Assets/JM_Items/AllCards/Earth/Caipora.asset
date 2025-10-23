@@ -15,10 +15,12 @@ MonoBehaviour:
   id: 
   addressableKey: 663d3e560adb09d4b8e2a86c2edb26c4
   cardName: Caipora
-  cardDescription: Recupere uma carta da pilha de descarte
+  cardDescription: 'Cura da Mata:
+
+    Recupere uma carta da pilha de descarte'
   type: 3
-  health: 6
-  attack: 7
+  health: 14
+  attack: 6
   effects: []
   cardArt: {fileID: -2348265321906102227, guid: 6e979c76fe1312e4a82462e2d9685dec, type: 3}
   backgroundArt: {fileID: 5281632401959999920, guid: 6e979c76fe1312e4a82462e2d9685dec, type: 3}

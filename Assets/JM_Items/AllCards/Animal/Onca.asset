@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   addressableKey: 25330a6633e280243b259b0b40f6a85d
-  cardName: Onca Celestial
-  cardDescription: Ataque aumenta em 24 ao matar carta oponente
+  cardName: "On\xE7a Celestial"
+  cardDescription: 'Sede de Sangue:
+
+    Ataque aumenta em 5 ao derrotar carta oponente'
   type: 4
-  health: 6
+  health: 11
   attack: 7
   effects: []
   cardArt: {fileID: 8156628834637943768, guid: 7c8e6628eed555e43a388601e7791544, type: 3}

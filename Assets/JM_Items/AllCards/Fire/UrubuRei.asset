@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: 21419d8b2979b5543b1becc03dc26b8a
   cardName: Urubu Rei
-  cardDescription: Aumenta o ataque em 15
+  cardDescription: "Sede de Sangue:\nAumenta o ataque em 5 ap\xF3s derrotar outra
+    carta"
   type: 1
-  health: 3
-  attack: 2
+  health: 9
+  attack: 10
   effects: []
   cardArt: {fileID: -5161975852075455053, guid: 0ba430fcdfb4bff40ba81fc7d4bb7df4, type: 3}
   backgroundArt: {fileID: -5236162810747981145, guid: 0ba430fcdfb4bff40ba81fc7d4bb7df4, type: 3}

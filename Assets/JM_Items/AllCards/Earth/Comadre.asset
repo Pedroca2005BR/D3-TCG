@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 
   addressableKey: a95f386a19bd2b540a91fe588dff2f8c
   cardName: Comadre Fulozinha
-  cardDescription: Causa 10 de dano a mais contra cartas do tipo Feitico
+  cardDescription: "Ca\xE7a \xE0s Bruxas:\nCausa 3 de dano a mais contra cartas do
+    tipo Feiti\xE7o"
   type: 3
-  health: 6
-  attack: 7
+  health: 14
+  attack: 6
   effects: []
   cardArt: {fileID: 5581690070406815252, guid: c2cf3a6de57e73946ba31f9168957bed, type: 3}
   backgroundArt: {fileID: 5737847599946607824, guid: c2cf3a6de57e73946ba31f9168957bed, type: 3}

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   addressableKey: 0231f9871fe84354bbc45515cb274c49
-  cardName: Saci Perere
-  cardDescription: "Troca duas cartas de posi\xE7\xE3o"
+  cardName: "Saci Perer\xEA"
+  cardDescription: "Ciclone:\nTroque duas cartas de posi\xE7\xE3o"
   type: 3
-  health: 6
-  attack: 7
+  health: 16
+  attack: 5
   effects:
   - effect: {fileID: 11400000, guid: 446d27f3df9a1954aab105590090e203, type: 2}
     timeToActivate: 6

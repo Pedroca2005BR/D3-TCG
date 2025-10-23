@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 
   addressableKey: e031bc18b6dd14f4693954d6e210a31e
   cardName: "Mula Sem Cabe\xE7a"
-  cardDescription: "Dano em \xE1rea de 10"
+  cardDescription: "Pisoteio:\nCausa 3 de dano em \xE1rea"
   type: 1
-  health: 3
-  attack: 2
+  health: 8
+  attack: 11
   effects: []
   cardArt: {fileID: 5812557348200333802, guid: 0b732e971b79f7a42a8432409c0d42d6, type: 3}
   backgroundArt: {fileID: -815731789225061640, guid: 0b732e971b79f7a42a8432409c0d42d6, type: 3}

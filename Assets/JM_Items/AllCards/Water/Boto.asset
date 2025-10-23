@@ -15,10 +15,13 @@ MonoBehaviour:
   id: 
   addressableKey: cc4166b2458bad04ab1b01649b0c9b45
   cardName: Boto Cor-de-Rosa
-  cardDescription: Ataque aumenta em 20
+  cardDescription: 'Fogo Elemental:
+
+    Causa 3 de dano extra contra cartas do tipo
+    fogo'
   type: 2
-  health: 3
-  attack: 2
+  health: 9
+  attack: 10
   effects: []
   cardArt: {fileID: 7416911894114702423, guid: 2de9e0a000caf0f48be6154ed14583a6, type: 3}
   backgroundArt: {fileID: -5463849574344319318, guid: 2de9e0a000caf0f48be6154ed14583a6, type: 3}

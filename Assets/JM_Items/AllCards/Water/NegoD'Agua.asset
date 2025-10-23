@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   addressableKey: f35cff656d5dcaf4aa7ebf14d2cdcf52
-  cardName: Nego D'Agua
-  cardDescription: Ao morrer leva consigo uma carta oponente
+  cardName: "Nego D'\xC1gua"
+  cardDescription: "Vingan\xE7a Aqu\xE1tica:\nAo morrer leva consigo uma carta oponente"
   type: 2
-  health: 3
-  attack: 2
+  health: 10
+  attack: 8
   effects: []
   cardArt: {fileID: 6377770020482601522, guid: 3703b9852d3eb00419780cdff6141c8c, type: 3}
   backgroundArt: {fileID: -3312076089701451983, guid: 3703b9852d3eb00419780cdff6141c8c, type: 3}

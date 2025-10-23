@@ -15,10 +15,12 @@ MonoBehaviour:
   id: 
   addressableKey: 176bafecb2327614f935d088a7512fcd
   cardName: Curupira
-  cardDescription: Ataque aumenta em 10 ao matar carta oponente
+  cardDescription: 'Sede de Sangue:
+
+    Ataque aumenta em 5 ao derrotar carta oponente'
   type: 3
-  health: 6
-  attack: 7
+  health: 9
+  attack: 10
   effects: []
   cardArt: {fileID: 8772597442516274742, guid: b6c28cc941916d34dad8f47a67572bc6, type: 3}
   backgroundArt: {fileID: 8453570676298614372, guid: b6c28cc941916d34dad8f47a67572bc6, type: 3}

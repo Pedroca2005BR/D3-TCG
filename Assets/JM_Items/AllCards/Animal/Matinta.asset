@@ -15,10 +15,12 @@ MonoBehaviour:
   id: 
   addressableKey: 3422d535feb83874598332fbb7e3f4e5
   cardName: Matinta Pereira
-  cardDescription: Escolha o alvo do ataque
+  cardDescription: 'Ataque Direto:
+
+    Escolha o alvo do ataque'
   type: 4
-  health: 6
-  attack: 7
+  health: 9
+  attack: 8
   effects: []
   cardArt: {fileID: 4183973135076470034, guid: c363fb6432325a74ead83acadfdd7fdf, type: 3}
   backgroundArt: {fileID: -5618485298660288977, guid: c363fb6432325a74ead83acadfdd7fdf, type: 3}
