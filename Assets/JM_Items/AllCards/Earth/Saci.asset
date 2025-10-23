@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Saci
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 0231f9871fe84354bbc45515cb274c49
   cardName: Saci Perere
   cardDescription: "Troca duas cartas de posi\xE7\xE3o"
   type: 3
   health: 6
   attack: 7
-  effects: []
+  effects:
+  - effect: {fileID: 11400000, guid: 446d27f3df9a1954aab105590090e203, type: 2}
+    timeToActivate: 6
+    targeting: 9
+    specialParameter: 2
   cardArt: {fileID: 7201128354403198847, guid: ffa6404d78fda774d811268b9414ce77, type: 3}
   backgroundArt: {fileID: 4858340844512080475, guid: ffa6404d78fda774d811268b9414ce77, type: 3}

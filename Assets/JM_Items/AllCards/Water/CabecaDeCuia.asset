@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: CabecaDeCuia
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 16d5d1bd03553294b84c92cfc01d7379
   cardName: Cabeca de Cuia
   cardDescription: Ataque aumenta em 15 ao matar uma carta oponente
   type: 2

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Mula
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: e031bc18b6dd14f4693954d6e210a31e
   cardName: "Mula Sem Cabe\xE7a"
   cardDescription: "Dano em \xE1rea de 10"
   type: 1

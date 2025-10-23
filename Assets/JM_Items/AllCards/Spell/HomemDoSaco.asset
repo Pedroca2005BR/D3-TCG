@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: HomemDoSaco
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: f5679ace40c5e5945b72179612df5076
   cardName: Homem do Saco
   cardDescription: Causa 10 a mais de dano contra cartas do tipo agua
   type: 5

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Matinta
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 3422d535feb83874598332fbb7e3f4e5
   cardName: Matinta Pereira
   cardDescription: Escolha o alvo do ataque
-  type: 3
+  type: 4
   health: 6
   attack: 7
   effects: []

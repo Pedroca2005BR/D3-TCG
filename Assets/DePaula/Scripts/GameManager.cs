@@ -77,11 +77,13 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < enemySlots.Length; i++)
         {
-            cards.Add(enemySlots[i].CardInstance);
+            if (enemySlots[i].CardInstance != null)
+                cards.Add(enemySlots[i].CardInstance);
         }
         for (int i = 0; i < allySlot.Length; i++)
         {
-            cards.Add(allySlot[i].CardInstance);
+            if (allySlot[i].CardInstance != null)
+                cards.Add(allySlot[i].CardInstance);
         }
 
         return cards.ToArray();

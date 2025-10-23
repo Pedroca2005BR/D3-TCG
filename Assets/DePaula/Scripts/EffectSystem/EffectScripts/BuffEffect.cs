@@ -4,7 +4,9 @@ using UnityEngine;
 public class BuffEffect : EffectObject
 {
     public Stat statToBuff;
-    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam)
+    public bool repeatable;
+
+    public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam, int bonusParam = 0)
     {
         if (statToBuff == Stat.Nothing)
         {
@@ -13,7 +15,15 @@ public class BuffEffect : EffectObject
 
         foreach (var target in targets)
         {
-            target.Buff(source, statToBuff, specialParam);
+            int e=0;
+            if (!repeatable)
+            {
+                target.TryUndoBuff(source, out e);
+            }
+
+            if (e > 0) e = 0;
+
+            target.Buff(source, statToBuff, specialParam+e);
         }
 
         return 0;

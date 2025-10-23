@@ -24,6 +24,8 @@ public class RewindableActionsController : MonoBehaviour
 
     public async Task CardPlayed(GameAction gameAction)
     {
+        //Debug.LogWarning("Time to execute immediatly!");
+
         actions.Add(gameAction);
         await gameAction.Execute();
     }

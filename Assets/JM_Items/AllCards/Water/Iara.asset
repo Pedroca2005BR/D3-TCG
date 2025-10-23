@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Iara
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 85abcb3e50933584594b3b3f0e96f40c
   cardName: Iara
   cardDescription: O oponente perde sua vez
   type: 2

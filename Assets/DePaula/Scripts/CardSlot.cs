@@ -3,12 +3,12 @@ using UnityEngine.EventSystems;
 
 public class CardSlot : MonoBehaviour, IDropHandler
 {
-    public CardInstance CardInstance { get; private set; }
+    public CardInstance CardInstance { get; set; }
 
     public bool isPlayer1Slot = false;
     public bool empty = true;
 
-    public void OnDrop(PointerEventData eventData)
+    public async void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Dropped " + eventData.pointerDrag.name);
 
@@ -24,18 +24,15 @@ public class CardSlot : MonoBehaviour, IDropHandler
             }
             else
             {
-                cardInstance.transform.SetParent(transform, false);
-
-                cardInstance.transform.position = transform.position;   // por enquanto, so da snap pra posicao
+                PutCardInSlot(cardInstance);
 
                 if(!isPlayer1Slot) cardInstance.transform.rotation = Quaternion.Euler(0, 0, 180);
 
                 cardInstance.dropped = true;
-                empty = false;
-                CardInstance = cardInstance;
+                
                 // Animation to play when card played
 
-                CardInstance.ConfirmPlay();
+                await CardInstance.ConfirmPlay(this);
 
                 
                     
@@ -49,5 +46,18 @@ public class CardSlot : MonoBehaviour, IDropHandler
         }
         
         
+    }
+
+    public void PutCardInSlot(CardInstance cardInstance)
+    {
+        Debug.Log("Put hihi!");
+        cardInstance.transform.SetParent(transform, false);
+
+        cardInstance.transform.position = transform.position;   // por enquanto, so da snap pra posicao
+
+        empty = false;
+        CardInstance = cardInstance;
+
+        //return true;
     }
 }

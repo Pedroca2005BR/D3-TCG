@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: -MaeDoOuro-
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 0426051e4f94d1940b280576a3fbf7b6
   cardName: Mae do Ouro
   cardDescription: Causa dano extra de 15 em cartas do tipo Animal
   type: 1

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: VitoriaRegia
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 981f633539561164fa48051b21fe7e10
   cardName: Vitoria Regia
   cardDescription: Vida aumenta em 10 HP
   type: 2

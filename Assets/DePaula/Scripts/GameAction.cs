@@ -43,7 +43,9 @@ public class GameAction
         if (isBlocked) return false;
 
         // Transforma o objeto desconhecido target em uma(s) game entity conhecida
-        IGameEntity[] tgs; 
+        IGameEntity[] tgs;
+        Debug.Log("Executing " + effect.effectName + "!");
+
 
         if (toActivate == TimeToActivate.OnPlay)
         {

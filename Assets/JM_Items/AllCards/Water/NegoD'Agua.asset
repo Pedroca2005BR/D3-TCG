@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: NegoD'Agua
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: f35cff656d5dcaf4aa7ebf14d2cdcf52
   cardName: Nego D'Agua
   cardDescription: Ao morrer leva consigo uma carta oponente
   type: 2

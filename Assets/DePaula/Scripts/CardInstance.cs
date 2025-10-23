@@ -35,6 +35,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     HealthSystemTemplate healthSystem, attackSystem;
     public CardMode Mode { get; private set; }
     int turnsToSleep = 0;
+    public Targeting AttackTargeting { get; set; } = Targeting.EnemyInFront;
 
     // ------------------------------------------------------------------------------------------GameEntity Stuff
     public bool IsPlayer1 => isPlayer1;
@@ -51,7 +52,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     // ----------------------------------- Draggable stuff
     public List<GameObject> slotObjects;
-    private GameObject currentSlot;
+    public GameObject CurrentSlot {  get; private set; }
     public bool dropped = false;
     public float snapRange = 1f;
     private Vector3 velocity = Vector3.zero;
@@ -104,7 +105,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         foreach (EffectActivationData effect in effects)
         {
             IGameEntity[] ige = { source };
-            EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, amount);
+            amount += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, amount);
         }
 
         healthSystem.TakeDamage(amount);
@@ -174,7 +175,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         foreach (EffectActivationData effect in effects)
         {
             IGameEntity[] ige = { tg };
-            dmg += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, attackSystem.CurrentHealth);
+            dmg += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, effect.specialParameter);
         }
 
         return dmg;
@@ -215,9 +216,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         return false;
     }
 
-    public bool TryUndoBuff(IGameEntity source)
+    public bool TryUndoBuff(IGameEntity source, out int extra)
     {
-        if (healthSystem.TryUndoBuff(source) || attackSystem.TryUndoBuff(source))
+        if (healthSystem.TryUndoBuff(source, out extra) || attackSystem.TryUndoBuff(source, out extra))
         {
             ChangeHealthComponent();
             ChangeAttackComponent();
@@ -331,17 +332,20 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     
     public void ReleaseSlot()
     {
-        CardSlot currentCardSlot = currentSlot.GetComponent<CardSlot>();
-        if (currentSlot != null && !currentCardSlot.empty)
+        CardSlot currentCardSlot = CurrentSlot.GetComponent<CardSlot>();
+        if (CurrentSlot != null && !currentCardSlot.empty)
         {
             currentCardSlot.empty = true;
-            currentSlot = null;
+            currentCardSlot.CardInstance = null;
+            CurrentSlot = null;
         }
     }
 
-    public async Task ConfirmPlay()
+    public async Task ConfirmPlay(CardSlot slot)
     {
+        Debug.Log("Play Confirmed!");
         Mode = CardMode.InPlay;
+        CurrentSlot = slot.gameObject;
 
         List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnPlay);
 
@@ -356,11 +360,13 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public void PossibleTargetToClick()
     {
+        //Debug.LogError("SelectionStart!");
         canBeSelected = true;
     }
 
     public void SelectionOver()
     {
+        //Debug.LogError("SelectionOver!");
         canBeSelected = false;
         if (targetPrefab != null)
         {
@@ -375,8 +381,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
             OnPointerExit(eventData);
 
             // Pega uma copia do alvo pra ficar la na carta
-            targetPrefab = Instantiate(TargetSelector.Instance.Selected(this), Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y)), Quaternion.identity, transform);
+            targetPrefab = Instantiate(TargetSelector.Instance.Selected(this), 
+                eventData.position, 
+                Quaternion.identity, 
+                transform);
             canBeSelected = false;
+            //Debug.LogError("Selected!");
         }
     }
 

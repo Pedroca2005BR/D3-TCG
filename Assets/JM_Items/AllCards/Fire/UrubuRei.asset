@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: UrubuRei
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 21419d8b2979b5543b1becc03dc26b8a
   cardName: Urubu Rei
   cardDescription: Aumenta o ataque em 15
   type: 1

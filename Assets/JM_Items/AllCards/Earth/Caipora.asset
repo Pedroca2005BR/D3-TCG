@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Caipora
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 663d3e560adb09d4b8e2a86c2edb26c4
   cardName: Caipora
   cardDescription: Recupere uma carta da pilha de descarte
   type: 3

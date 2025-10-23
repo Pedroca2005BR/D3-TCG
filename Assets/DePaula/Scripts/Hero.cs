@@ -87,9 +87,9 @@ public class Hero : MonoBehaviour, IGameEntity
         return false;
     }
 
-    public bool TryUndoBuff(IGameEntity source)
+    public bool TryUndoBuff(IGameEntity source, out int extra)
     {
-        if (healthSystem.TryUndoBuff(source))
+        if (healthSystem.TryUndoBuff(source, out extra))
         {
             ChangeHealthComponent();
             return true;

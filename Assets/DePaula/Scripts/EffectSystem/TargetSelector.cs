@@ -41,7 +41,7 @@ public class TargetSelector : MonoBehaviour
     {
         if (targeter != null)
         {
-            targeter.transform.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            targeter.transform.position = Mouse.current.position.ReadValue();
 
             // Line renderer stuff
             lineRenderer.SetPosition(1, source.transform.position);
@@ -57,6 +57,8 @@ public class TargetSelector : MonoBehaviour
 
     public async Task<IGameEntity[]> SelectTargetsManually(IGameEntity source, Targeting target, int amount)
     {
+        //Debug.LogWarning("Selecting targets manually!");
+
         processedTargets = new List<IGameEntity>();
         IGameEntity[] targets = GetTargets(source, target);
 
@@ -82,8 +84,12 @@ public class TargetSelector : MonoBehaviour
         }
 
         // Desliga visuais
-        Destroy(targetSelectorPrefab);
+        Destroy(targeter);
         lineRenderer.enabled=false;
+        foreach (var t in targets)
+        {
+            t.SelectionOver();
+        }
 
         return processedTargets.ToArray();
     }
@@ -113,13 +119,14 @@ public class TargetSelector : MonoBehaviour
         if ((target & Targeting.EnemyInFront) != 0)
         {
             source = source as CardInstance;
+            //Debug.LogWarning("Source is null -> " + (source == null).ToString());
             CardSlot[] enemySlots = GameManager.Instance.GetSlots(!source.IsPlayer1);
             CardSlot[] allySlot = GameManager.Instance.GetSlots(source.IsPlayer1);
 
             for(int i = 0; i < allySlot.Length; i++)
             {
                 // Se achar o lugar do source, testamos se tem alguem em frente
-                if (allySlot[i].CardInstance.Id == source.Id)   // card achado
+                if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.Id == source.Id)   // card achado
                 {
                     if (enemySlots[i].CardInstance != null)     // tem card em frente
                     {
@@ -140,19 +147,21 @@ public class TargetSelector : MonoBehaviour
             
             for(int i = 0;i < allySlot.Length; i++)
             {
-                if (allySlot[i].CardInstance.Id == source.Id)
+                if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.Id != source.Id)
                 {
-                    // tenta pegar a carta da esquerda
-                    if (i-1 > 0 && allySlot[i - 1].CardInstance != null)
-                    {
-                        processedTargets.Add(allySlot[i-1].CardInstance);
-                    }
-                    // tenta pegar a carta da direita
-                    if (i+1  < allySlot.Length && allySlot[i + 1].CardInstance != null)
-                    {
-                        processedTargets.Add(allySlot[i+1].CardInstance);
+                    //// tenta pegar a carta da esquerda
+                    //if (i-1 > 0 && allySlot[i - 1].CardInstance != null)
+                    //{
+                    //    processedTargets.Add(allySlot[i-1].CardInstance);
+                    //}
+                    //// tenta pegar a carta da direita
+                    //if (i+1  < allySlot.Length && allySlot[i + 1].CardInstance != null)
+                    //{
+                    //    processedTargets.Add(allySlot[i+1].CardInstance);
 
-                    }
+                    //}
+
+                    processedTargets.Add(allySlot[i].CardInstance);
                 }
             }
         }
@@ -160,11 +169,12 @@ public class TargetSelector : MonoBehaviour
         {
             source = source as CardInstance;
             CardSlot[] enemySlots = GameManager.Instance.GetSlots(!source.IsPlayer1);
-            CardSlot[] allySlot = GameManager.Instance.GetSlots(source.IsPlayer1);
+            //CardSlot[] allySlot = GameManager.Instance.GetSlots(source.IsPlayer1);
 
             for (int i = 0; i < enemySlots.Length; i++)
             {
-                processedTargets.Add(enemySlots[i].CardInstance);
+                if (enemySlots[i].CardInstance != null)
+                    processedTargets.Add(enemySlots[i].CardInstance);
             }
         }
         if ((target & Targeting.DeadCards) != 0)

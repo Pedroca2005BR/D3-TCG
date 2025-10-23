@@ -27,7 +27,8 @@ public class ProcessingGameState : TurnBaseState
 
         for (int i = 0; i < cards.Length; i++)
         {
-            targets = TargetSelector.GetTargets(cards[i], Targeting.EnemyInFront);
+            targets = TargetSelector.GetTargets(cards[i], cards[i].AttackTargeting);
+            //Debug.LogError(targets.Length.ToString() + " " + cards.Length.ToString());
 
             for(int j=0; j < targets.Length; j++)
             {

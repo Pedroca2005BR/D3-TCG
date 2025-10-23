@@ -9,7 +9,7 @@ public interface IGameEntity : IPointerClickHandler, IPointerEnterHandler, IPoin
     public GameObject GameObject {  get; }
 
     public bool Buff(IGameEntity source, Stat stat, int amount);
-    public bool TryUndoBuff(IGameEntity source);
+    public bool TryUndoBuff(IGameEntity source, out int extra);
     public bool MakeInert(int amount);
 
     // IDamageable

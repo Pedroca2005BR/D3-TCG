@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Quibungo
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: e52d288d56b5b4f4d8b9e88cbebaab69
   cardName: Quibungo
   cardDescription: Ataque aumenta em 15 contra cartas do tipo Terra
   type: 4

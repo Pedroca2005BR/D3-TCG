@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Curupira
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: 176bafecb2327614f935d088a7512fcd
   cardName: Curupira
   cardDescription: Ataque aumenta em 10 ao matar carta oponente
   type: 3

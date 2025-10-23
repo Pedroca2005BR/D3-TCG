@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Comadre
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: a95f386a19bd2b540a91fe588dff2f8c
   cardName: Comadre Fulozinha
   cardDescription: Causa 10 de dano a mais contra cartas do tipo Feitico
   type: 3

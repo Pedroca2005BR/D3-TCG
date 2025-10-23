@@ -48,9 +48,9 @@ public class EffectHandler : MonoBehaviour
     }
 
     // Geralmente usado apenas pelos scripts de ataque
-    public int ActivateEffectImmediatly(EffectObject eo, CardInstance source, IGameEntity[] targets, int specialParam)
+    public int ActivateEffectImmediatly(EffectObject eo, CardInstance source, IGameEntity[] targets, int specialParam, int bonusParam=0)
     {
-        return eo.Resolve(source, targets, specialParam);
+        return eo.Resolve(source, targets, specialParam, bonusParam);
     }
 
 

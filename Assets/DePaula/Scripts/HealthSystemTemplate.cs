@@ -33,6 +33,7 @@ public class HealthSystemTemplate
 
     public void BuffMaxHealth(IGameEntity source, int amount, bool heal = false)
     {
+        // buff = 10-6 = 4
         MaxHealth += amount;
         WasBuffed = true;
 
@@ -41,15 +42,19 @@ public class HealthSystemTemplate
             Heal(amount);
         }
 
+        
         m_Buffs.Add(source, amount);
     }
 
-    public bool TryUndoBuff(IGameEntity source)
+    public bool TryUndoBuff(IGameEntity source, out int amount)
     {
+        amount = 0;
+
         if (m_Buffs.ContainsKey(source))
         {
+            // EX: buff = 10;  currentHealth = 5;
             MaxHealth -= m_Buffs[source];
-            CurrentHealth -= m_Buffs[source];
+            CurrentHealth -= m_Buffs[source];   // currentHealth = 5-10 = -5
             m_Buffs.Remove(source);
 
             if (m_Buffs.Count == 0)
@@ -58,11 +63,16 @@ public class HealthSystemTemplate
             }
 
 
+            
+            amount = CurrentHealth - 1; // amount = -6
+
             // Do not die when debuffed to hell
-            if (CurrentHealth < 0) CurrentHealth = 1;
+            if (CurrentHealth <= 0) CurrentHealth = 1;
 
             return true;
         }
+
+        
 
         return false;
     }

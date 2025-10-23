@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Tutu
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: b40a44ac55c543f41bb501cad4bc4eb9
   cardName: Tutu Maramba
   cardDescription: Reduz ataque inimigo em 8
   type: 5

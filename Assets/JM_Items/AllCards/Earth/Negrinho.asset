@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Negrinho
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: c192b5890915b6a469dc55e22e2e1633
   cardName: Negrinho do Pastoreio
   cardDescription: Essa carta pode ser reutilizada apos morrer 1 vez
   type: 3

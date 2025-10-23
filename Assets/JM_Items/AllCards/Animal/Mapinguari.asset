@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: Mapinguari
   m_EditorClassIdentifier: 
+  id: 
+  addressableKey: db17bc1e727fb0242851e844600def0f
   cardName: Mapinguari
   cardDescription: Todo dano recebido e reduzido em 9
   type: 4
