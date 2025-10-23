@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 
 
 public enum GameStates
@@ -34,6 +35,12 @@ public class JM_TurnController : MonoBehaviour
     [Header("Controle do Deck")]
     public JM_DeckManager player1Deck;
     public JM_DeckManager player2Deck;
+    public JM_HandUI p1Hand;
+    public JM_HandUI p2Hand;
+    public int player1DeckCount;
+    public int player2DeckCount;
+    public TMP_Text player1DeckText;
+    public TMP_Text player2DeckText;
     [SerializeField] public JM_HandManager handManager;
 
     void Start()
@@ -152,4 +159,11 @@ public class JM_TurnController : MonoBehaviour
     {
         await EffectHandler.Instance.ResolveEffects(state);
     }
+
+    public void UpdateDeckText()
+    {
+        player1DeckText.text = player1DeckCount.ToString();
+        player2DeckText.text = player2DeckCount.ToString();
+    }
+
 }

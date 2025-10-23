@@ -28,6 +28,8 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
                 cardInstance.transform.position = transform.position;   // por enquanto, so da snap pra posicao
 
+                if(!isPlayer1Slot) cardInstance.transform.rotation = Quaternion.Euler(0, 0, 180);
+
                 cardInstance.dropped = true;
                 empty = false;
                 CardInstance = cardInstance;
