@@ -30,6 +30,22 @@ using UnityEditor.AddressableAssets;
 
 public class DeckRuntimeUI : MonoBehaviour
 {
+    #region Singleton
+    public static DeckRuntimeUI Instance { get; private set; }
+    // Singleton pattern
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
     [Header("UI References")]
     public TMP_InputField deckNameInput;
     public Button createDeckButton;
@@ -59,17 +75,28 @@ public class DeckRuntimeUI : MonoBehaviour
     {
         if (createDeckButton != null) createDeckButton.onClick.AddListener(CreateNewDeckFromUI);
         if (saveDeckButton != null) saveDeckButton.onClick.AddListener(() => SaveCurrentDeck());
+
+        //await PopulateLibraryFromAddressableKeysAsync(GatherCardDataKeysFromAddressableSettings());
     }
 
     // ---------------- Public API ----------------
     public void CreateNewDeckFromUI()
     {
-        string name = deckNameInput != null ? deckNameInput.text : "NewDeck";
-        CreateNewDeck(name);
+        CreateNewDeck(null);
     }
 
     public void CreateNewDeck(string name)
     {
+        deckNameInput.gameObject.SetActive(true);
+        if (name == null)
+        {
+            deckNameInput.text = "New Deck";
+        }
+        else
+        {
+            deckNameInput.text = name;
+        }
+
         currentDeck = ScriptableObject.CreateInstance<JM_DeckBase>();
         currentDeck.name = string.IsNullOrEmpty(name) ? "Deck_" + System.Guid.NewGuid().ToString() : name;
         currentDeck.allCards = new List<CardData>();
@@ -112,6 +139,8 @@ public class DeckRuntimeUI : MonoBehaviour
         {
             string fileName = DeckPersistence.SaveDeck(currentDeck);
             Debug.Log($"Deck saved: {fileName}");
+            if (DeckListManager.Instance != null) DeckListManager.Instance.RefreshList();   // Adicionado para deixar mais dinamico
+            deckNameInput.gameObject.SetActive(false);
         }
         catch (System.Exception ex)
         {
@@ -326,8 +355,12 @@ public class DeckRuntimeUI : MonoBehaviour
         var display = go.GetComponent<CardDisplay>();
         if (display != null)
         {
+            
             // clicking a library entry will add the card to the current deck
             display.Initialize(card, () => { AddCard(card); });
+#if UNITY_EDITOR
+            EditorHelpers.SetCardDataAndSave(display, card);
+#endif
         }
         else
         {
@@ -347,7 +380,13 @@ public class DeckRuntimeUI : MonoBehaviour
 
     void ClearLibraryUI()
     {
-        foreach (var g in libraryUIEntries) Destroy(g);
+        foreach (var g in libraryUIEntries)
+        {
+            if (Application.isPlaying)
+                Destroy(g);
+            else
+                DestroyImmediate(g);
+        }
         libraryUIEntries.Clear();
     }
 

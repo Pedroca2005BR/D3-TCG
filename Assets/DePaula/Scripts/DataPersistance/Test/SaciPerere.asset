@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
   m_Name: SaciPerere
   m_EditorClassIdentifier: 
-  cardName: 
+  id: 
+  addressableKey: 62440c6641694ef40a925b33ba97659a
+  cardName: Saci Perere
   cardDescription: 
-  type: 0
-  health: 0
-  attack: 0
+  type: 3
+  health: 12
+  attack: 25
   effects:
   - effect: {fileID: 11400000, guid: 446d27f3df9a1954aab105590090e203, type: 2}
     timeToActivate: 6

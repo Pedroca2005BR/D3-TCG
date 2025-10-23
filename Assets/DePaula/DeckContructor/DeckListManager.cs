@@ -6,6 +6,23 @@ using UnityEngine.UI;
 
 public class DeckListManager : MonoBehaviour
 {
+    #region Singleton
+    public static DeckListManager Instance { get; private set; }
+    // Singleton pattern
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
+
     [Header("References")]
     public Transform contentParent;             // container (should have VerticalLayoutGroup + ContentSizeFitter)
     public GameObject deckDisplayPrefab;        // prefab with DeckDisplay component

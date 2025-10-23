@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 19.25}
-  m_SizeDelta: {x: 155, y: 120.5}
+  m_AnchoredPosition: {x: 0, y: 24.3}
+  m_SizeDelta: {x: 180, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3063584686285692828
 CanvasRenderer:
@@ -895,8 +895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15}
-  m_SizeDelta: {x: -30, y: 25}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: -30, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &460965916968168306
 CanvasRenderer:
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.35
+  m_fontSize: 26.85
   m_fontSizeBase: 30.5
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1037,7 +1037,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 175, y: 250}
+  m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7542276906255976252
 MonoBehaviour:
@@ -1058,4 +1058,3 @@ MonoBehaviour:
   attackComponent: {fileID: 6516027202630116992}
   cardArtComponent: {fileID: 6660840014080110236}
   backgroundComponent: {fileID: 712280838876663299}
-  rootButton: {fileID: 0}

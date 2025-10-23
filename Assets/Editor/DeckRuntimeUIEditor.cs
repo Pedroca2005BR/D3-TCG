@@ -60,7 +60,7 @@ public class DeckRuntimeUIEditor : Editor
             runtime = Selection.activeGameObject.GetComponent<DeckRuntimeUI>();
 
         if (runtime == null)
-            runtime = Object.FindObjectOfType<DeckRuntimeUI>();
+            runtime = Object.FindFirstObjectByType<DeckRuntimeUI>();
 
         if (runtime == null)
         {

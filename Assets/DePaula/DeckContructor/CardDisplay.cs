@@ -23,6 +23,7 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     UnityAction eventToCall; // the clickable area (assign on prefab)
     IEnumerator descriptionCoroutine;
+    [HideInInspector] public CardData cardData;
 
     // Initialize visuals and set click callback. The user can also override this script to add more functionality.
     public void Initialize(CardData data, UnityAction onClick)
@@ -35,21 +36,25 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
         if (nameComponent != null) nameComponent.text = data.cardName;
         if (cardArtComponent != null && data.cardArt != null) cardArtComponent.sprite = data.cardArt;
+        if (backgroundComponent != null && data.backgroundArt != null) backgroundComponent.sprite = data.backgroundArt;
         if (attackComponent != null) attackComponent.text = data.attack.ToString();
         if (healthComponent != null) healthComponent.text = data.health.ToString();
         if (descriptionText != null) descriptionText.text = data.cardDescription;
         if (descriptionImage != null) descriptionImage.SetActive(false);
 
-        if (eventToCall != null)
-        {
-            //rootButton.onClick.RemoveAllListeners();
-            if (onClick != null) eventToCall = onClick;
-        }
+        if (onClick != null) eventToCall = onClick;
+        cardData = data;
     }
+
+    
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        eventToCall.Invoke();
+        Debug.Log((eventToCall == null).ToString() + (DeckRuntimeUI.Instance == null) + (cardData == null));
+        if (eventToCall != null)
+            eventToCall.Invoke();
+        else
+            DeckRuntimeUI.Instance.AddCard(cardData);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
