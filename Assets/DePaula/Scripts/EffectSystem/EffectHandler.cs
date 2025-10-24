@@ -39,6 +39,11 @@ public class EffectHandler : MonoBehaviour
     {
         GameStates state = ConvertTimeToActivateToGameState(time);
 
+        if (effectsToSolve[state] == null)
+        {
+            effectsToSolve[state] = new List<GameAction>();
+        }
+
         effectsToSolve[state].Add(effect);
 
         if (state != GameManager.Instance.turnController.currentState)
@@ -69,6 +74,7 @@ public class EffectHandler : MonoBehaviour
     public void BlockEffect(TimeToActivate time, GameAction effect)
     {
         GameStates state = ConvertTimeToActivateToGameState(time);
+        if (effectsToSolve[state] == null) return;
         int index = effectsToSolve[state].IndexOf(effect);
 
         if (index >= 0)
