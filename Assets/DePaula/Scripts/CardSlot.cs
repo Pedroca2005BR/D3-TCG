@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class CardSlot : MonoBehaviour, IDropHandler
 {
@@ -7,6 +9,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
     public bool isPlayer1Slot = false;
     public bool empty = true;
+    public List<SlotSavedAction> Actions { get; private set; } = new List<SlotSavedAction>();
 
     public async void OnDrop(PointerEventData eventData)
     {
@@ -34,6 +37,12 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
                 await CardInstance.ConfirmPlay(this);
 
+                foreach (var act in Actions)
+                {
+                    act.Execute();
+                }
+                Actions.Clear();
+
                 
                     
                 handUI.UpdateHandUI();
@@ -59,5 +68,30 @@ public class CardSlot : MonoBehaviour, IDropHandler
         CardInstance = cardInstance;
 
         //return true;
+    }
+}
+
+[System.Serializable]
+public class SlotSavedAction
+{
+    CardInstance cardInstance;
+    CardSlot slot;
+    EffectObject effect;
+    int specialParam;
+    int bonusParam;
+
+    public SlotSavedAction(CardInstance source, CardSlot tg, EffectObject effect, int specialParam, int bonusParam)
+    {
+        cardInstance = source;
+        slot = tg;
+        this.effect = effect;
+        this.specialParam = specialParam;
+        this.bonusParam = bonusParam;
+    }
+
+    public void Execute()
+    {
+        IGameEntity[] tgs = {slot.CardInstance};
+        EffectHandler.Instance.ActivateEffectImmediatly(effect, cardInstance, tgs, specialParam, bonusParam);
     }
 }
