@@ -6,9 +6,17 @@ public class StartGameState : TurnBaseState
     {
         Debug.Log("StartGameState");
         controller.turn = 0;
+        
+        controller.hero1 = GameManager.Instance.GetHero(true);
+        controller.hero2 = GameManager.Instance.GetHero(false);
+        controller.hero1.Setup();
+        controller.hero2.Setup();
+
         controller.ShuffleDeck(controller.player1Deck.cards);
         controller.ShuffleDeck(controller.player2Deck.cards);
         controller.InitializeHands();
+
+        
     }
 
     public override void UpdateState(JM_TurnController controller)

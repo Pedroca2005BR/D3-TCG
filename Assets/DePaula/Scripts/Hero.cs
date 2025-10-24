@@ -8,6 +8,7 @@ public class Hero : MonoBehaviour, IGameEntity
 {
     [Header("Visuals")]
     [SerializeField] TextMeshProUGUI healthComponent;
+    [SerializeField] Image healthHeart;
     
 
     // ----------------------------------------------------------------IGameEntity stuff
@@ -59,6 +60,7 @@ public class Hero : MonoBehaviour, IGameEntity
     {
         // Altera o valor do componente
         healthComponent.text = healthSystem.CurrentHealth.ToString();
+        healthHeart.fillAmount = healthSystem.CurrentHealth / GameManager.Instance.rules.heroHealth;
 
         if (healthSystem.IsDamaged())
         {
@@ -150,4 +152,5 @@ public class Hero : MonoBehaviour, IGameEntity
     {
         throw new NotImplementedException();
     }
+
 }
