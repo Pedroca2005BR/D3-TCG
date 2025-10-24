@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 331417ce69a0faa41b62cbd7ca0d0076
+guid: 12bd993d6ee71d947a921edb1f62389c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3794550611322748858
-    second: play_0
+      213: -1382939799986139281
+    second: decksembotoes-export_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,40 +96,71 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: play_0
+      name: decksembotoes-export 1_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 6
-        width: 43
-        height: 36
+        x: 0
+        y: 0
+        width: 559
+        height: 2160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: abf32263da3f8a430800000000000000
-      internalID: 3794550611322748858
+      spriteID: cae85eed8a1245341b1d0f9f63f80f43
+      internalID: -1723212153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decksembotoes-export 1_1
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 0
+        width: 2174
+        height: 2160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d60b6ce4f0d926045a45327b69c3f4f7
+      internalID: 1950318073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decksembotoes-export 1_2
+      rect:
+        serializedVersion: 2
+        x: 2729
+        y: 0
+        width: 1111
+        height: 2160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 4, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9badc8e776d19d4bbe5eaf5fa8d629b
+      internalID: -1536665722
       vertices: []
       indices: 
       edges: []
@@ -138,7 +169,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d16476c4c4277634f86fdef598414264
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +179,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      play_0: 3794550611322748858
+      decksembotoes-export 1_0: -1723212153
+      decksembotoes-export 1_1: 1950318073
+      decksembotoes-export 1_2: -1536665722
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
