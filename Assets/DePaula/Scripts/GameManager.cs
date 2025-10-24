@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] JM_DeckManager deckP1;
     [SerializeField] JM_DeckManager deckP2;
 
+    [Header("Hands")]
+    public JM_HandManager HandManager {  get; set; }
     // TO DO: TODA A MECANICA DE CONTROLE DO JOGO
 
 

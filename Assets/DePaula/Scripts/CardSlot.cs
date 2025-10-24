@@ -35,11 +35,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
                 await CardInstance.ConfirmPlay(this);
 
-                foreach (var act in Actions)
-                {
-                    act.Execute();
-                }
-                Actions.Clear();
+                TryActivateEffect();
 
                 
                     
@@ -54,6 +50,20 @@ public class CardSlot : MonoBehaviour, IDropHandler
         
         
     }
+
+    public bool TryActivateEffect()
+    {
+        if (empty) return false;
+
+        foreach (var act in Actions)
+        {
+            act.Execute();
+        }
+
+        Actions.Clear();
+        return true;
+    }
+
 
     public void PutCardInSlot(CardInstance cardInstance)
     {

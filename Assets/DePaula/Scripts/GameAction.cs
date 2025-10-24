@@ -63,6 +63,15 @@ public class GameAction
             tgs = TargetSelector.GetTargets(source, target);
         }
 
+        if (toActivate == TimeToActivate.OnDeath)
+        {
+            if (source.GetCurrentHealth() != 0)
+            {
+                Debug.LogError("Oxi, ta morta eh nada fi!");
+                return false;
+            }  
+        }
+
         effect.Resolve(source, tgs, specialParam);
 
         return true;

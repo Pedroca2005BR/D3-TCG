@@ -12,11 +12,32 @@ public class ReviveEffect : EffectObject
             {
                 if(target.TryRevive())
                 {
+                    CardInstance ci = target as CardInstance;
+
                     // TO DO: Reviver no battlefield ou na mao
+                    if (directToBattlefield)
+                    {
+                        if (ci != null)
+                        {
+                            if (!ci.Revive(GameManager.Instance.GetDeck(target.IsPlayer1).deadCards[ci.cardData], specialParam))
+                            {
+                                Debug.LogError("Can't complete revival process! CardSlot is not empty!");
+                                return -1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // TO DO: Revive na mao
+                        if (ci != null)
+                        {
+                            GameManager.Instance.HandManager.AddZombieCard(ci.cardData, ci.IsPlayer1);
+                        }
+                    }
                 }
             }
         }
 
-        return -1;
+        return 0;
     }
 }

@@ -53,6 +53,12 @@ public class EffectHandler : MonoBehaviour
         return eo.Resolve(source, targets, specialParam, bonusParam);
     }
 
+    public async Task CardPlayed(GameAction gameAction)
+    {
+        //Debug.LogWarning("Time to execute immediatly!");
+        await gameAction.Execute();
+    }
+
 
     public void RemoveEffect(TimeToActivate time, GameAction effect)
     {

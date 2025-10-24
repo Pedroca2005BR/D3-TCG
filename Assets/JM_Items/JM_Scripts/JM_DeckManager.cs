@@ -5,7 +5,7 @@ public class JM_DeckManager
 {
     public List<CardData> cards = new List<CardData>();
     public List<CardData> usedCards = new List<CardData>();
-    public List<CardData> deadCards = new List<CardData>();
+    public Dictionary<CardData, CardSlot> deadCards = new Dictionary<CardData, CardSlot>();
     public JM_RulesObject baseConfig;
     public JM_DeckBase cardDatabase;
 
@@ -29,8 +29,8 @@ public class JM_DeckManager
         usedCards.Add(card);
     }
 
-    public void DeadCards(CardData card)
+    public void DeadCards(CardData card, CardSlot slot)
     {
-        deadCards.Add(card);
+        deadCards[card] = slot;
     }
 }

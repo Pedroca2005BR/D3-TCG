@@ -119,16 +119,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         if (healthSystem.CurrentHealth == 0)
         {
-            EnqueueEffects(TimeToActivate.OnDeath);
-            
-            CardInstance ci = source as CardInstance;
-
-            if (ci != null)
-            {
-                murdererActions = ci.TryEnqueueKillEffect();
-            }
-
-            Murderer = source;
+            Die(source);
         }
     }
 
@@ -146,6 +137,28 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
                 EffectHandler.Instance.BlockEffect(TimeToActivate.OnKill, ga);
             }
         }
+    }
+
+    public void Die(IGameEntity source)
+    {
+        EnqueueEffects(TimeToActivate.OnDeath);
+
+        Mode = CardMode.Dead;
+
+        CardInstance ci = source as CardInstance;
+
+        if (ci != null)
+        {
+            murdererActions = ci.TryEnqueueKillEffect();
+        }
+
+        Murderer = source;
+
+        GameManager.Instance.GetDeck(isPlayer1).DeadCards(cardData, CurrentSlot.GetComponent<CardSlot>());
+        //Destroy(gameObject, 2f);
+        gameObject.SetActive(false);
+
+        ReleaseSlot();
     }
 
     public int GetCurrentHealth()
@@ -170,6 +183,37 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         {
             healthComponent.color = Color.white;
         }
+    }
+
+    public bool TryRevive()
+    {
+        // TO DO: Mecanica de reviver
+        if (GameManager.Instance.GetDeck(isPlayer1).deadCards.ContainsKey(cardData))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool Revive(CardSlot slot, int life = -1)
+    {
+        if (slot == null || !slot.empty)
+        {
+            return false;
+        }
+
+        gameObject.SetActive(true);
+        slot.PutCardInSlot(this);
+        Mode = CardMode.InPlay;
+        CurrentSlot = slot.gameObject;
+
+        healthSystem = new HealthSystemTemplate(cardData.health, life);
+        attackSystem = new HealthSystemTemplate(cardData.attack);
+        ChangeAttackComponent();
+        ChangeHealthComponent();
+
+        return true;
     }
     #endregion
 
@@ -273,11 +317,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         return true;
     }
 
-    public bool TryRevive()
-    {
-        // TO DO: Mecanica de reviver
-        throw new NotImplementedException();
-    }
+    
 
     void Update()
     {
@@ -388,8 +428,10 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         foreach (EffectActivationData effect in effects)
         {
             GameAction res = new GameAction(this, effect);
-            await RewindableActionsController.Instance.CardPlayed(res);
+            await EffectHandler.Instance.CardPlayed(res);
         }
+
+        FinishedPlayCard();
 
         //return Task.CompletedTask;
     }

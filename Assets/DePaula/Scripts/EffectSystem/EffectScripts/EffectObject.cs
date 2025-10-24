@@ -18,7 +18,9 @@ public abstract class EffectObject : ScriptableObject
             SlotSavedAction ssa = new SlotSavedAction(source, target, this, specialParam, bonusParam);
             
             target.Actions.Add(ssa);
+            target.TryActivateEffect();
         }
+
 
         return 0;
     }
