@@ -60,6 +60,17 @@ public class EffectHandler : MonoBehaviour
         effectsToSolve[state].Remove(effect);
     }
 
+    public void BlockEffect(TimeToActivate time, GameAction effect)
+    {
+        GameStates state = ConvertTimeToActivateToGameState(time);
+        int index = effectsToSolve[state].IndexOf(effect);
+
+        if (index >= 0)
+        {
+            effectsToSolve[state][index].BlockEffect();
+        }
+    }
+
     private void SortListByPriority(List<GameAction> lt)
     {
         int n = effectsToSolve.Count;

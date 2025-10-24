@@ -181,6 +181,15 @@ public class TargetSelector : MonoBehaviour
         {
             // --------------------------------------------------------------------- TO DO --------------------------------
         }
+        if ((target & Targeting.Murderer) != 0)
+        {
+            CardInstance sour = source as CardInstance;
+
+            if (sour != null && sour.Murderer != null)
+            {
+                processedTargets.Add(sour.Murderer);
+            }
+        }
 
         return processedTargets.ToArray();
     }
