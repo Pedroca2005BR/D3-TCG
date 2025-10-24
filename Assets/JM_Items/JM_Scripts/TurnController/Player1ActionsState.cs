@@ -7,18 +7,15 @@ public class Player1ActionsState : TurnBaseState
         Debug.Log("P1TurnState");
         controller.p1Hand.UpdateHandUI();
         controller.p2Hand.UpdateHandUI();
-        controller.initialTime = 0f;
     }
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.initialTime += Time.deltaTime;
 
-        if (controller.initialTime >= controller.gameRules.turnTime || controller.player1Played)
+        if (controller.player1Played)
         {
             controller.player1Played = true;
-            controller.initialTime = 0f;
-            controller.SwitchState(GameStates.p2Choosing);
+            controller.StartCoroutine(controller.FlipBoard(GameStates.p2Choosing));
             return;
         }
     }

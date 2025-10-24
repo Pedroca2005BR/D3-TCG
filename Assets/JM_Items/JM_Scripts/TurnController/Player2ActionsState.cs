@@ -7,7 +7,6 @@ public class Player2ActionsState : TurnBaseState
         Debug.Log("P2TurnState");
         controller.p1Hand.UpdateHandUI();
         controller.p2Hand.UpdateHandUI();
-        controller.initialTime = 0f;
 
         if (controller.iaGame && !controller.player2Played)
         {
@@ -19,13 +18,11 @@ public class Player2ActionsState : TurnBaseState
 
     public override void UpdateState(JM_TurnController controller)
     {
-        controller.initialTime += Time.deltaTime;
 
-        if (controller.initialTime >= controller.gameRules.turnTime || controller.player2Played)
+        if (controller.player2Played)
         {
             controller.player2Played = true;
-            controller.initialTime = 0f;
-            controller.SwitchState(GameStates.revealing);
+            controller.StartCoroutine(controller.FlipBoard(GameStates.revealing));
             return;
         }
     }

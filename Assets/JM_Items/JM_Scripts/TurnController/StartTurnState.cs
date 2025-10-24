@@ -7,6 +7,7 @@ public class StartTurnState : TurnBaseState
     {
         Debug.Log("StartTurnState");
         controller.turn++;
+        controller.UpdateDeckText();
         controller.StartCoroutine(BuyCardsNow(controller));
     }
 
