@@ -17,6 +17,9 @@ public class JM_RulesObject : ScriptableObject
 
     public int heroHealth;
 
+    public string deck1AddressableKey;
+    public string deck2AddressableKey;
+
     //public int difficulty;
 
 }
