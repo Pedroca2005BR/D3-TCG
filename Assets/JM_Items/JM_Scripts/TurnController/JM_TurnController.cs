@@ -34,6 +34,8 @@ public class JM_TurnController : MonoBehaviour
     GameObject source;
     public GameObject board;
     public GameObject loadingScreen;
+    public Hero hero1;
+    public Hero hero2;
 
 
     [Header("State Machine")]

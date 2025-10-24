@@ -893,6 +893,8 @@ MonoBehaviour:
   turn: 0
   board: {fileID: 375656705}
   loadingScreen: {fileID: 1662091132}
+  hero1: {fileID: 0}
+  hero2: {fileID: 0}
   turnCounter: {fileID: 1738256562}
   loadingText: {fileID: 1515134716}
   loadingButton: {fileID: 1502586155}
@@ -3669,16 +3671,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742013922}
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 406620890}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: -8}
+  m_AnchoredPosition: {x: 165, y: -8}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1742013924
@@ -4459,8 +4461,8 @@ MonoBehaviour:
   - {fileID: 1559024122}
   - {fileID: 1111645314}
   - {fileID: 1774233159}
-  P1: {fileID: 0}
-  P2: {fileID: 0}
+  P1: {fileID: 757560922}
+  P2: {fileID: 1211305798}
   deckP1:
     cards: []
     usedCards: []
