@@ -26,6 +26,7 @@ public class JM_TurnController : MonoBehaviour
     public bool lastTurn = false;
     public bool player1Played = false;
     public bool player2Played = false;
+    public bool p1Entered = false;
     public bool p2Entered = false;
     public bool activeCorrotine = false;
     public bool dontAct = false;
@@ -185,6 +186,7 @@ public class JM_TurnController : MonoBehaviour
         player2DeckText.text = player2DeckCount.ToString();
         turnCounter.text = turn.ToString();
         if (currentState == GameStates.p1Choosing) loadingText.text = "Aguardando segundo jogador";
+        else if (currentState == GameStates.startingTurn) loadingText.text = "Aguardando primeiro jogador";
         else loadingText.text = "Organizando o tabuleiro";
     }
 
@@ -224,7 +226,8 @@ public class JM_TurnController : MonoBehaviour
 
     public void Player2Entered()
     {
-        if (!p2Entered) p2Entered = true;
+        if (!p1Entered) p1Entered = true;
+        else if (!p2Entered) p2Entered = true;
 
     }
 

@@ -21,6 +21,19 @@ public class StartTurnState : TurnBaseState
             yield return null;
         }
 
+        yield return new WaitForSeconds(1f);
+
+        controller.UpdateDeckText();
+
+        controller.loadingScreen.SetActive(true);
+
+        controller.loadingButton.SetActive(true);
+        
+        while (!controller.p1Entered)
+            yield return null;
+        
+        controller.loadingScreen.SetActive(false);
+
         controller.SwitchState(GameStates.p1Choosing);
     }
 

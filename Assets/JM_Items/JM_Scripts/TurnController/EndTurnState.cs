@@ -27,6 +27,7 @@ public class EndTurnState : TurnBaseState
         controller.player1Played = false;
         controller.player2Played = false;
         controller.p2Entered = false;
+        controller.p1Entered = false;
 
         if (controller.lastTurn) controller.SwitchState(GameStates.finishingGame);
         else controller.SwitchState(GameStates.startingTurn);
