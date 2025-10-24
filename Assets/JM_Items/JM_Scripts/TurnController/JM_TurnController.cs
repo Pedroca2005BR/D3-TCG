@@ -28,6 +28,7 @@ public class JM_TurnController : MonoBehaviour
     public bool player2Played = false;
     public bool p2Entered = false;
     public bool activeCorrotine = false;
+    public bool dontAct = false;
     public int turn = 0;
     GameObject source;
     public GameObject board;
@@ -195,7 +196,7 @@ public class JM_TurnController : MonoBehaviour
 
         loadingScreen.SetActive(true);
 
-        FlipNewCard();
+        StartCoroutine(FlipNewCard());
 
         if (changeState == GameStates.p2Choosing) board.transform.rotation = Quaternion.Euler(0, 0, 180);
         else board.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -227,27 +228,32 @@ public class JM_TurnController : MonoBehaviour
 
     }
 
-    public void FlipNewCard()
+    public IEnumerator FlipNewCard()
     {
         CardSlot[] allySlot = GameManager.Instance.GetSlots(true);
+        Debug.Log($"Comprimento = {allySlot.Length}");
 
         for (int i = 0; i < allySlot.Length; i++)
         {
             if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.newCard)   // card achado
             {
-                Debug.Log("Chegou aqui");
+                Debug.Log($"Chegou aqui i = {i}");
                 allySlot[i].CardInstance.frontSide.SetActive(false);
                 allySlot[i].CardInstance.backSide.SetActive(true);
-                allySlot[i].CardInstance.newCard = false;
+
             }
             else if (allySlot[i].CardInstance != null && !allySlot[i].CardInstance.newCard)
             {
-                Debug.Log("Veio aqui");
+                Debug.Log($"Veio aqui i = {i}");
                 allySlot[i].CardInstance.frontSide.SetActive(true);
                 allySlot[i].CardInstance.backSide.SetActive(false);
             }
+
+            if (allySlot[i].CardInstance != null) allySlot[i].CardInstance.newCard = false;
+
         }
 
+        yield break;
     }
     
     
