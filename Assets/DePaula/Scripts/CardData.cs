@@ -42,6 +42,7 @@ public struct EffectActivationData
     //public TargetLimiterData targets;
     public Targeting targeting;
     public int specialParameter;
+    public bool isSlotEffect;
 }
 
 public enum TimeToActivate

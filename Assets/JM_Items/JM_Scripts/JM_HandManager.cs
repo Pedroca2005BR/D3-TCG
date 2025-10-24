@@ -43,6 +43,23 @@ public class JM_HandManager : MonoBehaviour
         Debug.Log("Mao cheia");
         return true;
     }
+
+    public bool AddZombieCard(CardData card, bool isPlayer1)
+    {
+        List<CardInstance> hand = isPlayer1 ? player1Hand : player2Hand;
+
+        if (hand.Count < gameRules.handSize)
+        {
+            Transform handUI = isPlayer1 ? player1HandUI : player2HandUI;
+            StartCoroutine(SpawnCard(card, isPlayer1, handUI, hand));
+
+            return true;
+        }
+        
+
+        Debug.Log("Mao cheia");
+        return false;
+    }
     
     public IEnumerator SpawnCard(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
     {

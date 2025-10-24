@@ -193,4 +193,52 @@ public class TargetSelector : MonoBehaviour
 
         return processedTargets.ToArray();
     }
+
+    public static CardSlot[] GetTargetSlot(IGameEntity source, Targeting target)
+    {
+        List<CardSlot> processedTargets = new List<CardSlot>();
+
+        if ((target & Targeting.AllEnemyCards) != 0)
+        {
+            processedTargets.AddRange(GameManager.Instance.GetSlots(!source.IsPlayer1));
+        }
+        if ((target & Targeting.AdjacentAllies) != 0)
+        {
+            CardSlot[] slots = GameManager.Instance.GetSlots(source.IsPlayer1);
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].CardInstance != null && slots[i].CardInstance.Id != source.Id)
+                {
+                    processedTargets.Add(slots[i]);
+                }
+            }
+        }
+        if ((target & Targeting.EnemyInFront) != 0)
+        {
+            source = source as CardInstance;
+            //Debug.LogWarning("Source is null -> " + (source == null).ToString());
+            CardSlot[] enemySlots = GameManager.Instance.GetSlots(!source.IsPlayer1);
+            CardSlot[] allySlot = GameManager.Instance.GetSlots(source.IsPlayer1);
+
+            for (int i = 0; i < allySlot.Length; i++)
+            {
+                // Se achar o lugar do source, testamos se tem alguem em frente
+                if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.Id == source.Id)   // card achado
+                {
+                    processedTargets.Add(enemySlots[i]);
+
+                    break;
+                }
+            }
+        }
+        if ((target & Targeting.Self) != 0)
+        {
+            CardInstance ci = source as CardInstance;
+            if (ci != null && ci.CurrentSlot != null && ci.CurrentSlot.TryGetComponent<CardSlot>(out CardSlot slot))
+                processedTargets.Add(slot);
+        }
+
+        return processedTargets.ToArray();
+    }
 }

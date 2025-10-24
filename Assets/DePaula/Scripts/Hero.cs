@@ -8,7 +8,7 @@ public class Hero : MonoBehaviour, IGameEntity
 {
     [Header("Visuals")]
     [SerializeField] TextMeshProUGUI healthComponent;
-    [SerializeField] Image artComponent;
+    
 
     // ----------------------------------------------------------------IGameEntity stuff
     public string Id => id;

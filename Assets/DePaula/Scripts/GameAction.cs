@@ -4,12 +4,13 @@ using UnityEngine;
 public class GameAction
 {
     public EffectObject effect {  get; private set; }
-    CardInstance source;
-    Targeting target;
+    public CardInstance source;
+    public Targeting target;
     bool isBlocked;
     public int priority;
     public int specialParam;
     public TimeToActivate toActivate;
+    public bool isSlotEffect;
 
     public GameAction(CardInstance source, EffectActivationData data)
     {
@@ -20,6 +21,7 @@ public class GameAction
         priority = (int)effect.priority;
         this.specialParam = data.specialParameter;
         toActivate = data.timeToActivate;
+        isSlotEffect = data.isSlotEffect;
     }
     public GameAction(GameAction other)
     {
@@ -30,6 +32,7 @@ public class GameAction
         priority = other.priority;
         specialParam = other.specialParam;
         toActivate = other.toActivate;
+        isSlotEffect = other.isSlotEffect;
     }
 
     public void BlockEffect(bool blockState = true)
@@ -38,7 +41,7 @@ public class GameAction
     }
 
 
-    public async Task<bool> Execute()
+    public virtual async Task<bool> Execute()
     {
         if (isBlocked) return false;
 
@@ -46,14 +49,27 @@ public class GameAction
         IGameEntity[] tgs;
         Debug.Log("Executing " + effect.effectName + "!");
 
-
-        if (toActivate == TimeToActivate.OnPlay)
+        if (isSlotEffect)
+        {
+            effect.Resolve(source, TargetSelector.GetTargetSlot(source, target), specialParam);
+            return true;
+        }
+        else if (toActivate == TimeToActivate.OnPlay)
         {
             tgs = await TargetSelector.Instance.SelectTargetsManually(source, target, specialParam);
         }
         else
         {
             tgs = TargetSelector.GetTargets(source, target);
+        }
+
+        if (toActivate == TimeToActivate.OnDeath)
+        {
+            if (source.GetCurrentHealth() != 0)
+            {
+                Debug.LogError("Oxi, ta morta eh nada fi!");
+                return false;
+            }  
         }
 
         effect.Resolve(source, tgs, specialParam);
