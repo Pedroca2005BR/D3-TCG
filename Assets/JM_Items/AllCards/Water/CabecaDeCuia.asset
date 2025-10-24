@@ -23,5 +23,5 @@ MonoBehaviour:
   health: 9
   attack: 10
   effects: []
-  cardArt: {fileID: 0}
-  backgroundArt: {fileID: 0}
+  cardArt: {fileID: 6774865581985026878, guid: 2af691e8b2d209b4d9ac22db7eefb385, type: 3}
+  backgroundArt: {fileID: -5733708014761634982, guid: 2af691e8b2d209b4d9ac22db7eefb385, type: 3}

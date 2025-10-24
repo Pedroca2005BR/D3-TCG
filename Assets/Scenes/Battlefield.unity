@@ -574,13 +574,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 169850428}
-  - {fileID: 1934692765}
   - {fileID: 688474006}
   - {fileID: 571223309}
   - {fileID: 545414075}
   - {fileID: 647339248}
   - {fileID: 211794669}
+  - {fileID: 169850428}
+  - {fileID: 1934692765}
   m_Father: {fileID: 1325121939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -736,8 +736,10 @@ MonoBehaviour:
   lastTurn: 0
   player1Played: 0
   player2Played: 0
+  p1Entered: 0
   p2Entered: 0
   activeCorrotine: 0
+  dontAct: 0
   turn: 0
   board: {fileID: 375656705}
   loadingScreen: {fileID: 1662091132}
@@ -1734,13 +1736,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148163986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 571223309}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 18.490019, y: -17}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e928c336d222ff45a36af1f2f00dd74, type: 3}
-  m_Name: -MaeDoOuro-
+  m_Name: MaeDoOuro-
   m_EditorClassIdentifier: 
   id: 
   addressableKey: 0426051e4f94d1940b280576a3fbf7b6
@@ -20,5 +20,5 @@ MonoBehaviour:
   health: 11
   attack: 8
   effects: []
-  cardArt: {fileID: 0}
-  backgroundArt: {fileID: 0}
+  cardArt: {fileID: 3164534768760618519, guid: 457402e176466f74d959c2e7739b7389, type: 3}
+  backgroundArt: {fileID: -7436474081116409816, guid: 457402e176466f74d959c2e7739b7389, type: 3}
