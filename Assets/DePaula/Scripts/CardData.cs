@@ -32,6 +32,12 @@ public class CardData : ScriptableObject
 
         return ead;
     }
+
+    public bool CheckIfCanUse(EffectActivationData effect, bool wasAlreadyUsed)
+    {
+        if (effect.singleUse && wasAlreadyUsed) return false;
+        else return true;
+    }
 }
 
 [System.Serializable]
@@ -43,6 +49,8 @@ public struct EffectActivationData
     public Targeting targeting;
     public int specialParameter;
     public bool isSlotEffect;
+    [Range(0f, 1f)] public float chance;
+    public bool singleUse;
 }
 
 public enum TimeToActivate

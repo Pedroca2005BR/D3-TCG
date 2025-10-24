@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332762e33754c3e4786398c668f8ae11, type: 3}
+  m_Name: LambisamiEffect
+  m_EditorClassIdentifier: 
+  effectName: LambisamiEffect
+  id: 
+  addressableKey: 
+  priority: 0
+  evenTurnEffect:
+    effect: {fileID: 11400000, guid: 5460191342a426b44b9f41686b148d9b, type: 2}
+    timeToActivate: 0
+    targeting: 1
+    specialParameter: 5
+    isSlotEffect: 0
+  oddTurnEffect:
+    effect: {fileID: 11400000, guid: 0cf96f970aa0b5242856fbbf9f58fd19, type: 2}
+    timeToActivate: 0
+    targeting: 1
+    specialParameter: 5
+    isSlotEffect: 0

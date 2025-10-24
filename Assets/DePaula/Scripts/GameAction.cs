@@ -11,6 +11,7 @@ public class GameAction
     public int specialParam;
     public TimeToActivate toActivate;
     public bool isSlotEffect;
+    public float chance;
 
     public GameAction(CardInstance source, EffectActivationData data)
     {
@@ -22,6 +23,7 @@ public class GameAction
         this.specialParam = data.specialParameter;
         toActivate = data.timeToActivate;
         isSlotEffect = data.isSlotEffect;
+        chance = data.chance;
     }
     public GameAction(GameAction other)
     {
@@ -33,6 +35,7 @@ public class GameAction
         specialParam = other.specialParam;
         toActivate = other.toActivate;
         isSlotEffect = other.isSlotEffect;
+        chance = other.chance;
     }
 
     public void BlockEffect(bool blockState = true)
@@ -51,7 +54,7 @@ public class GameAction
 
         if (isSlotEffect)
         {
-            effect.Resolve(source, TargetSelector.GetTargetSlot(source, target), specialParam);
+            effect.Resolve(source, TargetSelector.GetTargetSlot(source, target), specialParam, chance);
             return true;
         }
         else if (toActivate == TimeToActivate.OnPlay)

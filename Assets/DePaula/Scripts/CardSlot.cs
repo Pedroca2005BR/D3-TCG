@@ -87,18 +87,22 @@ public class SlotSavedAction
     EffectObject effect;
     int specialParam;
     int bonusParam;
+    float chance;
 
-    public SlotSavedAction(CardInstance source, CardSlot tg, EffectObject effect, int specialParam, int bonusParam)
+    public SlotSavedAction(CardInstance source, CardSlot tg, EffectObject effect, int specialParam, int bonusParam, float chance)
     {
         cardInstance = source;
         slot = tg;
         this.effect = effect;
         this.specialParam = specialParam;
         this.bonusParam = bonusParam;
+        this.chance = chance;
     }
 
     public void Execute()
     {
+        if (Random.Range(0f, 1f) > chance) return;    // failed
+
         IGameEntity[] tgs = {slot.CardInstance};
         EffectHandler.Instance.ActivateEffectImmediatly(effect, cardInstance, tgs, specialParam, bonusParam);
     }

@@ -20,6 +20,12 @@ MonoBehaviour:
   type: 3
   health: 11
   attack: 8
-  effects: []
+  effects:
+  - effect: {fileID: 11400000, guid: b56ab83f7e455ba4dbd5e4b282f09681, type: 2}
+    timeToActivate: 5
+    targeting: 1
+    specialParameter: 1
+    isSlotEffect: 0
+    chance: 0
   cardArt: {fileID: 9173367717556157783, guid: 958491192cbc13348be6e471927fa80f, type: 3}
   backgroundArt: {fileID: 2477295730835467383, guid: 958491192cbc13348be6e471927fa80f, type: 3}

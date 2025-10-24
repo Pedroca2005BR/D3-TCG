@@ -39,6 +39,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public IGameEntity Murderer { get; private set; } = null;
     List<GameAction> murdererActions;
 
+    // Effect Control
+    Dictionary<EffectActivationData, bool> effectsUsed;
+
     // ------------------------------------------------------------------------------------------GameEntity Stuff
     public bool IsPlayer1 => isPlayer1;
     public string Id => id;
@@ -99,6 +102,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         // Outros
         Murderer = null;
         murdererActions = new List<GameAction>();
+        effectsUsed = new Dictionary<EffectActivationData, bool>();
+
+        foreach(var effect in cardData.effects)
+        {
+            effectsUsed[effect] = false;
+        }
         
     }
 
@@ -110,8 +119,10 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         foreach (EffectActivationData effect in effects)
         {
+            if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
             IGameEntity[] ige = { source };
             amount += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, amount);
+            effectsUsed[effect] = true;
         }
 
         healthSystem.TakeDamage(amount);
@@ -213,6 +224,11 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         ChangeAttackComponent();
         ChangeHealthComponent();
 
+        foreach (var effect in cardData.effects)
+        {
+            effectsUsed[effect] = false;
+        }
+
         return true;
     }
     #endregion
@@ -231,9 +247,11 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         foreach (EffectActivationData effect in effects)
         {
+            if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
             GameAction res = new GameAction(this, effect);
             EffectHandler.Instance.EnqueueEffect(effect.timeToActivate, res);
             gamesActions.Add(res);
+            effectsUsed[effect] = true;
         }        
 
         return gamesActions;
@@ -252,13 +270,15 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
             return 0;
         }
 
-        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnTakeDamage);
+        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnAttack);
         int dmg = attackSystem.CurrentHealth;
 
         foreach (EffectActivationData effect in effects)
         {
+            if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
             IGameEntity[] ige = { tg };
             dmg += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, effect.specialParameter);
+            effectsUsed[effect] = true;
         }
 
         return dmg;
@@ -427,8 +447,10 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         foreach (EffectActivationData effect in effects)
         {
+            if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
             GameAction res = new GameAction(this, effect);
             await EffectHandler.Instance.CardPlayed(res);
+            effectsUsed[effect] = true;
         }
 
         FinishedPlayCard();
