@@ -66,7 +66,8 @@ public class DeckListManager : MonoBehaviour
                 disp.Initialize(displayName,
                     onLoad: () => { _ = LoadDeckAndShowAsync(capturedFile); },
                     onDelete: showDeleteButton ? () => { DeleteDeckFileAndRefresh(capturedFile); }
-                : (System.Action)null
+                : (System.Action)null,
+                    fileName
                 );
 
                 // optionally hide delete button if not desired

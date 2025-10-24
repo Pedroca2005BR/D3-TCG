@@ -137,19 +137,12 @@ public class JM_TurnController : MonoBehaviour
 
     public void OrganizeDeck()
     {
-        //if (gameRules.deck1AddressableKey != null && gameRules.deck1AddressableKey != "")
-        //{
-        //    // TO DO: pegar deck por string json;
-        //}
+        
         player1Deck.cards.AddRange(player1Deck.usedCards);
         player1Deck.usedCards.Clear();
         player1Deck.deadCards.Clear();
         ShuffleDeck(player1Deck.cards);
 
-        //if (gameRules.deck1AddressableKey != null && gameRules.deck1AddressableKey != "")
-        //{
-        //    // TO DO: pegar deck por string json;
-        //}
 
         player2Deck.cards.AddRange(player2Deck.usedCards);
         player2Deck.usedCards.Clear();

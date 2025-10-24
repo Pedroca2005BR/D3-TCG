@@ -5,6 +5,8 @@ public class JM_RulesObject : ScriptableObject
 {
     public float turnTime;
 
+    public int deckSize;
+
     public int handSize;
 
     public int initialHandSize;
@@ -17,9 +19,17 @@ public class JM_RulesObject : ScriptableObject
 
     public int heroHealth;
 
-    public string deck1AddressableKey;
-    public string deck2AddressableKey;
+    public JM_DeckBase deck1;
+    public JM_DeckBase deck2;
+
+    public GameMode gameMode;
 
     //public int difficulty;
 
+}
+
+public enum GameMode
+{
+    MultiplayerLocal = 0,
+    IA = 1
 }

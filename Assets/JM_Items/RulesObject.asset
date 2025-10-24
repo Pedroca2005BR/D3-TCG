@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: RulesObject
   m_EditorClassIdentifier: 
   turnTime: 15
+  deckSize: 15
   handSize: 7
   initialHandSize: 3
   arenaSlots: 3
   maxCards: 20
   maxDrawCards: 1
   heroHealth: 40
+  deck1: {fileID: 0}
+  deck2: {fileID: 0}
+  gameMode: 0

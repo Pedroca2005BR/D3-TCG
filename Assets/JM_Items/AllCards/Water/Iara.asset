@@ -26,5 +26,6 @@ MonoBehaviour:
     specialParameter: 1
     isSlotEffect: 1
     chance: 1
+    singleUse: 0
   cardArt: {fileID: 8849472643159430248, guid: 86dc60db0f43a334d8573b8329e05f20, type: 3}
   backgroundArt: {fileID: 7104678358737551134, guid: 86dc60db0f43a334d8573b8329e05f20, type: 3}

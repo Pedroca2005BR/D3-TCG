@@ -12,6 +12,9 @@ public class StartGameState : TurnBaseState
         controller.hero1.Setup();
         controller.hero2.Setup();
 
+        controller.player1Deck.Setup(controller.gameRules, true);
+        controller.player2Deck.Setup(controller.gameRules, false);
+
         controller.ShuffleDeck(controller.player1Deck.cards);
         controller.ShuffleDeck(controller.player2Deck.cards);
         controller.InitializeHands();

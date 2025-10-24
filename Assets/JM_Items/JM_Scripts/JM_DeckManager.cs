@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 [System.Serializable]
 public class JM_DeckManager
@@ -8,6 +9,35 @@ public class JM_DeckManager
     public Dictionary<CardData, CardSlot> deadCards = new Dictionary<CardData, CardSlot>();
     public JM_RulesObject baseConfig;
     public JM_DeckBase cardDatabase;
+
+    public void Setup(JM_RulesObject baseConfig, bool isPlayer1)
+    {
+        this.baseConfig = baseConfig;
+
+        if (baseConfig.gameMode == GameMode.MultiplayerLocal)
+        {
+            if (isPlayer1)
+            {
+                cardDatabase = baseConfig.deck1;
+            }
+            else
+            {
+                cardDatabase = baseConfig.deck2;
+            }
+        }
+        else
+        {
+            // tem que fazer a coisa da ia ainda
+            throw new System.NotImplementedException();
+        }
+
+        if (cardDatabase != null)
+        {
+            cards = cardDatabase.allCards;
+            deadCards = new Dictionary<CardData, CardSlot>();
+            usedCards = new List<CardData>();
+        }
+    }
 
     public bool AddCard(CardData card)
     {

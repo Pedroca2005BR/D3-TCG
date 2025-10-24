@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/DePaula/DeckContructor/DeckConstructor.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2a231e9c72e4944428025d069c4b9e54
+  - enabled: 1
+    path: Assets/Scenes/Pre-Game.unity
+    guid: 498d31ce50e3ce94a89c36528ec73d4a
+  - enabled: 1
+    path: Assets/Scenes/DeckConstructor.unity
     guid: 2a2943e277bc181439d8fc117ce33543
+  - enabled: 1
+    path: Assets/Scenes/Battlefield.unity
+    guid: 91a0359ef8610e141aa93921dfdec022
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3684749137c69954abd88365b37f5a7b, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -46,6 +46,9 @@ public class DeckRuntimeUI : MonoBehaviour
     }
     #endregion
 
+    [Header("Rules")]
+    public JM_RulesObject rules;
+
     [Header("UI References")]
     public TMP_InputField deckNameInput;
     public Button createDeckButton;
@@ -115,6 +118,12 @@ public class DeckRuntimeUI : MonoBehaviour
             return;
         }
 
+        if (currentDeck.allCards.Count == rules.deckSize)
+        {
+            Debug.LogWarning("Deck is full of cards! Try removing one before taking another!");
+            return;
+        }
+
         currentDeck.allCards.Add(card);
         AddDeckCardUIEntry(card);
     }
@@ -134,6 +143,12 @@ public class DeckRuntimeUI : MonoBehaviour
         }
 
         if (deckNameInput != null && !string.IsNullOrEmpty(deckNameInput.text)) currentDeck.name = deckNameInput.text;
+
+        if (currentDeck.allCards.Count < rules.deckSize)
+        {
+            Debug.LogWarning($"Deck needs {rules.deckSize} cards!");
+            return;
+        }
 
         try
         {

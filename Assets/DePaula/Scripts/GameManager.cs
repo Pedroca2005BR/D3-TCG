@@ -34,15 +34,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] Hero P1;
     [SerializeField] Hero P2;
 
-    [Header("Decks")]
-    [SerializeField] JM_DeckManager deckP1;
-    [SerializeField] JM_DeckManager deckP2;
+    
+    JM_DeckManager deckP1;
+    JM_DeckManager deckP2;
 
     [Header("Hands")]
-    public JM_HandManager HandManager {  get; set; }
+    public JM_HandManager HandManager;
     // TO DO: TODA A MECANICA DE CONTROLE DO JOGO
 
-
+    private void Start()
+    {
+        deckP1 = turnController.player1Deck;
+        deckP2 = turnController.player2Deck;
+    }
 
     public JM_DeckManager GetDeck(bool isPlayer1)
     {

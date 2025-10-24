@@ -15,7 +15,7 @@ public class DeckDisplay : MonoBehaviour
     /// onLoad é chamado quando o usuário clica para carregar.
     /// onDelete é chamado quando o usuário clica para deletar (se deleteButton existir).
     /// </summary>
-    public void Initialize(string deckName, Action onLoad, Action onDelete = null)
+    public virtual void Initialize(string deckName, Action onLoad, Action onDelete = null, string dto = null)
     {
         if (deckNameText != null) deckNameText.text = deckName ?? "(untitled)";
 

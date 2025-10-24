@@ -60,7 +60,7 @@ public class Hero : MonoBehaviour, IGameEntity
     {
         // Altera o valor do componente
         healthComponent.text = healthSystem.CurrentHealth.ToString();
-        healthHeart.fillAmount = healthSystem.CurrentHealth / GameManager.Instance.rules.heroHealth;
+        healthHeart.fillAmount = (healthSystem.CurrentHealth * 1.0f) / (GameManager.Instance.rules.heroHealth * 1.0f);
 
         if (healthSystem.IsDamaged())
         {
