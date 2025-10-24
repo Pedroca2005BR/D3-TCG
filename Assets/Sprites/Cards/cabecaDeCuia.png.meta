@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cabecaDeCuia_0: 7875893945323447196
+      cabecaDeCuia_1: 6774865581985026878
+      cabecaDeCuia_2: -5733708014761634982
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

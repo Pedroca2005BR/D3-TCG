@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      quibungo_0: 7507601933780137861
+      quibungo_1: 7012670772328574688
+      quibungo_2: -4180627935637883884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
