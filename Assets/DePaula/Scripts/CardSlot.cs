@@ -29,8 +29,6 @@ public class CardSlot : MonoBehaviour, IDropHandler
             {
                 PutCardInSlot(cardInstance);
 
-                if(!isPlayer1Slot) cardInstance.transform.rotation = Quaternion.Euler(0, 0, 180);
-
                 cardInstance.dropped = true;
                 
                 // Animation to play when card played

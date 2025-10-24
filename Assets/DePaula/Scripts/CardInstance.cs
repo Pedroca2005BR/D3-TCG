@@ -56,6 +56,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public List<GameObject> slotObjects;
     public GameObject CurrentSlot {  get; private set; }
     public bool dropped = false;
+    public bool newCard = true;
     public float snapRange = 1f;
     private Vector3 velocity = Vector3.zero;
     private Vector3 dragTargetPosition;
@@ -312,9 +313,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         InitializeSlots();
-
-        GameObject closestSlot = null;
-        float closestDistance = float.MaxValue;
 
         if(!dropped)
         {

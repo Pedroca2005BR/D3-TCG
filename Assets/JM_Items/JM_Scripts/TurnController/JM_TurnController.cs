@@ -26,9 +26,18 @@ public class JM_TurnController : MonoBehaviour
     public bool lastTurn = false;
     public bool player1Played = false;
     public bool player2Played = false;
-    public int turn;
+    public bool p2Entered = false;
+    public bool activeCorrotine = false;
+    public int turn = 0;
+    GameObject source;
+    public GameObject board;
+    public GameObject loadingScreen;
+
 
     [Header("State Machine")]
+    public TMP_Text turnCounter;
+    public TMP_Text loadingText;
+    public GameObject loadingButton;
     public GameStates currentState;
     private Dictionary<GameStates, TurnBaseState> stateMap = new Dictionary<GameStates, TurnBaseState>();
 
@@ -173,6 +182,74 @@ public class JM_TurnController : MonoBehaviour
     {
         player1DeckText.text = player1DeckCount.ToString();
         player2DeckText.text = player2DeckCount.ToString();
+        turnCounter.text = turn.ToString();
+        if (currentState == GameStates.p1Choosing) loadingText.text = "Aguardando segundo jogador";
+        else loadingText.text = "Organizando o tabuleiro";
     }
+
+    public IEnumerator FlipBoard(GameStates changeState)
+    {
+        activeCorrotine = true;
+
+        UpdateDeckText();
+
+        loadingScreen.SetActive(true);
+
+        FlipNewCard();
+
+        if (changeState == GameStates.p2Choosing) board.transform.rotation = Quaternion.Euler(0, 0, 180);
+        else board.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        if (p2Entered)
+        {
+            loadingButton.SetActive(false);
+            yield return new WaitForSeconds(2f);
+        }
+
+        else
+        {
+            loadingButton.SetActive(true);
+            while (!p2Entered)
+                yield return null;
+        }
+        
+
+        loadingScreen.SetActive(false);
+
+        SwitchState(changeState);
+
+        activeCorrotine = false;
+    }
+
+    public void Player2Entered()
+    {
+        if (!p2Entered) p2Entered = true;
+
+    }
+
+    public void FlipNewCard()
+    {
+        CardSlot[] allySlot = GameManager.Instance.GetSlots(true);
+
+        for (int i = 0; i < allySlot.Length; i++)
+        {
+            if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.newCard)   // card achado
+            {
+                Debug.Log("Chegou aqui");
+                allySlot[i].CardInstance.frontSide.SetActive(false);
+                allySlot[i].CardInstance.backSide.SetActive(true);
+                allySlot[i].CardInstance.newCard = false;
+            }
+            else if (allySlot[i].CardInstance != null && !allySlot[i].CardInstance.newCard)
+            {
+                Debug.Log("Veio aqui");
+                allySlot[i].CardInstance.frontSide.SetActive(true);
+                allySlot[i].CardInstance.backSide.SetActive(false);
+            }
+        }
+
+    }
+    
+    
 
 }
