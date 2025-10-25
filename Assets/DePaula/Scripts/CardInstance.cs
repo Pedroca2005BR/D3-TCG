@@ -129,7 +129,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
             effectsUsed[effect] = true;
         }
 
-        NumberPopup.Create(transform.position, amount);
+        NumberPopup.Create(transform.position, amount, false);
         
         healthSystem.TakeDamage(amount);
         ChangeHealthComponent();
@@ -142,6 +142,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public void Heal(int amount)
     {
+        NumberPopup.Create(transform.position, amount, true);   
         healthSystem.Heal(amount);
         ChangeHealthComponent();
     }

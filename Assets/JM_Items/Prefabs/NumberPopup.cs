@@ -8,12 +8,12 @@ public class NumberPopup : MonoBehaviour
     public float disappearTimer = 0f;
     private Color textColor;
 
-    public static NumberPopup Create(Vector3 position, int amount)
+    public static NumberPopup Create(Vector3 position, int amount, bool color)
     {
         Transform damagePopupTf = Instantiate(GameManager.Instance.damagePopup, position, Quaternion.identity);
 
         NumberPopup damagePopupScript = damagePopupTf.GetComponent<NumberPopup>();
-        damagePopupScript.Setup(amount);
+        damagePopupScript.Setup(amount, color);
 
         return damagePopupScript;
     }
@@ -22,10 +22,13 @@ public class NumberPopup : MonoBehaviour
         textMesh = GetComponent<TextMeshPro>();
     }
 
-    public void Setup(int damage)
+    public void Setup(int damage, bool color)
     {
         Debug.Log("Damage");
         textMesh.SetText(damage.ToString());
+        if (color) textMesh.color = Color.green;
+        else textMesh.color = Color.red;
+
         textColor = textMesh.color;
     }
 
