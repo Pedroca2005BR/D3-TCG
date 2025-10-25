@@ -17,6 +17,9 @@ public class JM_HandManager : MonoBehaviour
     {
         List<CardInstance> hand = isPlayer1 ? player1Hand : player2Hand;
 
+        Debug.Log($"[{(isPlayer1 ? "P1" : "P2")}] Deck: {deck.cards.Count}, Mão: {hand.Count}/{gameRules.handSize}");
+
+
         if (deck.cards.Count > 0 && hand.Count < gameRules.handSize)
         {
             CardData chosenCard = deck.cards[0];
@@ -37,11 +40,14 @@ public class JM_HandManager : MonoBehaviour
         }
         else if (deck.cards.Count <= 0)
         {
+            Debug.Log("Baralho vazio, agora eh tudo ou nada");
+            turnController.lastTurn = true;
             return false;
         }
 
-        Debug.Log("Mao cheia");
-        return true;
+        Debug.Log($"Mão cheia de {(isPlayer1 ? "P1" : "P2")}");
+
+        return false;
     }
 
     public bool AddZombieCard(CardData card, bool isPlayer1)
@@ -60,11 +66,11 @@ public class JM_HandManager : MonoBehaviour
         Debug.Log("Mao cheia");
         return false;
     }
-    
+
     public IEnumerator SpawnCard(CardData data, bool isPlayer1, Transform handUI, List<CardInstance> hand)
     {
         activeCoroutine++;
-        
+
         yield return new WaitForSeconds(0.5f);
 
         CardInstance newCard = Instantiate(cardInstance, handUI);
@@ -80,5 +86,12 @@ public class JM_HandManager : MonoBehaviour
 
         activeCoroutine--;
     }
+
+    public void UpdateHand()
+    {
+        player1Hand.RemoveAll(card => card.Mode == CardInstance.CardMode.InPlay);
+        player2Hand.RemoveAll(card => card.Mode == CardInstance.CardMode.InPlay);
+    }   
+
     
 }

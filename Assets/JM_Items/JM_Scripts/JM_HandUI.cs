@@ -15,6 +15,9 @@ public class JM_HandUI : MonoBehaviour
     
     public void UpdateHandUI()
     {
+
+        turnController.handManager.UpdateHand();
+        
         if (gameObject.CompareTag("P1Hand")) isPlayer1Hand = true;
 
         

@@ -114,13 +114,9 @@ public class JM_TurnController : MonoBehaviour
         SwitchState(GameStates.startingTurn);
     }
 
-    public void BuyCard(JM_DeckManager deck, bool isPlayer1)
+    public bool BuyCard(JM_DeckManager deck, bool isPlayer1)
     {
-        if (!handManager.AddCard(deck, isPlayer1))
-        {
-            Debug.Log("Baralho vazio, agora eh tudo ou nada");
-            lastTurn = true;
-        }
+        return handManager.AddCard(deck, isPlayer1);
     }
 
     public void ShuffleDeck(List<CardData> deck)
