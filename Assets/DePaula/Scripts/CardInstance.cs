@@ -232,10 +232,10 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         ChangeAttackComponent();
         ChangeHealthComponent();
 
-        foreach (var effect in cardData.effects)
-        {
-            effectsUsed[effect] = false;
-        }
+        //foreach (var effect in cardData.effects)
+        //{
+        //    effectsUsed[effect] = false;
+        //}
 
         return true;
     }
@@ -406,6 +406,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public IEnumerator ReturnToHand()
     {
+        /////
+        
         float t = 0f;
         Vector3 startPos = transform.position;
 
