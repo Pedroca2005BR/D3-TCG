@@ -15,9 +15,7 @@ MonoBehaviour:
   id: 
   addressableKey: 511d7899e1172f84e8ed6f26cae9dc82
   cardName: Cumacanga
-  cardDescription: 'Ataque Direto:
-
-    Escolha o alvo do ataque'
+  cardDescription: "Ataque Direto:\nIgnora cartas entre essa carta e o her\xF3i"
   type: 1
   health: 12
   attack: 7

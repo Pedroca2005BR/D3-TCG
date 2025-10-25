@@ -39,6 +39,7 @@ public class JM_TurnController : MonoBehaviour
     public GameObject loadingScreen;
     public Hero hero1;
     public Hero hero2;
+    public bool blockNextTurn = false;
 
 
     [Header("State Machine")]
@@ -153,6 +154,7 @@ public class JM_TurnController : MonoBehaviour
 
     public void EndTurn()
     {
+        if (blockNextTurn) return;
         if (player1Played == false) player1Played = true;
         else if (player2Played == false) player2Played = true;
     }

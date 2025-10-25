@@ -15,9 +15,7 @@ MonoBehaviour:
   id: 
   addressableKey: 3422d535feb83874598332fbb7e3f4e5
   cardName: Matinta Pereira
-  cardDescription: 'Ataque Direto:
-
-    Escolha o alvo do ataque'
+  cardDescription: "Ataque Direto:\nIgnora cartas entre essa carta e o her\xF3i"
   type: 4
   health: 9
   attack: 8

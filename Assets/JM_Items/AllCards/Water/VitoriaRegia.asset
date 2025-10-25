@@ -17,7 +17,7 @@ MonoBehaviour:
   cardName: "Vit\xF3ria R\xE9gia"
   cardDescription: 'Apoio Aliado:
 
-    Aliados ganham mais 5 de HP
+    Aliados recuperam 5 de HP
 
 '
   type: 2

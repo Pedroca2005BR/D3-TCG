@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,7 @@ public class TargetSelector : MonoBehaviour
     List<IGameEntity> processedTargets;
     GameObject source;
     LineRenderer lineRenderer;
+    [SerializeField] GameObject cancelInstructions;
 
     [Header("References")]
     [SerializeField] RectTransform canvas;
@@ -84,6 +86,8 @@ public class TargetSelector : MonoBehaviour
             return null;
         }
 
+        cancelInstructions.SetActive(true);
+        GameManager.Instance.turnController.blockNextTurn = true;
         // liga visuais
         this.source = source.GameObject;
         targeter = Instantiate(targetSelectorPrefab, transform.position, Quaternion.identity, transform);
@@ -96,6 +100,10 @@ public class TargetSelector : MonoBehaviour
 
         while(processedTargets.Count < amount)
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                break;
+            }
             await Task.Yield();
         }
 
@@ -114,6 +122,14 @@ public class TargetSelector : MonoBehaviour
             t.SelectionOver();
         }
 
+        GameManager.Instance.turnController.blockNextTurn = false;
+        cancelInstructions.SetActive(false);
+
+        if (processedTargets.Count < amount)
+        {
+            Debug.LogWarning("Cancel Action!");
+            return null;
+        }
         return processedTargets.ToArray();
     }
 

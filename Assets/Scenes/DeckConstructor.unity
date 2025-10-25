@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.85
+  m_fontSize: 29.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15010,7 +15010,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Apoio Aliado:
 
-    Aliados ganham mais 5 de HP
+    Aliados recuperam 5 de HP
 
 '
   m_isRightToLeft: 0
@@ -19237,8 +19237,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Despertar Tardio:\nPor dois turnos essa carta n\xE3o causar\xE1 dano,
-    porem causar\xE1 13 de dano extra ao atacar"
+  m_text: "Despertar Tardio:\nPor 1 turno essa carta n\xE3o causar\xE1 dano, porem
+    causar\xE1 13 de dano extra ao atacar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20977,9 +20977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ataque Direto:
-
-    Escolha o alvo do ataque'
+  m_text: "Ataque Direto:\nIgnora cartas entre essa carta e o her\xF3i"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23995,9 +23993,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ataque Direto:
-
-    Escolha o alvo do ataque'
+  m_text: "Ataque Direto:\nIgnora cartas entre essa carta e o her\xF3i"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -24306,7 +24302,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vingan\xE7a Aqu\xE1tica:\nAo morrer leva consigo uma carta oponente"
+  m_text: "Vingan\xE7a Aqu\xE1tica:\nAo morrer leva consigo seu assassino"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

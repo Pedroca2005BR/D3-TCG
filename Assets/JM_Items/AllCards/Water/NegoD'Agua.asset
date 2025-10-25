@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 
   addressableKey: f35cff656d5dcaf4aa7ebf14d2cdcf52
   cardName: "Nego D'\xC1gua"
-  cardDescription: "Vingan\xE7a Aqu\xE1tica:\nAo morrer leva consigo uma carta oponente"
+  cardDescription: "Vingan\xE7a Aqu\xE1tica:\nAo morrer leva consigo seu assassino"
   type: 2
   health: 10
   attack: 8
