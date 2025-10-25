@@ -18,13 +18,17 @@ MonoBehaviour:
   priority: 0
   evenTurnEffect:
     effect: {fileID: 11400000, guid: 5460191342a426b44b9f41686b148d9b, type: 2}
-    timeToActivate: 0
+    timeToActivate: 7
     targeting: 1
     specialParameter: 5
     isSlotEffect: 0
+    chance: 0
+    singleUse: 0
   oddTurnEffect:
     effect: {fileID: 11400000, guid: 0cf96f970aa0b5242856fbbf9f58fd19, type: 2}
-    timeToActivate: 0
+    timeToActivate: 7
     targeting: 1
     specialParameter: 5
     isSlotEffect: 0
+    chance: 0
+    singleUse: 0

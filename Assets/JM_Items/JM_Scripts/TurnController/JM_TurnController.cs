@@ -1,9 +1,10 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.GPUSort;
 
 
 public enum GameStates
@@ -166,6 +167,44 @@ public class JM_TurnController : MonoBehaviour
     IEnumerator CardRevealing()
     {
         yield return ResolveEffectBus(GameStates.revealing);
+
+        CardInstance[] cards = GameManager.Instance.GetAllCards();
+
+        // Process kills
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i].GetCurrentHealth() == 0)
+            {
+                CardInstance killer = cards[i].Die() as CardInstance;
+                if (killer != null)
+                {
+                    killer.BecomeAKiller();
+                }
+                else
+                {
+                    Debug.LogError("Como tu morreu de morte morrida, querida??");
+                }
+            }
+        }
+
+        cards = GameManager.Instance.GetAllCards();
+
+        // Process kills again
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i].GetCurrentHealth() == 0)
+            {
+                CardInstance killer = cards[i].Die() as CardInstance;
+                if (killer != null)
+                {
+                    killer.BecomeAKiller();
+                }
+                else
+                {
+                    Debug.LogError("Como tu morreu de morte morrida, querida??");
+                }
+            }
+        }
 
         yield return new WaitForSeconds(1f);
         SwitchState(GameStates.processing);

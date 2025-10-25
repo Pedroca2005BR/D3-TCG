@@ -1327,6 +1327,10 @@ MonoBehaviour:
   attackComponent: {fileID: 856147293120734388}
   cardArtComponent: {fileID: 5850225580870793524}
   backgroundComponent: {fileID: 8403079598964022015}
+  AtkBuff: {fileID: 5729484037015780304}
+  AtkDebuff: {fileID: 4100462110840343875}
+  HPBuff: {fileID: 3577429783369932568}
+  HPDebuff: {fileID: 7007758163024407591}
   frontSide: {fileID: 567827655353484634}
   backSide: {fileID: 1565925592839389149}
   slotObjects: []
