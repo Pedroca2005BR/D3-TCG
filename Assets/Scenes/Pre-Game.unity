@@ -154,6 +154,7 @@ RectTransform:
   - {fileID: 322561752}
   - {fileID: 2140078138}
   - {fileID: 1502560573}
+  - {fileID: 920225615}
   m_Father: {fileID: 1364451758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2227,6 +2228,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891895703}
   m_CullTransparentMesh: 1
+--- !u!1 &920225614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 920225615}
+  m_Layer: 5
+  m_Name: TempParent
+  m_TagString: tempParent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &920225615
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920225614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 89682406}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &955413054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,7 +3374,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 649.2499, y: 181.6184}
+  m_SizeDelta: {x: 979.49, y: 288.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329430715
 MonoBehaviour:
@@ -4216,7 +4252,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 676.8223, y: 154.0461}
+  m_SizeDelta: {x: 980.37, y: 318.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700373291
 MonoBehaviour:
@@ -4586,7 +4622,7 @@ GameObject:
   - component: {fileID: 1886983440}
   m_Layer: 5
   m_Name: DeckContent
-  m_TagString: Untagged
+  m_TagString: deckContent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
