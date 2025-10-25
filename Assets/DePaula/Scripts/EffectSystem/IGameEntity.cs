@@ -7,6 +7,7 @@ public interface IGameEntity : IPointerClickHandler, IPointerEnterHandler, IPoin
     public string Id { get; }
     public bool IsPlayer1 { get;}
     public GameObject GameObject {  get; }
+    public IGameEntity Murderer { get; }
 
     public bool Buff(IGameEntity source, Stat stat, int amount);
     public bool TryUndoBuff(IGameEntity source, out int extra);

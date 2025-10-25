@@ -17,6 +17,9 @@ public class Hero : MonoBehaviour, IGameEntity
 
     public GameObject GameObject => gameObject;
 
+    private IGameEntity murderer;
+    public IGameEntity Murderer => murderer;
+
     string id;
     [SerializeField] bool isPlayer1;    // deixar pra settar no editor msm
     // ----------------------------------------------------------------IGameEntity stuff
