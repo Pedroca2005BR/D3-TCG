@@ -541,13 +541,15 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         {            
             OnPointerExit(eventData);
 
-            // Pega uma copia do alvo pra ficar la na carta
-            targetPrefab = Instantiate(TargetSelector.Instance.Selected(this), 
-                eventData.position, 
-                Quaternion.identity, 
-                transform);
+            var canvasRect = GetComponentInParent<Canvas>().transform as RectTransform;
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvasRect, eventData.position, eventData.pressEventCamera, out var localPoint);
+
+            targetPrefab = Instantiate(TargetSelector.Instance.Selected(this), canvasRect);
+            targetPrefab.GetComponent<RectTransform>().anchoredPosition = localPoint;
+
             canBeSelected = false;
-            //Debug.LogError("Selected!");
         }
     }
 
