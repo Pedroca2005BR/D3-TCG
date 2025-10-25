@@ -5,6 +5,8 @@ public class StartGameState : TurnBaseState
     public override void EnterState(JM_TurnController controller)
     {
         Debug.Log("StartGameState");
+
+        controller.endingScreen.SetActive(false);
         controller.turn = 0;
         
         controller.hero1 = GameManager.Instance.GetHero(true);

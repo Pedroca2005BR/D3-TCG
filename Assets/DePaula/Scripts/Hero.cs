@@ -50,7 +50,7 @@ public class Hero : MonoBehaviour, IGameEntity
         if(healthSystem.CurrentHealth == 0)
         {
             turnController.lastTurn = true;
-            turnController.winner = isPlayer1;
+            turnController.winner = !isPlayer1;
         }
     }
 

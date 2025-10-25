@@ -8,6 +8,7 @@ public class EndGameState : TurnBaseState
         controller.initialTime = 0f;
         controller.lastTurn = false;
         controller.OrganizeDeck();
+        controller.FinishGame();
     }
 
     public override void UpdateState(JM_TurnController controller)
