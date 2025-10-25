@@ -44,8 +44,14 @@ public class TargetSelector : MonoBehaviour
     {
         if (targeter != null)
         {
+            Vector3 pos;
             //targeter.transform.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Mouse.current.position.ReadValue(), Camera.main, out Vector2 pos);
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            canvas,
+            Mouse.current.position.ReadValue(),
+            Camera.main,
+            out pos
+            );
             targeter.transform.position = pos;
 
             // Line renderer stuff

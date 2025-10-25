@@ -150,7 +150,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public IGameEntity Die()
     {
         if (Murderer == null) return null;
-        EnqueueEffects(TimeToActivate.OnDeath);
 
         Mode = CardMode.Dead;
 
@@ -165,6 +164,20 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         //Destroy(gameObject, 2f);
         gameObject.SetActive(false);
+
+        //////////////////////////
+        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnDeath);
+
+        foreach (EffectActivationData effect in effects)
+        {
+            if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
+            GameAction res = new GameAction(this, effect);
+            EffectHandler.Instance.ActivateEffectImmediatly(res);
+            effectsUsed[effect] = true;
+        }
+        //////////////////////////
+        
+
         return Murderer;
     }
 
@@ -194,7 +207,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public bool TryRevive()
     {
-        // TO DO: Mecanica de reviver
         if (GameManager.Instance.GetDeck(isPlayer1).deadCards.ContainsKey(cardData))
         {
             return true;
@@ -232,7 +244,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public void FinishedPlayCard()
     {
         EnqueueEffects(TimeToActivate.OnReveal);
-        // TO DO: Put card down
     }
 
     public void BecomeAKiller()
@@ -311,11 +322,13 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         if ((stat & Stat.Health) != 0)
         {
             healthSystem.BuffMaxHealth(source, amount, true);
+            ChangeHealthComponent();
             return true;
         }
         if ((stat & Stat.Attack) != 0)
         {
             attackSystem.BuffMaxHealth(source, amount, true);
+            ChangeAttackComponent();
             return true;
         }
 

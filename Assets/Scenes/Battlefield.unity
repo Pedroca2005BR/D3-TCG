@@ -3658,7 +3658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSelectorPrefab: {fileID: 1005393920651440290, guid: 3886563f92e336a418ee9492fbcd6aa2, type: 3}
-  canvas: {fileID: 0}
+  canvas: {fileID: 1325121939}
 --- !u!4 &1632782519
 Transform:
   m_ObjectHideFlags: 0
