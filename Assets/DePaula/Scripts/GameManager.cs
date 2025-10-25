@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Effects")]
     public Transform damagePopup;
-    // TO DO: TODA A MECANICA DE CONTROLE DO JOGO
 
     private void Start()
     {
