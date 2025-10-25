@@ -43,5 +43,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Description
+    uniqueID: 619337495
+    locked: 0
+  - name: DmgPopup
+    uniqueID: 2954092475
+    locked: 0
   m_RenderingLayers:
   - Default

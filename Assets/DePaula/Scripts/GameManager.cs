@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Hands")]
     public JM_HandManager HandManager;
+
+    [Header("Effects")]
+    public Transform damagePopup;
     // TO DO: TODA A MECANICA DE CONTROLE DO JOGO
 
     private void Start()

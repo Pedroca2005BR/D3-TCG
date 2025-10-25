@@ -166,7 +166,8 @@ public class JM_TurnController : MonoBehaviour
     IEnumerator CardRevealing()
     {
         yield return ResolveEffectBus(GameStates.revealing);
-        //Adiciona a funcao de virar as cartas
+
+        yield return new WaitForSeconds(1f);
         SwitchState(GameStates.processing);
     }
 

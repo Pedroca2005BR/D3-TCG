@@ -125,6 +125,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
             effectsUsed[effect] = true;
         }
 
+        NumberPopup.Create(transform.position, amount);
+        
         healthSystem.TakeDamage(amount);
         ChangeHealthComponent();
 

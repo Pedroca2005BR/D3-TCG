@@ -735,7 +735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375656707
@@ -1879,6 +1879,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4697414884562346697, guid: 593cb768e7b3fc749ae598fdc5be55b8, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2631,8 +2635,8 @@ Canvas:
   m_GameObject: {fileID: 1325121935}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 184104834}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4419,6 +4423,7 @@ MonoBehaviour:
   P1: {fileID: 757560922}
   P2: {fileID: 1211305798}
   HandManager: {fileID: 1680001602}
+  damagePopup: {fileID: 2756908836338904654, guid: 14636a95c3f63b641a1a214bde368f61, type: 3}
 --- !u!4 &2124726314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3373772563730176808, guid: 593cb768e7b3fc749ae598fdc5be55b8, type: 3}
