@@ -31,7 +31,7 @@ public class JM_TurnController : MonoBehaviour
     public bool p2Entered = false;
     public bool activeCorrotine = false;
     public bool dontAct = false;
-    public int winner;
+    public int winner = 0;
     public int turn = 0;
     GameObject source;
     public GameObject board;
