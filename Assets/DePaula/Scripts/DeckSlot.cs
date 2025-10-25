@@ -12,6 +12,8 @@ public class DeckSlot : MonoBehaviour, IDropHandler
         {
             ddd.transform.SetParent(transform, false);
 
+            ddd.dropped = true;
+
             ddd.transform.position = transform.position;
 
             deckDisplay = ddd;

@@ -265,7 +265,11 @@ MonoBehaviour:
   deckNameText: {fileID: 1106789504076150357}
   loadButton: {fileID: 0}
   deleteButton: {fileID: 0}
-  dtoFileName: 
+  filename: 
+  dropped: 0
+  isBeingDragged: 0
+  canvasGroup: {fileID: 0}
+  tempParent: {fileID: 0}
 --- !u!225 &6477960166568338436
 CanvasGroup:
   m_ObjectHideFlags: 0

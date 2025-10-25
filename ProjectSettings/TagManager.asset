@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Slot
   - P1Hand
+  - tempParent
+  - deckContent
   layers:
   - Default
   - TransparentFX
