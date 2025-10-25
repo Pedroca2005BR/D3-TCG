@@ -9,21 +9,21 @@ public class BypassEffect : EffectObject
 
         foreach (var target in targets)
         {
-            CardInstance ci = target as CardInstance;
+            //CardInstance ci = target as CardInstance;
 
-            if (ci != null)
+            if (source != null)
             {
-                if (ci.AttackTargeting == Targeting.EnemyInFront)
+                if (source.AttackTargeting == Targeting.EnemyInFront)
                 {
-                    ci.AttackTargeting = Targeting.EnemyHero;
+                    source.AttackTargeting = Targeting.EnemyHero;
                 }
-                else if (ci.AttackTargeting == Targeting.EnemyHero)
+                else if (source.AttackTargeting == Targeting.EnemyHero)
                 {
-                    ci.AttackTargeting = Targeting.EnemyInFront;
+                    source.AttackTargeting = Targeting.EnemyInFront;
                 }
                 else
                 {
-                    Debug.LogError("Target with strange attacking pattern! " +  ci.AttackTargeting.ToString());
+                    Debug.LogError("Target with strange attacking pattern! " +  source.AttackTargeting.ToString());
                     return -1;
                 }
             }

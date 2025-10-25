@@ -101,7 +101,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         // Outros
         Murderer = null;
-        murdererActions = new List<GameAction>();
         effectsUsed = new Dictionary<EffectActivationData, bool>();
 
         foreach(var effect in cardData.effects)
@@ -137,7 +136,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         if (healthSystem.CurrentHealth == 0)
         {
-            Die(source);
+            Murderer = source;
         }
     }
 
@@ -145,38 +144,27 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     {
         healthSystem.Heal(amount);
         ChangeHealthComponent();
-
-        if (healthSystem.CurrentHealth > 0)
-        {
-            Murderer = null;
-
-            foreach (var ga in murdererActions)
-            {
-                EffectHandler.Instance.BlockEffect(TimeToActivate.OnKill, ga);
-            }
-        }
     }
 
-    public void Die(IGameEntity source)
+    public IGameEntity Die()
     {
+        if (Murderer == null) return null;
         EnqueueEffects(TimeToActivate.OnDeath);
 
         Mode = CardMode.Dead;
 
-        CardInstance ci = source as CardInstance;
+        CardInstance ci = Murderer as CardInstance;
 
-        if (ci != null)
-        {
-            murdererActions = ci.TryEnqueueKillEffect();
-        }
-
-        Murderer = source;
+        
 
         GameManager.Instance.GetDeck(isPlayer1).DeadCards(cardData, CurrentSlot.GetComponent<CardSlot>());
-        //Destroy(gameObject, 2f);
-        gameObject.SetActive(false);
+        
 
         ReleaseSlot();
+
+        //Destroy(gameObject, 2f);
+        gameObject.SetActive(false);
+        return Murderer;
     }
 
     public int GetCurrentHealth()
@@ -246,6 +234,18 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         // TO DO: Put card down
     }
 
+    public void BecomeAKiller()
+    {
+        List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnKill);
+
+        foreach (EffectActivationData effect in effects)
+        {
+            if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
+            GameAction res = new GameAction(this, effect);
+            EffectHandler.Instance.ActivateEffectImmediatly(res);
+            effectsUsed[effect] = true;
+        }
+    }
 
     private List<GameAction> EnqueueEffects(TimeToActivate state)
     {
@@ -262,11 +262,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         }        
 
         return gamesActions;
-    }
-
-    public List<GameAction> TryEnqueueKillEffect()
-    {
-        return EnqueueEffects(TimeToActivate.OnKill);
     }
 
     public int GetAttackDamage(IGameEntity tg)

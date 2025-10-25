@@ -70,6 +70,11 @@ public class EffectHandler : MonoBehaviour
         Debug.LogWarning($"Activating Immediatly {eo.effectName} from {source.cardData.name} in {targets.Length}!");
         return eo.Resolve(source, targets, specialParam, bonusParam);
     }
+    public async Task<bool> ActivateEffectImmediatly(GameAction action)
+    {
+        Debug.LogWarning($"Activating Immediatly {action.effect.effectName} from {action.source.cardData.name} in {action.target}!");
+        return await action.Execute();
+    }
 
     public async Task CardPlayed(GameAction gameAction)
     {

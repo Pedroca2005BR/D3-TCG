@@ -40,5 +40,22 @@ public class ProcessingGameState : TurnBaseState
                 }
             }
         }
+
+        // Process kills
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i].GetCurrentHealth() == 0)
+            {
+                CardInstance killer = cards[i].Die() as CardInstance;
+                if (killer != null)
+                {
+                    killer.BecomeAKiller();
+                }
+                else
+                {
+                    Debug.LogError("Como tu morreu de morte morrida, querida??");
+                }
+            }
+        }
     }
 }

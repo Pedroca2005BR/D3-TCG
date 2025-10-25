@@ -890,6 +890,7 @@ MonoBehaviour:
   p2Entered: 0
   activeCorrotine: 0
   dontAct: 0
+  winner: 0
   turn: 0
   board: {fileID: 375656705}
   loadingScreen: {fileID: 1662091132}
@@ -1934,6 +1935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 1742013925}
   healthHeart: {fileID: 364678824}
+  turnController: {fileID: 0}
   isPlayer1: 1
 --- !u!1 &839385712
 GameObject:
@@ -2293,6 +2295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 664004120}
   healthHeart: {fileID: 1756686754}
+  turnController: {fileID: 0}
   isPlayer1: 0
 --- !u!1 &1223332264
 GameObject:
@@ -3170,6 +3173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSelectorPrefab: {fileID: 1005393920651440290, guid: 3886563f92e336a418ee9492fbcd6aa2, type: 3}
+  canvas: {fileID: 1325121939}
 --- !u!4 &1632782519
 Transform:
   m_ObjectHideFlags: 0
