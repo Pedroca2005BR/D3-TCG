@@ -9,20 +9,20 @@ public class AlternatingEffect : EffectObject
     public override int Resolve(CardInstance source, IGameEntity[] targets, int specialParam, int bonusParam = 0)
     {
         GameAction res;
-        TimeToActivate tm;
+        //TimeToActivate tm;
         if (GameManager.Instance.turnController.turn % 2 == 0)
         {
             res = new GameAction(source, evenTurnEffect);
-            tm = evenTurnEffect.timeToActivate;
+            //tm = evenTurnEffect.timeToActivate;
         }
         else
         {
             res = new GameAction(source, oddTurnEffect);
-            tm = oddTurnEffect.timeToActivate;
+            //tm = oddTurnEffect.timeToActivate;
 
         }
 
-        EffectHandler.Instance.EnqueueEffect(tm, res);
+        EffectHandler.Instance.ActivateEffectImmediatly(res);
 
         return 0;
     }

@@ -23,6 +23,8 @@ public class ParticleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Call this function from the code you want using "ParticleManager.instance.PlayParticle"

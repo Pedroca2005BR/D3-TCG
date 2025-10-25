@@ -15,8 +15,8 @@ MonoBehaviour:
   id: 
   addressableKey: 3e053a9a6e959494ba50bc3a0193dbe0
   cardName: Corpo Seco
-  cardDescription: "Despertar Tardio:\nPor dois turnos essa carta n\xE3o causar\xE1
-    dano, porem causar\xE1 13 de dano extra ao atacar"
+  cardDescription: "Despertar Tardio:\nPor 1 turno essa carta n\xE3o causar\xE1 dano,
+    porem causar\xE1 13 de dano extra ao atacar"
   type: 5
   health: 7
   attack: 9

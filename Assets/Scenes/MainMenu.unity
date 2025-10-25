@@ -1046,6 +1046,18 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - audioSource: {fileID: 0}
+    name: Explosion
+    clip: {fileID: 8300000, guid: ec0bb81fb5fd6234cbafdc3fccae91a1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - audioSource: {fileID: 0}
+    name: Mimir
+    clip: {fileID: 8300000, guid: bd5f820c1bc26444999da3b2e7b0a81b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!82 &1044169966
 AudioSource:
   m_ObjectHideFlags: 0

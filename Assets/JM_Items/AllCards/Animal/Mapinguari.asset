@@ -24,7 +24,7 @@ MonoBehaviour:
   effects:
   - effect: {fileID: 11400000, guid: ac465b0b94222364a8efab33ab2988b9, type: 2}
     timeToActivate: 4
-    targeting: 0
+    targeting: 1
     specialParameter: -3
     isSlotEffect: 0
     chance: 0

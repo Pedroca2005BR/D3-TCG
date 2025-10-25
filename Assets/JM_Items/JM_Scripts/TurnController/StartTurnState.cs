@@ -40,6 +40,8 @@ public class StartTurnState : TurnBaseState
 
         yield return controller.ResolveEffectBus(GameStates.startingTurn);
 
+        GameManager.Instance.UpdateCardsUI();
+
         controller.SwitchState(GameStates.p1Choosing);
     }
 

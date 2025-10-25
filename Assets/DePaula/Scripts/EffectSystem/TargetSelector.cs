@@ -34,6 +34,11 @@ public class TargetSelector : MonoBehaviour
     [Header("References")]
     [SerializeField] RectTransform canvas;
 
+    [Header("Dead Card needs")]
+    [SerializeField] GameObject deadCardsPanel;
+    [SerializeField] GameObject deadCardsContent;
+    [SerializeField] GameObject cardPrefab;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -97,12 +102,39 @@ public class TargetSelector : MonoBehaviour
         // Desliga visuais
         Destroy(targeter);
         lineRenderer.enabled=false;
+        
+        for (int i = 0; i<deadCardsContent.transform.childCount; i++)
+        {
+            deadCardsContent.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        deadCardsPanel.SetActive(false);
+
         foreach (var t in targets)
         {
             t.SelectionOver();
         }
 
         return processedTargets.ToArray();
+    }
+
+    public List<CardInstance> TurnOnDeadCardsPanel(bool isPlayer1)
+    {
+        List<CardInstance> deadCards = new List<CardInstance>();
+        List<CardData> cartas = new List<CardData>(GameManager.Instance.GetDeck(isPlayer1).deadCards.Keys);
+        if (cartas.Count == 0) return null;
+
+        deadCardsPanel.SetActive(true);
+
+        foreach(CardData data in cartas)
+        {
+            GameObject go = Instantiate(cardPrefab, deadCardsContent.transform);
+            CardInstance card = go.GetComponent<CardInstance>();
+            card.SetupCardInstance(data, isPlayer1 );
+
+            deadCards.Add(card);
+        }
+
+        return deadCards;
     }
 
     public static IGameEntity[] GetTargets(IGameEntity source, Targeting target)
@@ -190,7 +222,14 @@ public class TargetSelector : MonoBehaviour
         }
         if ((target & Targeting.DeadCards) != 0)
         {
-            // --------------------------------------------------------------------- TO DO --------------------------------
+            List<CardInstance> deadCards = Instance.TurnOnDeadCardsPanel(source.IsPlayer1);
+
+            if (deadCards == null)  return processedTargets.ToArray();
+
+            foreach (CardInstance deadCard in deadCards)
+            {
+                processedTargets.Add(deadCard);
+            }
         }
         if ((target & Targeting.Murderer) != 0)
         {

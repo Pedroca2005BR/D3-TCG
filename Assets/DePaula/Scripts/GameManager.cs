@@ -95,4 +95,12 @@ public class GameManager : MonoBehaviour
 
         return cards.ToArray();
     }
+
+    public void UpdateCardsUI()
+    {
+        foreach (CardInstance card in GetAllCards())
+        {
+            card.UpdateUIInertEffect();
+        }
+    }
 }

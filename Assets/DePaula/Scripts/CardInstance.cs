@@ -36,6 +36,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     [SerializeField] GameObject AtkDebuff;
     [SerializeField] GameObject HPBuff;
     [SerializeField] GameObject HPDebuff;
+    [SerializeField] GameObject inertEffect;
 
 
     HealthSystemTemplate healthSystem, attackSystem;
@@ -52,6 +53,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     public bool IsPlayer1 => isPlayer1;
     public string Id => id;
 
+    [Header("Sides")]
     public GameObject frontSide;
     public GameObject backSide;
 
@@ -105,6 +107,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         AtkDebuff.SetActive(false);
         HPBuff.SetActive(false);
         HPDebuff.SetActive(false);
+        inertEffect.SetActive(false);
 
         // Prepara corotinas
         descriptionCoroutine = DescriptionAppearTimer();
@@ -135,12 +138,17 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         {
             if (!cardData.CheckIfCanUse(effect, effectsUsed[effect])) continue;
             IGameEntity[] ige = { source };
-            amount += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, amount);
+            amount += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, effect.specialParameter, amount);
             effectsUsed[effect] = true;
         }
 
         NumberPopup.Create(transform.position, amount, false);
-        
+
+        //--------------------------------------------------- DEBUG ---------------------------------
+        //CardInstance ci = source as CardInstance;
+        //Debug.LogWarning($"{effects.Count}x -> {cardData.cardName} recebeu {amount} de dano provindo de {ci.cardData.cardName}!");
+        //--------------------------------------------------- DEBUG ---------------------------------
+
         healthSystem.TakeDamage(amount);
         ChangeHealthComponent();
 
@@ -172,7 +180,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         ReleaseSlot();
 
-        //Destroy(gameObject, 2f);
+        AudioManager.instance.PlaySound("Explosion");
+        //ParticleManager.instance.PlayParticle("Explosion", transform.position, Quaternion.identity);
+
         gameObject.SetActive(false);
 
         //////////////////////////
@@ -219,6 +229,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         }
         else
         {
+            HPDebuff.SetActive(false);
+            HPBuff.SetActive(false);
             healthComponent.color = Color.white;
         }
 
@@ -310,7 +322,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     {
         if (turnsToSleep > 0)
         {
+            AudioManager.instance.PlaySound("Mimir");
             turnsToSleep--;
+
             return 0;
         }
 
@@ -351,6 +365,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         else
         {
             attackComponent.color = Color.white;
+            AtkDebuff.SetActive(false);
+            AtkBuff.SetActive(false);
         }
 
         // Dano tem preferencia
@@ -392,8 +408,15 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public bool MakeInert(int amount)
     {
+        inertEffect.SetActive(true);
         turnsToSleep += amount;
         return true;
+    }
+
+    public void UpdateUIInertEffect()
+    {
+        if (turnsToSleep == 0) inertEffect.SetActive(false);
+        else inertEffect.SetActive(true);
     }
 
     
