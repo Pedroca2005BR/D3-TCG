@@ -31,7 +31,7 @@ public class JM_TurnController : MonoBehaviour
     public bool p2Entered = false;
     public bool activeCorrotine = false;
     public bool dontAct = false;
-    public bool winner = false;
+    public int winner = 0;
     public int turn = 0;
     GameObject source;
     public GameObject board;
@@ -257,8 +257,19 @@ public class JM_TurnController : MonoBehaviour
 
     public void FinishGame()
     {
-        if (winner) endingText.text = "Vitória do Jogador 1!\nParabéns!";
-        else endingText.text = "Vitória do Jogador 2!\nParabéns!";
+        if (winner == 1) endingText.text = "Vitória do Jogador 1!\nParabéns!";
+        else if (winner == 2) endingText.text = "Vitória do Jogador 2!\nParabéns!";
+        else
+        {
+            if (hero1.GetCurrentHealth() > hero2.GetCurrentHealth()) endingText.text = "Vitória do Jogador 1!\nParabéns!";
+            else if (hero1.GetCurrentHealth() < hero2.GetCurrentHealth()) endingText.text = "Vitória do Jogador 2!\nParabéns!";
+            else
+            {
+                if (handManager.player1Hand.Count > handManager.player2Hand.Count) endingText.text = "Vitória do Jogador 1!\nParabéns!";
+                else if (handManager.player1Hand.Count < handManager.player2Hand.Count) endingText.text = "Vitória do Jogador 2!\nParabéns!";
+                else endingText.text = "Não houve um vencedor!\nComo vocês conseguiram isso?";
+            }
+        }
 
         endingScreen.SetActive(true);
 
