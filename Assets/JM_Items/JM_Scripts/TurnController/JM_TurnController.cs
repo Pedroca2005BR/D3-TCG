@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -30,6 +31,7 @@ public class JM_TurnController : MonoBehaviour
     public bool p2Entered = false;
     public bool activeCorrotine = false;
     public bool dontAct = false;
+    public bool winner = false;
     public int turn = 0;
     GameObject source;
     public GameObject board;
@@ -114,13 +116,9 @@ public class JM_TurnController : MonoBehaviour
         SwitchState(GameStates.startingTurn);
     }
 
-    public void BuyCard(JM_DeckManager deck, bool isPlayer1)
+    public bool BuyCard(JM_DeckManager deck, bool isPlayer1)
     {
-        if (!handManager.AddCard(deck, isPlayer1))
-        {
-            Debug.Log("Baralho vazio, agora eh tudo ou nada");
-            lastTurn = true;
-        }
+        return handManager.AddCard(deck, isPlayer1);
     }
 
     public void ShuffleDeck(List<CardData> deck)

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1cae4b5bcac2a954caa575b2376fe9f1
+guid: 5cc6a29d777214243977e5cf7e7e5efa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8989738578886304915
-    second: vidabuff_0
+      213: -6696781745349507656
+    second: menuofcs-export_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vidabuff_0
+      name: menuofcs-export_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 8
-        width: 16
-        height: 16
+        x: 0
+        y: 0
+        width: 3840
+        height: 2160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6b5bd564680e3380800000000000000
-      internalID: -8989738578886304915
+      spriteID: 8b54f12db704013a0800000000000000
+      internalID: -6696781745349507656
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      vidabuff_0: -8989738578886304915
+      menuofcs-export_0: -6696781745349507656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

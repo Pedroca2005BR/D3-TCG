@@ -13,12 +13,16 @@ public class StartTurnState : TurnBaseState
 
     private IEnumerator BuyCardsNow(JM_TurnController controller)
     {
-        controller.BuyCard(controller.player1Deck, true);
-        controller.BuyCard(controller.player2Deck, false);
-
-        while (controller.handManager.activeCoroutine > 0)
+        if (controller.BuyCard(controller.player1Deck, true))
         {
-            yield return null;
+            while (controller.handManager.activeCoroutine > 0)
+                yield return null;
+        }
+
+        if (controller.BuyCard(controller.player2Deck, false))
+        {
+            while (controller.handManager.activeCoroutine > 0)
+                yield return null;
         }
 
         yield return new WaitForSeconds(1f);
