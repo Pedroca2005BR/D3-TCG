@@ -77,9 +77,10 @@ public class Hero : MonoBehaviour, IGameEntity
         {
             healthComponent.color = Color.red;
         }
-        else if (healthSystem.WasBuffed)
+        else if (healthSystem.CheckBuff(out bool good))
         {
-            healthComponent.color = Color.green;
+            if (good) healthComponent.color = Color.green;
+            else healthComponent.color = Color.yellow;
         }
         else
         {

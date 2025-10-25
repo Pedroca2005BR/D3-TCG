@@ -5,7 +5,6 @@ public class HealthSystemTemplate
 {
     public int MaxHealth {  get; private set; }
     public int CurrentHealth { get; private set; }
-    public bool WasBuffed { get; private set; }
 
     private Dictionary<IGameEntity, int> m_Buffs;
 
@@ -27,7 +26,6 @@ public class HealthSystemTemplate
             CurrentHealth = currentHealth;
         }
 
-        WasBuffed = false;
         m_Buffs = new Dictionary<IGameEntity, int>();
     }
 
@@ -35,7 +33,6 @@ public class HealthSystemTemplate
     {
         // buff = 10-6 = 4
         MaxHealth += amount;
-        WasBuffed = true;
 
         if (heal)
         {
@@ -57,11 +54,6 @@ public class HealthSystemTemplate
             CurrentHealth -= m_Buffs[source];   // currentHealth = 5-10 = -5
             m_Buffs.Remove(source);
 
-            if (m_Buffs.Count == 0)
-            {
-                WasBuffed = false;
-            }
-
 
             
             amount = CurrentHealth - 1; // amount = -6
@@ -75,6 +67,26 @@ public class HealthSystemTemplate
         
 
         return false;
+    }
+
+    public bool CheckBuff(out bool isGood)
+    {
+        if (m_Buffs.Count == 0)
+        {
+            isGood = false;
+            return false;
+        }
+
+        int total = 0;
+        foreach(IGameEntity source in m_Buffs.Keys)
+        {
+            total += m_Buffs[source];
+        }
+
+        if (total < 0)  isGood = false;
+        else isGood = true;
+
+        return true;
     }
 
     public void SetMaxHealth(int newMaxHealth, bool heal = false)

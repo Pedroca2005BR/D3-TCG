@@ -24,6 +24,11 @@ public class EndTurnState : TurnBaseState
     {
         yield return controller.ResolveEffectBus(GameStates.endingTurn);
 
+        foreach(CardInstance card in GameManager.Instance.GetAllCards())
+        {
+            if (card.StartTurnEffects().Count > 0) yield return new WaitForSeconds(0.1f);
+        }
+
         controller.player1Played = false;
         controller.player2Played = false;
         controller.p2Entered = false;

@@ -31,6 +31,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     [SerializeField] Image cardArtComponent;
     [SerializeField] Image backgroundComponent;
 
+    [Header("Effect Icons")]
+    [SerializeField] GameObject AtkBuff;
+    [SerializeField] GameObject AtkDebuff;
+    [SerializeField] GameObject HPBuff;
+    [SerializeField] GameObject HPDebuff;
+
 
     HealthSystemTemplate healthSystem, attackSystem;
     public CardMode Mode { get; private set; }
@@ -94,7 +100,11 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         // Prepara artes
         cardArtComponent.sprite = cardData.cardArt;
         backgroundComponent.sprite = cardData.backgroundArt;
-        descriptionImage.gameObject.SetActive(false);
+        descriptionImage.SetActive(false);
+        AtkBuff.SetActive(false);
+        AtkDebuff.SetActive(false);
+        HPBuff.SetActive(false);
+        HPDebuff.SetActive(false);
 
         // Prepara corotinas
         descriptionCoroutine = DescriptionAppearTimer();
@@ -191,18 +201,33 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         // Altera o valor do componente
         healthComponent.text = healthSystem.CurrentHealth.ToString();
 
-        if (healthSystem.IsDamaged())
+        
+        if (healthSystem.CheckBuff(out bool good))
         {
-            healthComponent.color = Color.red;
-        }
-        else if (healthSystem.WasBuffed)
-        {
-            healthComponent.color = Color.green;
+            if (good)
+            {
+                HPBuff.SetActive(true);
+                HPDebuff.SetActive(false);
+                healthComponent.color = Color.green;
+            }
+            else
+            {
+                HPDebuff.SetActive(true);
+                HPBuff.SetActive(false);
+                healthComponent.color = Color.yellow;
+            }
         }
         else
         {
             healthComponent.color = Color.white;
         }
+
+        // Dano tem preferencia
+        if (healthSystem.IsDamaged())
+        {
+            healthComponent.color = Color.red;
+        }
+        
     }
 
     public bool TryRevive()
@@ -276,6 +301,11 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         return gamesActions;
     }
 
+    public List<GameAction> StartTurnEffects()
+    {
+        return EnqueueEffects(TimeToActivate.OnStartOfTurn);
+    }
+
     public int GetAttackDamage(IGameEntity tg)
     {
         if (turnsToSleep > 0)
@@ -303,17 +333,30 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         // Altera o valor do componente
         attackComponent.text = attackSystem.CurrentHealth.ToString();
 
-        if (attackSystem.IsDamaged())
+        if (attackSystem.CheckBuff(out bool good))
         {
-            attackComponent.color = Color.red;
-        }
-        else if (attackSystem.WasBuffed)
-        {
-            attackComponent.color = Color.green;
+            if (good)
+            {
+                AtkBuff.SetActive(true);
+                AtkDebuff.SetActive(false);
+                attackComponent.color = Color.green;
+            }
+            else
+            {
+                AtkDebuff.SetActive(true);
+                AtkBuff.SetActive(false);
+                attackComponent.color = Color.yellow;
+            }
         }
         else
         {
             attackComponent.color = Color.white;
+        }
+
+        // Dano tem preferencia
+        if (attackSystem.IsDamaged())
+        {
+            attackComponent.color = Color.red;
         }
     }
 

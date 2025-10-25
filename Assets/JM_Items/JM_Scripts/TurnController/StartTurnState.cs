@@ -38,6 +38,8 @@ public class StartTurnState : TurnBaseState
         
         controller.loadingScreen.SetActive(false);
 
+        yield return controller.ResolveEffectBus(GameStates.startingTurn);
+
         controller.SwitchState(GameStates.p1Choosing);
     }
 
