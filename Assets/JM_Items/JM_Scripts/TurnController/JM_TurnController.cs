@@ -45,6 +45,8 @@ public class JM_TurnController : MonoBehaviour
     public TMP_Text loadingText;
     public GameObject loadingButton;
     public GameStates currentState;
+    public GameObject endingScreen;
+    public TMP_Text endingText;
     private Dictionary<GameStates, TurnBaseState> stateMap = new Dictionary<GameStates, TurnBaseState>();
 
     [Header("Controle do Deck")]
@@ -252,7 +254,20 @@ public class JM_TurnController : MonoBehaviour
 
         yield break;
     }
-    
+
+    public void FinishGame()
+    {
+        if (winner) endingText.text = "Vitória do Jogador 1!\nParabéns!";
+        else endingText.text = "Vitória do Jogador 2!\nParabéns!";
+
+        endingScreen.SetActive(true);
+
+    }    
+
+    public void ReplayGame()
+    {
+        SceneManager.LoadScene("Pre-Game");
+    }
     
 
 }
