@@ -9,7 +9,7 @@ public class Hero : MonoBehaviour, IGameEntity
     [Header("Visuals")]
     [SerializeField] TextMeshProUGUI healthComponent;
     [SerializeField] Image healthHeart;
-    
+    [SerializeField] JM_TurnController turnController;    
 
     // ----------------------------------------------------------------IGameEntity stuff
     public string Id => id;
@@ -43,6 +43,12 @@ public class Hero : MonoBehaviour, IGameEntity
     {
         healthSystem.TakeDamage(amount);
         ChangeHealthComponent();
+
+        if(healthSystem.CurrentHealth == 0)
+        {
+            turnController.lastTurn = true;
+            turnController.winner = isPlayer1;
+        }
     }
 
     public void Heal(int amount)

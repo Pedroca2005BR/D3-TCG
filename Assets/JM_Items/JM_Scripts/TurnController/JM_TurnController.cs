@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -30,6 +31,7 @@ public class JM_TurnController : MonoBehaviour
     public bool p2Entered = false;
     public bool activeCorrotine = false;
     public bool dontAct = false;
+    public bool winner = false;
     public int turn = 0;
     GameObject source;
     public GameObject board;
