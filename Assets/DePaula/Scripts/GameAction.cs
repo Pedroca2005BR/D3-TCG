@@ -50,7 +50,7 @@ public class GameAction
 
         // Transforma o objeto desconhecido target em uma(s) game entity conhecida
         IGameEntity[] tgs;
-        Debug.Log("Executing " + effect.effectName + "!");
+        Debug.LogWarning($"Executing {effect.effectName} from {source.cardData.name} in {target.ToString()}!");
 
         if (isSlotEffect)
         {

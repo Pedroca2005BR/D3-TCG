@@ -23,6 +23,18 @@ public class EffectHandler : MonoBehaviour
 
     private Dictionary<GameStates, List<GameAction>> effectsToSolve = new Dictionary<GameStates, List<GameAction>>();
 
+    private void Start()
+    {
+        effectsToSolve[GameStates.startingTurn] = new List<GameAction>();
+        effectsToSolve[GameStates.finishingGame] = new List<GameAction>();
+        effectsToSolve[GameStates.endingTurn] = new List<GameAction>();
+        effectsToSolve[GameStates.revealing] = new List<GameAction>();
+        effectsToSolve[GameStates.p2Choosing] = new List<GameAction>();
+        effectsToSolve[GameStates.p1Choosing] = new List<GameAction>();
+        effectsToSolve[GameStates.processing] = new List<GameAction>();
+    }
+
+
     // Finalmente executa os efeitos e depois os apaga
     public async Task ResolveEffects(GameStates state)
     {
@@ -46,15 +58,16 @@ public class EffectHandler : MonoBehaviour
 
         effectsToSolve[state].Add(effect);
 
-        if (state != GameManager.Instance.turnController.currentState)
-        {
-            SortListByPriority(effectsToSolve[state]);
-        }
+        //if (state != GameManager.Instance.turnController.currentState)
+        //{
+        //    SortListByPriority(effectsToSolve[state]);
+        //}
     }
 
     // Geralmente usado apenas pelos scripts de ataque
     public int ActivateEffectImmediatly(EffectObject eo, CardInstance source, IGameEntity[] targets, int specialParam, int bonusParam=0)
     {
+        Debug.LogWarning($"Activating Immediatly {eo.effectName} from {source.cardData.name} in {targets.Length}!");
         return eo.Resolve(source, targets, specialParam, bonusParam);
     }
 

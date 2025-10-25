@@ -31,6 +31,9 @@ public class TargetSelector : MonoBehaviour
     GameObject source;
     LineRenderer lineRenderer;
 
+    [Header("References")]
+    [SerializeField] RectTransform canvas;
+
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -41,7 +44,9 @@ public class TargetSelector : MonoBehaviour
     {
         if (targeter != null)
         {
-            targeter.transform.position = Mouse.current.position.ReadValue();
+            //targeter.transform.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Mouse.current.position.ReadValue(), Camera.main, out Vector2 pos);
+            targeter.transform.position = pos;
 
             // Line renderer stuff
             lineRenderer.SetPosition(1, source.transform.position);

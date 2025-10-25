@@ -74,6 +74,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
         empty = false;
         CardInstance = cardInstance;
+        CardInstance.CurrentSlot = gameObject;
 
         //return true;
     }

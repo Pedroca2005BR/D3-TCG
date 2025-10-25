@@ -57,7 +57,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     // ----------------------------------- Draggable stuff
     public List<GameObject> slotObjects;
-    public GameObject CurrentSlot {  get; private set; }
+    public GameObject CurrentSlot {  get; set; }
     public bool dropped = false;
     public bool newCard = true;
     public float snapRange = 1f;
@@ -115,6 +115,11 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public void TakeDamage(IGameEntity source, int amount)
     {
+        if (healthSystem.CurrentHealth == 0)
+        {
+            return;
+        }
+
         List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnTakeDamage);
 
         foreach (EffectActivationData effect in effects)
