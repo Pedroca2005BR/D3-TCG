@@ -15,31 +15,28 @@ public class CardSlot : MonoBehaviour, IDropHandler
     {
         Debug.Log("Dropped " + eventData.pointerDrag.name);
 
-        if (eventData.pointerDrag.TryGetComponent<CardInstance>(out CardInstance cardInstance))
+        if (eventData.pointerDrag.TryGetComponent<DraggableComponent>(out DraggableComponent draggable))
         {
+            CardInstance cardInstance = draggable.CardInstance;
             bool isPlayer1 = cardInstance.IsPlayer1 == isPlayer1Slot;
-
-            JM_HandUI handUI = cardInstance.GetComponentInParent<JM_HandUI>();
             
             if (!empty || !isPlayer1)
             {
-                cardInstance.StartCoroutine(cardInstance.ReturnToHand());
+                draggable.DenyDrop();
+                Debug.Log("Slot is not empty!");
             }
             else
             {
                 PutCardInSlot(cardInstance);
+                draggable.ConfirmDropped();
 
-                cardInstance.dropped = true;
-                
-                // Animation to play when card played
+                await CardInstance.ConfirmPlay(this); // Feedback to card to activate its own effect
+                TryActivateSlotEffect(); // Feedback to slot to activate its own effect
 
-                await CardInstance.ConfirmPlay(this);
+                // Send event to Turn Controller to store card played in turn history
+                GameManager.Instance.turnController.StoreCardToBeRevealedLater(CardInstance.gameObject);
 
-                TryActivateEffect();
-
-                
-                    
-                handUI.UpdateHandUI();
+                GameManager.Instance.UpdateHandsUI();   // Updates the hand UI to reflect the card being played and removed from hand
             }
         }
         else
@@ -51,7 +48,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
         
     }
 
-    public bool TryActivateEffect()
+    public bool TryActivateSlotEffect()
     {
         if (empty) return false;
 
@@ -67,7 +64,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
 
     public void PutCardInSlot(CardInstance cardInstance)
     {
-        Debug.Log("Put hihi!");
+        //Debug.Log("Put hihi!");
         cardInstance.transform.SetParent(transform, false);
 
         cardInstance.transform.position = transform.position;   // por enquanto, so da snap pra posicao

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public interface IGameEntity : IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public interface IGameEntity : IPointerClickHandler
 {
     public string Id { get; }
     public bool IsPlayer1 { get;}

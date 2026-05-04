@@ -103,4 +103,14 @@ public class GameManager : MonoBehaviour
             card.UpdateUIInertEffect();
         }
     }
+
+    public JM_HandUI GetHandUI(bool isPlayer1)
+    {
+        return HandManager.GetHandUI(isPlayer1);
+    }
+
+    public void UpdateHandsUI()
+    {
+        HandManager.UpdateHandsUI();
+    }
 }

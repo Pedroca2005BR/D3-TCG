@@ -22,7 +22,7 @@ public class JM_HandUI : MonoBehaviour
 
         
 
-        List<CardInstance> cardsInHandMode = cardsInHand.FindAll(c => c.Mode == CardInstance.CardMode.InHand);
+        List<CardInstance> cardsInHandMode = cardsInHand.FindAll(c => c.Mode == CardMode.InHand);
         int totalCards = cardsInHandMode.Count;
         if (totalCards == 0) return;
 
@@ -46,18 +46,15 @@ public class JM_HandUI : MonoBehaviour
 
             if (isPlayer1Hand && turnController.currentState == GameStates.p1Choosing)
             {
-                card.frontSide.SetActive(true);
-                card.backSide.SetActive(false);
+                card.FlipCard(true);
             }
             else if (!isPlayer1Hand && turnController.currentState == GameStates.p2Choosing)
             {
-                card.frontSide.SetActive(true);
-                card.backSide.SetActive(false);
+                card.FlipCard(true);
             }
             else
             {
-                card.frontSide.SetActive(false);
-                card.backSide.SetActive(true);
+                card.FlipCard(false);
             }
             
             card.transform.SetLocalPositionAndRotation(targetLocalPosition, targetLocalRotation);

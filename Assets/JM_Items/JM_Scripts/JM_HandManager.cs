@@ -89,9 +89,18 @@ public class JM_HandManager : MonoBehaviour
 
     public void UpdateHand()
     {
-        player1Hand.RemoveAll(card => card.Mode == CardInstance.CardMode.InPlay);
-        player2Hand.RemoveAll(card => card.Mode == CardInstance.CardMode.InPlay);
-    }   
+        player1Hand.RemoveAll(card => card.Mode == CardMode.InPlay);
+        player2Hand.RemoveAll(card => card.Mode == CardMode.InPlay);
+    }  
 
-    
+    public JM_HandUI GetHandUI(bool isPlayer1)
+    {
+               return isPlayer1 ? player1HandUI.GetComponent<JM_HandUI>() : player2HandUI.GetComponent<JM_HandUI>();
+    }
+
+    public void UpdateHandsUI()
+    {
+        player1HandUI.GetComponent<JM_HandUI>().UpdateHandUI();
+        player2HandUI.GetComponent<JM_HandUI>().UpdateHandUI();
+    }
 }

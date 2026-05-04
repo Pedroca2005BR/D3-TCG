@@ -62,6 +62,9 @@ public class JM_TurnController : MonoBehaviour
     public TMP_Text player2DeckText;
     [SerializeField] public JM_HandManager handManager;
 
+
+    private List<CardInstance> cardsPlayedThisTurn = new List<CardInstance>();
+
     void Start()
     {
         InitializeStates();
@@ -168,6 +171,12 @@ public class JM_TurnController : MonoBehaviour
 
     IEnumerator CardRevealing()
     {
+        foreach (var card in cardsPlayedThisTurn)
+        {
+            card.enabled = true;
+            yield return card.CardVisuals.RevealTime(); // Espera a animação de revelação de cada carta acabar antes de continuar
+        }
+
         yield return ResolveEffectBus(GameStates.revealing);
 
         CardInstance[] cards = GameManager.Instance.GetAllCards();
@@ -235,19 +244,21 @@ public class JM_TurnController : MonoBehaviour
 
         loadingScreen.SetActive(true);
 
-        StartCoroutine(FlipNewCard());
+        //StartCoroutine(FlipNewCard());
 
         if (changeState == GameStates.p2Choosing) board.transform.rotation = Quaternion.Euler(0, 0, 180);
         else board.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (p2Entered)
         {
+            EnableCardsAgainAndClear();
             loadingButton.SetActive(false);
             yield return new WaitForSeconds(2f);
         }
 
         else
         {
+            DisableCardsPlayedThisTurn();
             loadingButton.SetActive(true);
             while (!p2Entered)
                 yield return null;
@@ -268,32 +279,52 @@ public class JM_TurnController : MonoBehaviour
 
     }
 
-    public IEnumerator FlipNewCard()
+    //public IEnumerator FlipNewCard()
+    //{
+    //    CardSlot[] allySlot = GameManager.Instance.GetSlots(true);
+    //    Debug.Log($"Comprimento = {allySlot.Length}");
+
+    //    for (int i = 0; i < allySlot.Length; i++)
+    //    {
+    //        if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.newCard)   // card achado
+    //        {
+    //            Debug.Log($"Chegou aqui i = {i}");
+    //            allySlot[i].CardInstance.FlipCard(false);
+    //        }
+    //        else if (allySlot[i].CardInstance != null && !allySlot[i].CardInstance.newCard)
+    //        {
+    //            Debug.Log($"Veio aqui i = {i}");
+    //            allySlot[i].CardInstance.frontSide.SetActive(true);
+    //            allySlot[i].CardInstance.backSide.SetActive(false);
+    //        }
+
+    //        if (allySlot[i].CardInstance != null) allySlot[i].CardInstance.newCard = false;
+
+    //    }
+
+    //    yield break;
+    //}
+
+    private void DisableCardsPlayedThisTurn()
     {
-        CardSlot[] allySlot = GameManager.Instance.GetSlots(true);
-        Debug.Log($"Comprimento = {allySlot.Length}");
-
-        for (int i = 0; i < allySlot.Length; i++)
+        foreach (var card in cardsPlayedThisTurn)
         {
-            if (allySlot[i].CardInstance != null && allySlot[i].CardInstance.newCard)   // card achado
-            {
-                Debug.Log($"Chegou aqui i = {i}");
-                allySlot[i].CardInstance.frontSide.SetActive(false);
-                allySlot[i].CardInstance.backSide.SetActive(true);
-
-            }
-            else if (allySlot[i].CardInstance != null && !allySlot[i].CardInstance.newCard)
-            {
-                Debug.Log($"Veio aqui i = {i}");
-                allySlot[i].CardInstance.frontSide.SetActive(true);
-                allySlot[i].CardInstance.backSide.SetActive(false);
-            }
-
-            if (allySlot[i].CardInstance != null) allySlot[i].CardInstance.newCard = false;
-
+            card.gameObject.SetActive(false);
         }
+    }
+    private void EnableCardsAgainAndClear()
+    {
+        foreach (var card in cardsPlayedThisTurn)
+        {
+            card.gameObject.SetActive(true);
+        }
+        cardsPlayedThisTurn.Clear();
+    }
 
-        yield break;
+    public void StoreCardToBeRevealedLater(GameObject card)
+    {
+        Debug.Log("Card stored to be revealed later: " + card.name);
+        cardsPlayedThisTurn.Add(card.GetComponent<CardInstance>());
     }
 
     public void FinishGame()

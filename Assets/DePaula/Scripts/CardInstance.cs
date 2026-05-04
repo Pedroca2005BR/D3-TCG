@@ -8,35 +8,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
 
-public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class CardInstance : MonoBehaviour, IGameEntity
 {
-    public enum CardMode
-    {
-        InHand = 0,
-        InPlay = 1,
-        Dormant = 2,
-        Dead = 3
-    }
-
     [Header("Card Info")]
     public CardData cardData;
-    
 
-    [Header("Display Info")]
-    [SerializeField] TextMeshProUGUI nameComponent;
-    [SerializeField] GameObject descriptionImage;
-    [SerializeField] TextMeshProUGUI descriptionText;
-    [SerializeField] TextMeshProUGUI healthComponent;
-    [SerializeField] TextMeshProUGUI attackComponent;
-    [SerializeField] Image cardArtComponent;
-    [SerializeField] Image backgroundComponent;
-
-    [Header("Effect Icons")]
-    [SerializeField] GameObject AtkBuff;
-    [SerializeField] GameObject AtkDebuff;
-    [SerializeField] GameObject HPBuff;
-    [SerializeField] GameObject HPDebuff;
-    [SerializeField] GameObject inertEffect;
+    // Componentes adjacentes
+    public CardVisuals CardVisuals { get; private set; }
+    DraggableComponent draggable;
 
 
     HealthSystemTemplate healthSystem, attackSystem;
@@ -52,11 +31,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     // ------------------------------------------------------------------------------------------GameEntity Stuff
     public bool IsPlayer1 => isPlayer1;
     public string Id => id;
-
-    [Header("Sides")]
-    public GameObject frontSide;
-    public GameObject backSide;
-
     public GameObject GameObject => gameObject;
 
     string id;
@@ -64,21 +38,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     // ------------------------------------------------------------------------------------------GameEntity Stuff
 
     // ----------------------------------- Draggable stuff
-    public List<GameObject> slotObjects;
     public GameObject CurrentSlot {  get; set; }
-    public bool dropped = false;
-    public bool newCard = true;
-    public float snapRange = 1f;
-    private Vector3 velocity = Vector3.zero;
-    private Vector3 dragTargetPosition;
-    bool isBeingDragged;
-    Vector3 dragOffset;
     bool canBeSelected;
     GameObject targetPrefab;
-    Vector3 initialPosition;
+    
 
-    // --------------------- Special visuals
-    IEnumerator descriptionCoroutine;
+    
 
 
     public void SetupCardInstance(CardData data, bool isPlayer1)
@@ -93,24 +58,14 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         this.isPlayer1 = isPlayer1;
         id = Guid.NewGuid().ToString();
 
-        // Prepara textos
-        nameComponent.text = cardData.cardName;
-        descriptionText.text = cardData.cardDescription;
-        ChangeHealthComponent();
-        ChangeAttackComponent();
 
-        // Prepara artes
-        cardArtComponent.sprite = cardData.cardArt;
-        backgroundComponent.sprite = cardData.backgroundArt;
-        descriptionImage.SetActive(false);
-        AtkBuff.SetActive(false);
-        AtkDebuff.SetActive(false);
-        HPBuff.SetActive(false);
-        HPDebuff.SetActive(false);
-        inertEffect.SetActive(false);
+        // Pega os componentes adjacentes
+        CardVisuals = GetComponent<CardVisuals>();
+        draggable = GetComponent<DraggableComponent>();
 
-        // Prepara corotinas
-        descriptionCoroutine = DescriptionAppearTimer();
+        // Setup componentes adjacentes
+        CardVisuals.Setup(cardData, healthSystem, attackSystem);
+        draggable.Setup(this);
 
         // Outros
         Murderer = null;
@@ -120,7 +75,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         {
             effectsUsed[effect] = false;
         }
-        
     }
 
     #region HealthMethods
@@ -150,7 +104,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         //--------------------------------------------------- DEBUG ---------------------------------
 
         healthSystem.TakeDamage(amount);
-        ChangeHealthComponent();
+        CardVisuals.UpdateHealthUI(healthSystem);
 
         if (healthSystem.CurrentHealth == 0)
         {
@@ -162,7 +116,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     {
         NumberPopup.Create(transform.position, amount, true);   
         healthSystem.Heal(amount);
-        ChangeHealthComponent();
+        CardVisuals.UpdateHealthUI(healthSystem);
     }
 
     public IGameEntity Die()
@@ -206,42 +160,6 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         return healthSystem.CurrentHealth;
     }
 
-    private void ChangeHealthComponent()
-    {
-        // Altera o valor do componente
-        healthComponent.text = healthSystem.CurrentHealth.ToString();
-
-        
-        if (healthSystem.CheckBuff(out bool good))
-        {
-            if (good)
-            {
-                HPBuff.SetActive(true);
-                HPDebuff.SetActive(false);
-                healthComponent.color = Color.green;
-            }
-            else
-            {
-                HPDebuff.SetActive(true);
-                HPBuff.SetActive(false);
-                healthComponent.color = Color.yellow;
-            }
-        }
-        else
-        {
-            HPDebuff.SetActive(false);
-            HPBuff.SetActive(false);
-            healthComponent.color = Color.white;
-        }
-
-        // Dano tem preferencia
-        if (healthSystem.IsDamaged())
-        {
-            healthComponent.color = Color.red;
-        }
-        
-    }
-
     public bool TryRevive()
     {
         if (GameManager.Instance.GetDeck(isPlayer1).deadCards.ContainsKey(cardData))
@@ -266,8 +184,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
         healthSystem = new HealthSystemTemplate(cardData.health, life);
         attackSystem = new HealthSystemTemplate(cardData.attack);
-        ChangeAttackComponent();
-        ChangeHealthComponent();
+        CardVisuals.UpdateAttackUI(attackSystem);
+        CardVisuals.UpdateHealthUI(healthSystem);
 
         //foreach (var effect in cardData.effects)
         //{
@@ -283,6 +201,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         EnqueueEffects(TimeToActivate.OnReveal);
     }
 
+    #region Effect Activations
     public void BecomeAKiller()
     {
         List<EffectActivationData> effects = cardData.GetEffectsByTime(TimeToActivate.OnKill);
@@ -318,6 +237,9 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         return EnqueueEffects(TimeToActivate.OnStartOfTurn);
     }
 
+    #endregion
+
+    #region Attack Methods
     public int GetAttackDamage(IGameEntity tg)
     {
         if (turnsToSleep > 0)
@@ -342,52 +264,22 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
         return dmg;
     }
 
-    private void ChangeAttackComponent()
-    {
-        // Altera o valor do componente
-        attackComponent.text = attackSystem.CurrentHealth.ToString();
 
-        if (attackSystem.CheckBuff(out bool good))
-        {
-            if (good)
-            {
-                AtkBuff.SetActive(true);
-                AtkDebuff.SetActive(false);
-                attackComponent.color = Color.green;
-            }
-            else
-            {
-                AtkDebuff.SetActive(true);
-                AtkBuff.SetActive(false);
-                attackComponent.color = Color.yellow;
-            }
-        }
-        else
-        {
-            attackComponent.color = Color.white;
-            AtkDebuff.SetActive(false);
-            AtkBuff.SetActive(false);
-        }
+    #endregion
 
-        // Dano tem preferencia
-        if (attackSystem.IsDamaged())
-        {
-            attackComponent.color = Color.red;
-        }
-    }
-
+    #region Buffs and Inertness
     public bool Buff(IGameEntity source, Stat stat, int amount)
     {
         if ((stat & Stat.Health) != 0)
         {
             healthSystem.BuffMaxHealth(source, amount, true);
-            ChangeHealthComponent();
+            CardVisuals.UpdateHealthUI(healthSystem);
             return true;
         }
         if ((stat & Stat.Attack) != 0)
         {
             attackSystem.BuffMaxHealth(source, amount, true);
-            ChangeAttackComponent();
+            CardVisuals.UpdateAttackUI(attackSystem);
             return true;
         }
 
@@ -398,8 +290,8 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     {
         if (healthSystem.TryUndoBuff(source, out extra) || attackSystem.TryUndoBuff(source, out extra))
         {
-            ChangeHealthComponent();
-            ChangeAttackComponent();
+            CardVisuals.UpdateHealthUI(healthSystem);
+            CardVisuals.UpdateAttackUI(attackSystem);
             return true;
         }
 
@@ -408,108 +300,25 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
 
     public bool MakeInert(int amount)
     {
-        inertEffect.SetActive(true);
         turnsToSleep += amount;
+        UpdateUIInertEffect();
         return true;
     }
 
     public void UpdateUIInertEffect()
     {
-        if (turnsToSleep == 0) inertEffect.SetActive(false);
-        else inertEffect.SetActive(true);
+        CardVisuals.UpdateUIInertEffect(turnsToSleep > 0);
     }
 
-    
+    #endregion
 
-    void Update()
+
+    public void FlipCard(bool faceUp)
     {
-        if (isBeingDragged)
-        {
-            transform.position = Vector3.SmoothDamp(
-            transform.position,
-            dragTargetPosition,
-            ref velocity,
-            0.02f 
-        );
-        }
-    }
-    
-    public void OnDrag(PointerEventData eventData)
-    {
-        
-        if (!isBeingDragged) return;
-        Vector3 worldPoint;
-        RectTransformUtility.ScreenPointToWorldPointInRectangle(
-            (RectTransform)transform.parent,
-            eventData.position,
-            Camera.main,
-            out worldPoint
-        );
-
-        dragTargetPosition = new Vector3(worldPoint.x, worldPoint.y, transform.position.z) + dragOffset;
+        CardVisuals.FlipCard(faceUp);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        isBeingDragged = false;
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        InitializeSlots();
-
-        if(!dropped)
-        {
-            StartCoroutine(ReturnToHand());
-        }
-    }
-    
-    private void InitializeSlots()
-    {
-        if (slotObjects != null && slotObjects.Count > 0) return;
-
-        slotObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Slot"));
-
-    }
-
-    public IEnumerator ReturnToHand()
-    {
-        /////
-        
-        float t = 0f;
-        Vector3 startPos = transform.position;
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 5f;
-            transform.position = Vector3.Lerp(startPos, initialPosition, t);
-            yield return null;
-        }
-
-        transform.position = initialPosition;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (Mode == CardMode.InHand)
-        {
-            initialPosition = transform.position;
-            isBeingDragged = true;
-            dropped = false;
-
-            Vector3 worldPoint;
-            RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                (RectTransform)transform.parent,
-                eventData.position,
-                Camera.main,
-                out worldPoint
-            );
-            dragOffset = transform.position - worldPoint;
-
-            dragTargetPosition = transform.position;
-
-            GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-    }
-    
     public void ReleaseSlot()
     {
         CardSlot currentCardSlot = CurrentSlot.GetComponent<CardSlot>();
@@ -562,7 +371,7 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
     {
         if (canBeSelected)
         {            
-            OnPointerExit(eventData);
+            //OnPointerExit(eventData);
 
             var canvasRect = GetComponentInParent<Canvas>().transform as RectTransform;
 
@@ -575,25 +384,12 @@ public class CardInstance : MonoBehaviour, IGameEntity, IDragHandler, IEndDragHa
             canBeSelected = false;
         }
     }
+}
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // TODO : Animation for hovering
-        descriptionCoroutine = DescriptionAppearTimer();
-        StartCoroutine(descriptionCoroutine);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        // TODO: Stop animation for hovering
-        StopCoroutine(descriptionCoroutine);
-        descriptionImage.SetActive(false);
-    }
-
-    IEnumerator DescriptionAppearTimer()
-    {
-        yield return new WaitForSeconds(1f);
-        descriptionImage.SetActive(true);    // TO DO: Adicionar easing
-        Debug.Log("Description!");
-    }
+public enum CardMode
+{
+    InHand = 0,
+    InPlay = 1,
+    Dormant = 2,
+    Dead = 3
 }

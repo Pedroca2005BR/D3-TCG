@@ -103,6 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -238,6 +239,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -553,6 +555,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -755,6 +758,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -978,6 +982,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1359,6 +1364,8 @@ GameObject:
   - component: {fileID: 1632226330313223908}
   - component: {fileID: 7374260524733409055}
   - component: {fileID: 1216037275957110204}
+  - component: {fileID: 1545132297728424948}
+  - component: {fileID: 6648465069515682931}
   m_Layer: 0
   m_Name: CardObject
   m_TagString: Untagged
@@ -1396,24 +1403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardData: {fileID: 0}
-  nameComponent: {fileID: 4432446536249109098}
-  descriptionImage: {fileID: 1022629279018070693}
-  descriptionText: {fileID: 7998973464204355130}
-  healthComponent: {fileID: 3265418086685706253}
-  attackComponent: {fileID: 856147293120734388}
-  cardArtComponent: {fileID: 5850225580870793524}
-  backgroundComponent: {fileID: 8403079598964022015}
-  AtkBuff: {fileID: 5729484037015780304}
-  AtkDebuff: {fileID: 4100462110840343875}
-  HPBuff: {fileID: 3577429783369932568}
-  HPDebuff: {fileID: 7007758163024407591}
-  inertEffect: {fileID: 4390852322484630507}
-  frontSide: {fileID: 567827655353484634}
-  backSide: {fileID: 1565925592839389149}
-  slotObjects: []
-  dropped: 0
-  newCard: 1
-  snapRange: 450
 --- !u!225 &1216037275957110204
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1426,6 +1415,44 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1545132297728424948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610129056162625897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023d1e9c947f86d47a340d3bb38ae32a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableComponent
+--- !u!114 &6648465069515682931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610129056162625897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45d9ce2b41ea65459ca911b6415d2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardVisuals
+  frontSide: {fileID: 567827655353484634}
+  backSide: {fileID: 1565925592839389149}
+  nameComponent: {fileID: 4432446536249109098}
+  descriptionImage: {fileID: 1022629279018070693}
+  descriptionText: {fileID: 7998973464204355130}
+  healthComponent: {fileID: 3265418086685706253}
+  attackComponent: {fileID: 856147293120734388}
+  cardArtComponent: {fileID: 5850225580870793524}
+  backgroundComponent: {fileID: 8403079598964022015}
+  AtkBuff: {fileID: 5729484037015780304}
+  AtkDebuff: {fileID: 4100462110840343875}
+  HPBuff: {fileID: 3577429783369932568}
+  HPDebuff: {fileID: 7007758163024407591}
+  inertEffect: {fileID: 4390852322484630507}
 --- !u!1 &5729484037015780304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,6 +1708,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1846,6 +1874,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 619337495
