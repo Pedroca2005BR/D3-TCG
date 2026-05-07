@@ -3432,6 +3432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckDisplay: {fileID: 0}
+  _contentGroup: {fileID: 1886983438}
 --- !u!1 &1364451754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4311,6 +4312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckDisplay: {fileID: 0}
+  _contentGroup: {fileID: 1886983438}
 --- !u!1 &1788098055
 GameObject:
   m_ObjectHideFlags: 0
