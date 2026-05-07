@@ -5,11 +5,19 @@ using UnityEngine.EventSystems;
 public class DeckSlot : MonoBehaviour, IDropHandler
 {
     public DraggableDeckDisplay deckDisplay;
+    [SerializeField] private RectTransform _contentGroup;
 
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag.TryGetComponent<DraggableDeckDisplay>(out DraggableDeckDisplay ddd))
         {
+            if (deckDisplay != null)
+            {
+                deckDisplay.transform.SetParent(_contentGroup, false);  // retorna o antigo pro content group
+                deckDisplay.dropped = false;
+                deckDisplay.canvasGroup.blocksRaycasts = true;
+            }
+
             ddd.transform.SetParent(transform, false);
 
             ddd.dropped = true;
@@ -24,10 +32,20 @@ public class DeckSlot : MonoBehaviour, IDropHandler
 
     public bool TryGetDTO(out string filename)
     {
+        CheckIfStillSelected();
+
         filename = null;
         if  (deckDisplay == null) { return false; }
 
         filename = deckDisplay.filename;
         return true;
+    }
+
+    private void CheckIfStillSelected()
+    {
+        if (deckDisplay != null && deckDisplay.transform.parent != transform)
+        {
+            deckDisplay = null;
+        }
     }
 }
