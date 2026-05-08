@@ -55,6 +55,7 @@ public class DeckRuntimeUI : MonoBehaviour
     public Button saveDeckButton;
     public Transform deckListContent;          // parent for cards in the current deck
     public Transform libraryContent;           // parent for library cards
+    public TextMeshProUGUI cardCounter;        // card counter for current deck
 
     [Header("Prefabs")]
     public GameObject cardDisplayPrefab;       // Prefab that implements a visual display for a CardData (see CardDisplay example below)
@@ -104,34 +105,81 @@ public class DeckRuntimeUI : MonoBehaviour
         currentDeck.name = string.IsNullOrEmpty(name) ? "Deck_" + System.Guid.NewGuid().ToString() : name;
         currentDeck.allCards = new List<CardData>();
         RefreshDeckUI();
+        cardCounter.gameObject.SetActive(true);
+        cardCounter.text = $"{currentDeck.allCards.Count}/{rules.deckSize}";
     }
 
     // The function you asked for: add card by CardData reference
-    public void AddCard(CardData card)
+    public bool AddCard(CardData card)
     {
-        if (card == null) return;
-        if (currentDeck == null) CreateNewDeck("Deck_Auto");
+        if (card == null) return false;
+        //if (currentDeck == null) CreateNewDeck("Deck_Auto");
 
         if (!allowDuplicates && currentDeck.allCards.Exists(c => c == card))
         {
             Debug.Log("Card already in deck and duplicates not allowed: " + card.cardName);
-            return;
+            return false;
         }
 
         if (currentDeck.allCards.Count == rules.deckSize)
         {
             Debug.LogWarning("Deck is full of cards! Try removing one before taking another!");
-            return;
+            return false;
         }
 
+        
         currentDeck.allCards.Add(card);
         AddDeckCardUIEntry(card);
+        cardCounter.gameObject.SetActive(true);
+        cardCounter.text = $"{currentDeck.allCards.Count}/{rules.deckSize}";
+        return true;
     }
 
-    public void RemoveCard(CardData card)
+    
+    private CardDisplay FindCorrectDisplay(CardData card)
     {
-        if (card == null || currentDeck == null) return;
-        if (currentDeck.allCards.Remove(card)) RefreshDeckUI();
+        for(int i = 0; i < libraryContent.childCount; i++)
+        {
+            var child = libraryContent.GetChild(i);
+            var display = child.GetComponent<CardDisplay>();
+            if (display != null && display.cardData == card) return display;
+        }
+        return null;
+    }
+
+    private void ToggleCardDisponibility(CardData card, bool available)
+    {
+        var display = FindCorrectDisplay(card);
+        if (display != null) display.ToggleDisponibility(available);
+    }
+
+
+
+    public bool RemoveCard(CardData card)
+    {
+        if (card == null || currentDeck == null) return false;
+        if (currentDeck.allCards.Remove(card))
+        {
+            ToggleCardDisponibility(card, true);
+            RefreshDeckUI(false);
+            cardCounter.text = $"{currentDeck.allCards.Count}/{rules.deckSize}";
+            return true;
+        }
+        return false;
+    }
+
+    private void ToggleCardDisponibilityForAllCards(bool available)
+    {
+        for(int i = 0; i < libraryContent.childCount; i++)
+        {
+            var child = libraryContent.GetChild(i);
+            var display = child.GetComponent<CardDisplay>();
+            if (display != null)
+            {
+                display.ToggleDisponibility(available);
+            }
+                
+        }
     }
 
     public void SaveCurrentDeck()
@@ -156,6 +204,9 @@ public class DeckRuntimeUI : MonoBehaviour
             Debug.Log($"Deck saved: {fileName}");
             if (DeckListManager.Instance != null) DeckListManager.Instance.RefreshList();   // Adicionado para deixar mais dinamico
             deckNameInput.gameObject.SetActive(false);
+            cardCounter.gameObject.SetActive(false);
+            currentDeck = null;
+            RefreshDeckUI();  // Refresh to clear the deck after saving
         }
         catch (System.Exception ex)
         {
@@ -186,6 +237,7 @@ public class DeckRuntimeUI : MonoBehaviour
                 addressableHandles.Add(handle);
 
                 AddCard(handle.Result);
+                ToggleCardDisponibility(handle.Result, false); // Toggle availability in library UI
                 return;
             }
             else
@@ -298,15 +350,19 @@ public class DeckRuntimeUI : MonoBehaviour
         }
 
 //#if ENABLE_ADDRESSABLES
+        
+        List<CardData> loadedCards = new List<CardData>();
         foreach (var key in keys)
         {
+            Debug.Log($"Loading CardData for key: {key}");
             var handle = Addressables.LoadAssetAsync<CardData>(key);
             await handle.Task;
             if (handle.Status == AsyncOperationStatus.Succeeded && handle.Result != null)
             {
                 // keep handle
                 addressableHandles.Add(handle);
-                CreateLibraryEntry(handle.Result);
+                loadedCards.Add(handle.Result);
+                //CreateLibraryEntry(handle.Result);
             }
             else
             {
@@ -314,9 +370,14 @@ public class DeckRuntimeUI : MonoBehaviour
                 if (handle.IsValid()) Addressables.Release(handle);
             }
         }
-//#else
-//        Debug.LogWarning("Addressables not enabled in this build. Cannot populate from addressable keys.");
-//#endif
+
+        // After loading all, sort and create UI entries (to avoid UI updates during loading)
+        loadedCards.Sort((a, b) => string.Compare(a.cardName, b.cardName));
+        foreach (var c in loadedCards) CreateLibraryEntry(c);
+
+        //#else
+        //        Debug.LogWarning("Addressables not enabled in this build. Cannot populate from addressable keys.");
+        //#endif
     }
 
     // Fallback: populate library from Resources (synchronous)
@@ -329,10 +390,12 @@ public class DeckRuntimeUI : MonoBehaviour
 
     // ---------------- UI helpers (CardDisplay-based) ----------------
 
-    void RefreshDeckUI()
+    void RefreshDeckUI(bool ToggleCards = true)
     {
         foreach (var go in currentDeckUIEntries) Destroy(go);
         currentDeckUIEntries.Clear();
+        if (ToggleCards)
+            ToggleCardDisponibilityForAllCards(true); // reset all to available before re-adding
 
         if (currentDeck == null || currentDeck.allCards == null) return;
 
@@ -395,6 +458,15 @@ public class DeckRuntimeUI : MonoBehaviour
 
     void ClearLibraryUI()
     {
+        for(int i = 0; i < libraryContent.childCount; i++)
+        {
+            var child = libraryContent.GetChild(i);
+            if (Application.isPlaying)
+                Destroy(child.gameObject);
+            else
+                DestroyImmediate(child.gameObject);
+        }
+
         foreach (var g in libraryUIEntries)
         {
             if (Application.isPlaying)

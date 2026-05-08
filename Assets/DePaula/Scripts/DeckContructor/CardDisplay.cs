@@ -11,7 +11,6 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [Header("Visuals")]
     [Header("Display Info")]
     [SerializeField] TextMeshProUGUI nameComponent;
     [SerializeField] GameObject descriptionImage;
@@ -20,6 +19,9 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     [SerializeField] TextMeshProUGUI attackComponent;
     [SerializeField] Image cardArtComponent;
     [SerializeField] Image backgroundComponent;
+
+    [Header("Interaction")]
+    [SerializeField] GameObject shadePanel; // Will be turned on when the card is clicked, to give feedback that it was selected.
 
     UnityAction eventToCall; // the clickable area (assign on prefab)
     IEnumerator descriptionCoroutine;
@@ -46,15 +48,30 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         cardData = data;
     }
 
+    public void ToggleDisponibility(bool isAvailable)
+    {
+        shadePanel.SetActive(!isAvailable);
+        transform.GetComponent<CanvasGroup>().blocksRaycasts = isAvailable; // block clicks when shaded, allow clicks when not shaded
+    }
     
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log((eventToCall == null).ToString() + (DeckRuntimeUI.Instance == null) + (cardData == null));
+        //Debug.Log((eventToCall == null).ToString() + (DeckRuntimeUI.Instance == null) + (cardData == null));
         if (eventToCall != null)
+        {
+            Debug.Log("Card removed from deck: " + cardData.cardName);
             eventToCall.Invoke();
+        }
+            
         else
-            DeckRuntimeUI.Instance.AddCard(cardData);
+        {
+            if (DeckRuntimeUI.Instance.AddCard(cardData))
+            {
+                ToggleDisponibility(false); // feedback that the card was selected
+                Debug.Log("Card added to deck: " + cardData.cardName);
+            }
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
