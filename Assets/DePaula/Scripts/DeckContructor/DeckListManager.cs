@@ -27,6 +27,7 @@ public class DeckListManager : MonoBehaviour
     public Transform contentParent;             // container (should have VerticalLayoutGroup + ContentSizeFitter)
     public GameObject deckDisplayPrefab;        // prefab with DeckDisplay component
     public DeckRuntimeUI deckRuntimeUI;        // reference to your DeckRuntimeUI instance
+    public ConfirmationComponent confirmationComponent; // reference to a confirmation dialog component
 
     [Header("Options")]
     public bool showDeleteButton = true;        // if true, shows delete button on each DeckDisplay
@@ -64,8 +65,8 @@ public class DeckListManager : MonoBehaviour
                 // capture local var for closure
                 string capturedFile = fileName;
                 disp.Initialize(displayName,
-                    onLoad: () => { _ = LoadDeckAndShowAsync(capturedFile); },
-                    onDelete: showDeleteButton ? () => { DeleteDeckFileAndRefresh(capturedFile); }
+                    onLoad: () => { TryLoadDeck(capturedFile); },
+                    onDelete: showDeleteButton ? () => { TryDeleteDeck(capturedFile); }
                 : (System.Action)null,
                     fileName
                 );
@@ -79,6 +80,36 @@ public class DeckListManager : MonoBehaviour
             }
 
             spawnedEntries.Add(go);
+        }
+    }
+
+    void TryDeleteDeck(string deckFileName)
+    {
+        confirmationComponent.ShowConfirmation(
+            "Tem certeza que deseja deletar este deck? Esta ação não pode ser desfeita.",
+            onConfirmEvent: () => { DeleteDeckFileAndRefresh(deckFileName); }
+        );
+    }
+
+    void TryLoadDeck(string deckFileName)
+    {
+        if (deckRuntimeUI == null)
+        {
+            Debug.LogWarning("DeckListManager: deckRuntimeUI not assigned.");
+            return;
+        }
+        if (!deckRuntimeUI.IsCurrentDeckSaved())
+        {
+            // Show confirmation dialog before loading new deck
+            confirmationComponent.ShowConfirmation(
+                "Seu deck atual não foi salvo. Tem certeza que deseja carregar um novo deck?",
+                onConfirmEvent: () => { _ = LoadDeckAndShowAsync(deckFileName); }
+            );
+        }
+        else
+        {
+            // No unsaved changes, load directly
+            _ = LoadDeckAndShowAsync(deckFileName);
         }
     }
 
@@ -122,6 +153,8 @@ public class DeckListManager : MonoBehaviour
                 }
             }
         }
+
+        deckRuntimeUI.LoadComplete();
     }
 
     void DeleteDeckFileAndRefresh(string deckFileName)

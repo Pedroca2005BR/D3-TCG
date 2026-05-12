@@ -56,6 +56,7 @@ public class DeckRuntimeUI : MonoBehaviour
     public Transform deckListContent;          // parent for cards in the current deck
     public Transform libraryContent;           // parent for library cards
     public TextMeshProUGUI cardCounter;        // card counter for current deck
+    public ConfirmationComponent confirmationComponent; // reference to the confirmation component for showing messages
 
     [Header("Prefabs")]
     public GameObject cardDisplayPrefab;       // Prefab that implements a visual display for a CardData (see CardDisplay example below)
@@ -70,8 +71,11 @@ public class DeckRuntimeUI : MonoBehaviour
     List<GameObject> currentDeckUIEntries = new List<GameObject>();
     List<GameObject> libraryUIEntries = new List<GameObject>();
 
+    // control variables
+    private bool wasDeckSaved = true;   // to track if the current deck has been saved at least once (can be used to prompt user on unsaved changes)
+
     // store addressable handles so they can be released later if desired
-//#if ENABLE_ADDRESSABLES
+    //#if ENABLE_ADDRESSABLES
     List<AsyncOperationHandle> addressableHandles = new List<AsyncOperationHandle>();
 //#endif
 
@@ -84,8 +88,24 @@ public class DeckRuntimeUI : MonoBehaviour
     }
 
     // ---------------- Public API ----------------
+    public bool IsCurrentDeckSaved()
+    {
+        return wasDeckSaved;
+    }
+    public void LoadComplete()
+    {
+        wasDeckSaved = true;
+    }
+
     public void CreateNewDeckFromUI()
     {
+        // If there's an existing deck with cards, ask for confirmation before creating a new one (to avoid accidental loss)
+        if (currentDeck != null && currentDeck.allCards != null && currentDeck.allCards.Count > 0)
+        {
+            confirmationComponent.ShowConfirmation("Seu deck atual não foi salvo. Tem certeza?", () => CreateNewDeck(null));
+            return;
+        }
+
         CreateNewDeck(null);
     }
 
@@ -107,6 +127,7 @@ public class DeckRuntimeUI : MonoBehaviour
         RefreshDeckUI();
         cardCounter.gameObject.SetActive(true);
         cardCounter.text = $"{currentDeck.allCards.Count}/{rules.deckSize}";
+        wasDeckSaved = false;
     }
 
     // The function you asked for: add card by CardData reference
@@ -132,6 +153,7 @@ public class DeckRuntimeUI : MonoBehaviour
         AddDeckCardUIEntry(card);
         cardCounter.gameObject.SetActive(true);
         cardCounter.text = $"{currentDeck.allCards.Count}/{rules.deckSize}";
+        wasDeckSaved = false;
         return true;
     }
 
@@ -163,6 +185,7 @@ public class DeckRuntimeUI : MonoBehaviour
             ToggleCardDisponibility(card, true);
             RefreshDeckUI(false);
             cardCounter.text = $"{currentDeck.allCards.Count}/{rules.deckSize}";
+            wasDeckSaved = false;
             return true;
         }
         return false;
@@ -207,6 +230,7 @@ public class DeckRuntimeUI : MonoBehaviour
             cardCounter.gameObject.SetActive(false);
             currentDeck = null;
             RefreshDeckUI();  // Refresh to clear the deck after saving
+            wasDeckSaved = true;
         }
         catch (System.Exception ex)
         {
@@ -238,6 +262,7 @@ public class DeckRuntimeUI : MonoBehaviour
 
                 AddCard(handle.Result);
                 ToggleCardDisponibility(handle.Result, false); // Toggle availability in library UI
+                wasDeckSaved = false;
                 return;
             }
             else
