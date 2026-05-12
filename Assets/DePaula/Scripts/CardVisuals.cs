@@ -20,6 +20,15 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] Image cardArtComponent;
     [SerializeField] Image backgroundComponent;
 
+    [Header("Select Effect")]
+    private int originalPos;
+    //[SerializeField] private float verticalMoveAmount = 0.3f;
+    [SerializeField] private float moveTime = 0.1f;
+    [Range(0f, 2f), SerializeField] private float scaleAmount = 1.1f;
+    //private Vector3 startPos;
+    private Vector3 startScale;
+
+
     [Header("Effect Icons")]
     [SerializeField] GameObject AtkBuff;
     [SerializeField] GameObject AtkDebuff;
@@ -132,6 +141,7 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     #region Description
     public void OnPointerEnter(PointerEventData eventData)
     {
+        StartCoroutine(SelectionEffect(true));
         // TODO : Animation for hovering
         descriptionCoroutine = DescriptionAppearTimer();
         StartCoroutine(descriptionCoroutine);
@@ -140,8 +150,10 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         // TODO: Stop animation for hovering
+        StartCoroutine(SelectionEffect(false));
         StopCoroutine(descriptionCoroutine);
         descriptionImage.SetActive(false);
+
     }
 
     IEnumerator DescriptionAppearTimer()
@@ -166,6 +178,56 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // TODO: Add reveal animation
         yield return new WaitForSeconds(0.2f);
+    }
+
+    #endregion
+
+    #region Selection Effect
+
+    private void Start()
+    {
+        //startPos = transform.position;
+        startScale = transform.localScale;
+    }
+
+    private IEnumerator SelectionEffect (bool startAnimation)
+    {
+        //startPos = transform.position;
+        //Vector3 endPosition;
+        Vector3 endScale;
+        originalPos = transform.GetSiblingIndex();
+
+        float elapsedTime = 0f;
+
+        while(elapsedTime <= moveTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            if(startAnimation)
+            {
+                //endPosition = startPos + new Vector3(0f, verticalMoveAmount, 0f);
+                transform.SetAsLastSibling();
+                endScale = startScale * scaleAmount;
+            }
+
+            else
+            {
+                //endPosition = startPos;
+                transform.SetSiblingIndex(originalPos);
+                endScale = startScale;
+            }
+
+            //calculos de lerp
+
+            //Vector3 lerpedPos = Vector3.Lerp(transform.position, endPosition, (elapsedTime/moveTime));
+            Vector3 lerpedScale = Vector3.Lerp(transform.localScale, endScale, (elapsedTime/moveTime));
+
+            //transform.position = lerpedPos;
+            transform.localScale = lerpedScale;
+
+            yield return null;
+        }
+
     }
 
     #endregion

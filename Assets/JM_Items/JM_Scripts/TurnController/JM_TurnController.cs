@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -40,6 +41,7 @@ public class JM_TurnController : MonoBehaviour
     public Hero hero1;
     public Hero hero2;
     public bool blockNextTurn = false;
+    public static event Action<bool> actualTurn;
 
 
     [Header("State Machine")]
@@ -132,7 +134,7 @@ public class JM_TurnController : MonoBehaviour
     {
         for (int i = deck.Count - 1; i > 0; i--)
         {
-            int j = Random.Range(0, i + 1);
+            int j = UnityEngine.Random.Range(0, i + 1);
 
             CardData aux = deck[i];
             deck[i] = deck[j];
@@ -246,8 +248,16 @@ public class JM_TurnController : MonoBehaviour
 
         //StartCoroutine(FlipNewCard());
 
-        if (changeState == GameStates.p2Choosing) board.transform.rotation = Quaternion.Euler(0, 0, 180);
-        else board.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (changeState == GameStates.p2Choosing) 
+        {
+            actualTurn?.Invoke(true);
+            board.transform.rotation = Quaternion.Euler(0,0,180);
+        }
+        else 
+        {
+            actualTurn?.Invoke(false);
+            board.transform.rotation = Quaternion.Euler(0,0,0);
+        }
 
         if (p2Entered)
         {

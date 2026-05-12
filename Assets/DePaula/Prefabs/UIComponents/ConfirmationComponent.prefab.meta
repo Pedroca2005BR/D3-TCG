@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DePaula/Prefabs/UIComponents/ConfirmationComponent.prefab.meta
 guid: 98c83d0fb66acd045bd30ad02a8e1d1a
 PrefabImporter:
+========
+guid: 9d1b33c52fbb96a4c826fb8ac42f8df4
+DefaultImporter:
+>>>>>>>> origin/JM_Branch:Assets/_Recovery/0.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
