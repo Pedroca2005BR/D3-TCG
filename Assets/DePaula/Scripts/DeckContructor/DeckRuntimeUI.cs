@@ -54,9 +54,9 @@ public class DeckRuntimeUI : MonoBehaviour
     public Button createDeckButton;
     public Button saveDeckButton;
     public Transform deckListContent;          // parent for cards in the current deck
-    public Transform libraryContent;           // parent for library cards
     public TextMeshProUGUI cardCounter;        // card counter for current deck
     public ConfirmationComponent confirmationComponent; // reference to the confirmation component for showing messages
+    public LibraryOrganizer libraryOrganizer; // reference to the LibraryOrganizer for organizing cards in the library
 
     [Header("Prefabs")]
     public GameObject cardDisplayPrefab;       // Prefab that implements a visual display for a CardData (see CardDisplay example below)
@@ -157,22 +157,9 @@ public class DeckRuntimeUI : MonoBehaviour
         return true;
     }
 
-    
-    private CardDisplay FindCorrectDisplay(CardData card)
-    {
-        for(int i = 0; i < libraryContent.childCount; i++)
-        {
-            var child = libraryContent.GetChild(i);
-            var display = child.GetComponent<CardDisplay>();
-            if (display != null && display.cardData == card) return display;
-        }
-        return null;
-    }
-
     private void ToggleCardDisponibility(CardData card, bool available)
     {
-        var display = FindCorrectDisplay(card);
-        if (display != null) display.ToggleDisponibility(available);
+        libraryOrganizer.ToggleDisponibilityTargetCard(card, available);
     }
 
 
@@ -193,16 +180,7 @@ public class DeckRuntimeUI : MonoBehaviour
 
     private void ToggleCardDisponibilityForAllCards(bool available)
     {
-        for(int i = 0; i < libraryContent.childCount; i++)
-        {
-            var child = libraryContent.GetChild(i);
-            var display = child.GetComponent<CardDisplay>();
-            if (display != null)
-            {
-                display.ToggleDisponibility(available);
-            }
-                
-        }
+        libraryOrganizer.ToggleDisponibilityAllCards(available);
     }
 
     public void SaveCurrentDeck()
@@ -452,8 +430,8 @@ public class DeckRuntimeUI : MonoBehaviour
 
     void CreateLibraryEntry(CardData card)
     {
-        if (cardDisplayPrefab == null || libraryContent == null) return;
-        var go = Instantiate(cardDisplayPrefab, libraryContent, false);
+        if (cardDisplayPrefab == null || libraryOrganizer == null) return;
+        var go = Instantiate(cardDisplayPrefab, libraryOrganizer.GetRightTransform(card), false);
 
         var display = go.GetComponent<CardDisplay>();
         if (display != null)
@@ -483,22 +461,7 @@ public class DeckRuntimeUI : MonoBehaviour
 
     void ClearLibraryUI()
     {
-        for(int i = 0; i < libraryContent.childCount; i++)
-        {
-            var child = libraryContent.GetChild(i);
-            if (Application.isPlaying)
-                Destroy(child.gameObject);
-            else
-                DestroyImmediate(child.gameObject);
-        }
-
-        foreach (var g in libraryUIEntries)
-        {
-            if (Application.isPlaying)
-                Destroy(g);
-            else
-                DestroyImmediate(g);
-        }
+        libraryOrganizer.ClearLibrary();
         libraryUIEntries.Clear();
     }
 
