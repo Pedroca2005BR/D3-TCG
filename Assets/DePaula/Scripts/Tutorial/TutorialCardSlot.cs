@@ -31,7 +31,7 @@ public class TutorialCardSlot : TutorialObjectBase
     {
         if (CanProceed())
         {
-            ProceedNoQuestions();
+            TryProceed();
         }
     }
 

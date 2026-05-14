@@ -32,7 +32,7 @@ public class TutorialCheckDeckSlots : TutorialObjectBase
     {
         if (CanProceed())
         {
-            ProceedNoQuestions();
+            TryProceed();
         }
     }
 }

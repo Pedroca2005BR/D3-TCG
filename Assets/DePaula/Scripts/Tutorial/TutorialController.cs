@@ -51,6 +51,16 @@ public class TutorialController : MonoBehaviour
         }
     }
 
+    public bool TryNextStep(TutorialObjectBase step)
+    {
+        if (step == tutorialSteps[currentStepIndex - 1])
+        {
+            NextStep();
+            return true;
+        }
+        return false;
+    }
+
     public void EndTutorial()
     {
         rules.gameMode = GameMode.MultiplayerLocal;

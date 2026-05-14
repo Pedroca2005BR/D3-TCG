@@ -10,7 +10,11 @@ public abstract class TutorialObjectBase : MonoBehaviour
         this.controller = controller;
     }
 
-    public abstract void StartStep();
+    public virtual void StartStep()
+    {
+        gameObject.SetActive(true);
+    }
+
     public virtual void StopStep()
     {
         gameObject.SetActive(false);
@@ -21,11 +25,12 @@ public abstract class TutorialObjectBase : MonoBehaviour
         return true;
     }
 
-    protected void ProceedNoQuestions()
+    protected bool TryProceed()
     {
         if (controller != null)
         {
-            controller.NextStep();
+            return controller.TryNextStep(this);
         }
+        return false;
     }
 }
