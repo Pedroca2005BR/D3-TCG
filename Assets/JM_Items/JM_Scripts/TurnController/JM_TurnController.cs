@@ -355,7 +355,14 @@ public class JM_TurnController : MonoBehaviour
 
         endingScreen.SetActive(true);
 
-    }    
+    }
+
+    // Method to be called when a player hits the "give up" button
+    public void PlayerGaveUp(int playerNumber)
+    {
+        winner = playerNumber == 1 ? 2 : 1; // If player 1 gives up, player 2 wins, and vice versa
+        FinishGame();
+    }
 
     public void ReplayGame()
     {

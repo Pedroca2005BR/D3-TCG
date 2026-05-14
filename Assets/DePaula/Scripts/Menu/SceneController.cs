@@ -7,6 +7,12 @@ public class SceneController : MonoBehaviour
 
     public void PlayGame()
     {
+        if (TryGetComponent<TutorialBlockerComponent>(out TutorialBlockerComponent blocker) && blocker.IsBlocked())
+        {
+            Debug.LogWarning("Cannot start game while in tutorial mode.");
+            return;
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 }

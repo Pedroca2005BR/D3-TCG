@@ -1,7 +1,9 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class DeckListManager : MonoBehaviour
@@ -29,6 +31,11 @@ public class DeckListManager : MonoBehaviour
     public DeckRuntimeUI deckRuntimeUI;        // reference to your DeckRuntimeUI instance
     public ConfirmationComponent confirmationComponent; // reference to a confirmation dialog component
 
+    [Header("Optional")]
+    public TutorialController tutorialController; // if assigned, will check for tutorial mode
+    public JM_DeckBase deck1;              // predefined cards for tutorial deck 1
+    public JM_DeckBase deck2;              // predefined cards for tutorial deck 2
+
     [Header("Options")]
     public bool showDeleteButton = true;        // if true, shows delete button on each DeckDisplay
 
@@ -37,13 +44,22 @@ public class DeckListManager : MonoBehaviour
 
     void Start()
     {
-        RefreshList();
+        if (tutorialController != null && tutorialController.IsInTutorialMode())
+        {
+            showDeleteButton = false; // hide delete buttons in tutorial mode
+            CreateTutorialDecks();
+            RefreshList(isTutorial: true);
+        }
+        else
+        {
+            RefreshList();
+        }
     }
 
     /// <summary>
     /// Re-popula a lista baseada nos arquivos salvos (DeckPersistence.ListDeckFiles).
     /// </summary>
-    public void RefreshList()
+    public void RefreshList(bool isTutorial = false)
     {
         // clear current UI
         foreach (var go in spawnedEntries) Destroy(go);
@@ -56,6 +72,15 @@ public class DeckListManager : MonoBehaviour
         {
             var dto = DeckPersistence.ReadDeckDTO(fileName); // fileName is returned by ListDeckFiles
             string displayName = dto != null && !string.IsNullOrEmpty(dto.name) ? dto.name : Path.GetFileNameWithoutExtension(fileName);
+
+            if (isTutorial)
+            {
+                if (!dto.isTutorialDeck) continue; // skip non-tutorial decks
+            }
+            else
+            {
+                if (dto != null && dto.isTutorialDeck) continue; // skip tutorial decks in normal mode
+            }
 
             // instantiate
             var go = Instantiate(deckDisplayPrefab, contentParent, false);
@@ -78,7 +103,6 @@ public class DeckListManager : MonoBehaviour
             {
                 Debug.LogWarning("DeckListManager: prefab does not have DeckDisplay component.");
             }
-
             spawnedEntries.Add(go);
         }
     }
@@ -168,5 +192,14 @@ public class DeckListManager : MonoBehaviour
         {
             Debug.LogWarning("DeckListManager: failed to delete " + deckFileName);
         }
+    }
+
+    void CreateTutorialDecks()
+    {
+        string fileName = DeckPersistence.SaveDeck(deck1);
+        Debug.Log($"Deck saved: {fileName}");
+
+        fileName = DeckPersistence.SaveDeck(deck2);
+        Debug.Log($"Deck saved: {fileName}");
     }
 }

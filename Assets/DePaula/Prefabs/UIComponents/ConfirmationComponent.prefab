@@ -793,6 +793,7 @@ MonoBehaviour:
   confirmationPanel: {fileID: 2588870442242396017}
   confirmationText: {fileID: 4206540377301571480}
   confirmButton: {fileID: 908914469111747383}
+  cancelButton: {fileID: 686636087004408146}
 --- !u!1 &8823959411406876803
 GameObject:
   m_ObjectHideFlags: 0

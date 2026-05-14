@@ -14,14 +14,16 @@ public class JM_DeckManager
     {
         this.baseConfig = baseConfig;
 
-        if (baseConfig.gameMode == GameMode.MultiplayerLocal)
+        if (baseConfig.gameMode == GameMode.MultiplayerLocal || baseConfig.gameMode == GameMode.Tutorial)
         {
             if (isPlayer1)
             {
+                AdvancedLogger.Log(baseConfig.deck1);
                 cardDatabase = baseConfig.deck1;
             }
             else
             {
+                AdvancedLogger.Log(baseConfig.deck2);
                 cardDatabase = baseConfig.deck2;
             }
         }

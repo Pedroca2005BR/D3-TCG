@@ -31,5 +31,6 @@ public class JM_RulesObject : ScriptableObject
 public enum GameMode
 {
     MultiplayerLocal = 0,
-    IA = 1
+    IA = 1,
+    Tutorial = 2
 }

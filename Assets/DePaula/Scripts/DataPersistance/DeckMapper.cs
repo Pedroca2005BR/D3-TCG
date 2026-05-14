@@ -10,7 +10,8 @@ public static class DeckMapper
             id = string.IsNullOrEmpty(deck.name) ? System.Guid.NewGuid().ToString() : deck.name,
             name = deck.name,
             cardKeys = new List<string>(),
-            version = 1
+            version = 1,
+            isTutorialDeck = deck.isTutorialDeck
         };
 
         foreach (var c in deck.allCards)

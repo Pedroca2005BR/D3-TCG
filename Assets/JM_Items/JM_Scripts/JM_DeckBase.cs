@@ -5,5 +5,6 @@ using System.Collections.Generic;
 [System.Serializable]
 public class JM_DeckBase : ScriptableObject
 {
-    public List<CardData> allCards;  
+    public List<CardData> allCards; 
+    public bool isTutorialDeck = false; // flag para indicar se este é um deck de tutorial
 }

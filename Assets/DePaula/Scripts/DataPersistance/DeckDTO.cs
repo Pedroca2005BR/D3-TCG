@@ -7,4 +7,5 @@ public class DeckDTO
     public string name;
     public List<string> cardKeys; // agora chamamos de keys (addressable keys)
     public int version = 1;
+    public bool isTutorialDeck = false; // flag para indicar se este é um deck de tutorial
 }

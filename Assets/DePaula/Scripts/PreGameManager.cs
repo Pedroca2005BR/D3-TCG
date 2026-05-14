@@ -11,12 +11,12 @@ public class PreGameManager : MonoBehaviour
     [SerializeField] DeckSlot slotP1;
     [SerializeField] DeckSlot slotP2;
 
-    //[Header("Gamemode")]
-    //[SerializeField] Dropdown dropdown;
-
     [Header("Scenes")]
     [SerializeField] string multiplayerScene;
     [SerializeField] string IAScene;
+
+
+
 
     public void ChangeGamemode(int index)
     {
@@ -54,7 +54,7 @@ public class PreGameManager : MonoBehaviour
 
             SceneManager.LoadScene(IAScene);
         }
-        else if (rules.gameMode == GameMode.MultiplayerLocal)
+        else
         {
             if (slotP1.TryGetDTO(out string deck1) && slotP2.TryGetDTO(out string deck2))
             {
