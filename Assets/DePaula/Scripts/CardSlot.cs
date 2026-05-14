@@ -2,9 +2,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class CardSlot : MonoBehaviour, IDropHandler
 {
+    public UnityAction OnCardPlayed; // Event to notify when a card is played in this slot
     public CardInstance CardInstance { get; set; }
 
     public bool isPlayer1Slot = false;
@@ -29,6 +31,8 @@ public class CardSlot : MonoBehaviour, IDropHandler
             {
                 PutCardInSlot(cardInstance);
                 draggable.ConfirmDropped();
+
+                OnCardPlayed?.Invoke(); // Notify listeners that a card has been played in this slot
 
                 await CardInstance.ConfirmPlay(this); // Feedback to card to activate its own effect
                 TryActivateSlotEffect(); // Feedback to slot to activate its own effect

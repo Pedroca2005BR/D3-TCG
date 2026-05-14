@@ -12,6 +12,11 @@ public class TutorialController : MonoBehaviour
 
     private void Start()
     {
+        foreach (var step in tutorialSteps)
+        {
+            step.SetController(this);
+        }
+
         currentStepIndex = 0;
         if (rules.gameMode == GameMode.Tutorial)
         {

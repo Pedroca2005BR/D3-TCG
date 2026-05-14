@@ -1,9 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class DeckSlot : MonoBehaviour, IDropHandler
 {
+    public UnityAction OnDeckDropped; // Event to notify when a deck is dropped in this slot
     public DraggableDeckDisplay deckDisplay;
     [SerializeField] private RectTransform _contentGroup;
 
@@ -27,6 +29,8 @@ public class DeckSlot : MonoBehaviour, IDropHandler
             deckDisplay = ddd;
 
             ddd.canvasGroup.blocksRaycasts = false;
+
+            OnDeckDropped?.Invoke(); // Notify listeners that a deck has been dropped in this slot
         }
     }
 

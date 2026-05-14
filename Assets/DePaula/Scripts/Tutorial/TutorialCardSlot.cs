@@ -1,24 +1,23 @@
 using UnityEngine;
 
-public class TutorialCheckDeckSlots : TutorialObjectBase
+public class TutorialCardSlot : TutorialObjectBase
 {
-    [SerializeField] DeckSlot[] slots;
+    [SerializeField] private CardSlot[] cardSlots;
 
     public override void StartStep()
     {
         gameObject.SetActive(true);
-
-        foreach(var slot in slots)
+        foreach (var slot in cardSlots)
         {
-            slot.OnDeckDropped += CheckIfCanProceed;
+            slot.OnCardPlayed += CheckIfCanProceed;
         }
     }
 
     public override bool CanProceed()
     {
-        foreach(var slot in slots)
+        foreach (var slot in cardSlots)
         {
-            if (slot.deckDisplay == null)
+            if (slot.empty)
             {
                 return false;
             }
@@ -35,4 +34,5 @@ public class TutorialCheckDeckSlots : TutorialObjectBase
             ProceedNoQuestions();
         }
     }
+
 }

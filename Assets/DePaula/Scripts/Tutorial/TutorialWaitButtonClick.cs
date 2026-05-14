@@ -17,5 +17,7 @@ public class TutorialWaitButtonClick : TutorialObjectBase
     public void OnButtonClicked()
     {
         buttonClicked = true;
+        ProceedNoQuestions();
+        Destroy(this);
     }
 }
