@@ -53,7 +53,7 @@ public class TutorialController : MonoBehaviour
 
     public bool TryNextStep(TutorialObjectBase step)
     {
-        if (step == tutorialSteps[currentStepIndex - 1])
+        if (currentStepIndex != 0 && step == tutorialSteps[currentStepIndex - 1])
         {
             NextStep();
             return true;

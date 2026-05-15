@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loucura e Caos
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8154ee961f11c94b87d10f92da0303a, type: 2}
+  m_sharedMaterial: {fileID: -4299167001086642532, guid: f8154ee961f11c94b87d10f92da0303a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -269,7 +270,6 @@ MonoBehaviour:
   dropped: 0
   isBeingDragged: 0
   canvasGroup: {fileID: 0}
-  tempParent: {fileID: 0}
 --- !u!225 &6477960166568338436
 CanvasGroup:
   m_ObjectHideFlags: 0

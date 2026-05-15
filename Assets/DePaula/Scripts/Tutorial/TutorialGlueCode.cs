@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TutorialGlueCode : MonoBehaviour
 {
-    bool firstTimePlayingGame = true;
+    [SerializeField] bool firstTimePlayingGame = true;
     [SerializeField] TutorialController tutorialController;
     [SerializeField] ConfirmationComponent confirmationComponent;
     [SerializeField] SceneController sceneController;
@@ -26,7 +26,7 @@ public class TutorialGlueCode : MonoBehaviour
     {
         if (firstTimePlayingGame)
         {
-            confirmationComponent.ShowConfirmation("Essa é sua primeira vez jogando o jogo. Deseja ver um tutorial?", PlayTutorial, sceneController.PlayGame);
+            confirmationComponent.ShowConfirmation("Essa Ã© sua primeira vez jogando o jogo. Deseja ver um tutorial?", PlayTutorial, InitiateNormalGame);
             firstTimePlayingGame = false;
         }
         else
@@ -34,6 +34,12 @@ public class TutorialGlueCode : MonoBehaviour
             tutorialController.EndTutorial();
             sceneController.PlayGame();
         }
+    }
+
+    private void InitiateNormalGame()
+    {
+        tutorialController.EndTutorial();
+        sceneController.PlayGame();
     }
 
     public void PlayTutorial()
