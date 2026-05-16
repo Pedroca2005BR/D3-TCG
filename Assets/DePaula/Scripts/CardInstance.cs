@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
+using DG.Tweening;
 
 public class CardInstance : MonoBehaviour, IGameEntity
 {
@@ -95,6 +96,9 @@ public class CardInstance : MonoBehaviour, IGameEntity
             amount += EffectHandler.Instance.ActivateEffectImmediatly(effect.effect, this, ige, effect.specialParameter, amount);
             effectsUsed[effect] = true;
         }
+
+        transform.DOShakeRotation(0.5f, new Vector3(0, 0, 20), vibrato: 15);
+        
 
         NumberPopup.Create(transform.position, amount, false);
 
