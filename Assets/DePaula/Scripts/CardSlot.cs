@@ -65,7 +65,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
     }
 
 
-    public void PutCardInSlot(CardInstance cardInstance)
+    public void PutCardInSlot(CardInstance cardInstance, bool dontReveal = false)
     {
         //Debug.Log("Put hihi!");
         cardInstance.transform.SetParent(transform, false);
@@ -76,8 +76,12 @@ public class CardSlot : MonoBehaviour, IDropHandler
         CardInstance = cardInstance;
         CardInstance.CurrentSlot = gameObject;
 
-        // Send event to Turn Controller to store card played in turn history
-        GameManager.Instance.turnController.StoreCardToBeRevealedLater(CardInstance.gameObject);
+        if (!dontReveal)
+        {
+            // Send event to Turn Controller to store card played in turn history
+            GameManager.Instance.turnController.StoreCardToBeRevealedLater(CardInstance.gameObject);
+        }
+        
 
         //return true;
     }

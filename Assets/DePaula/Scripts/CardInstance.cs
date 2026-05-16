@@ -182,7 +182,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
         }
 
         gameObject.SetActive(true);
-        slot.PutCardInSlot(this);
+        slot.PutCardInSlot(this, true);
         Mode = CardMode.InPlay;
         CurrentSlot = slot.gameObject;
 
@@ -191,7 +191,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
         CardVisuals.UpdateAttackUI(attackSystem);
         CardVisuals.UpdateHealthUI(healthSystem);
 
-        transform.rotation = Quaternion.identity;
+        //transform.rotation = Quaternion.identity;
 
         return true;
     }
