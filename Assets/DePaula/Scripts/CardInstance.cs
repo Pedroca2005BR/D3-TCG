@@ -97,7 +97,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
             effectsUsed[effect] = true;
         }
 
-        transform.DOShakeRotation(0.5f, new Vector3(0, 0, 20), vibrato: 15);
+        CardVisuals.Shake();
         
 
         NumberPopup.Create(transform.position, amount, false);

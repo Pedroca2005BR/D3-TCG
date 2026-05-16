@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -38,6 +39,7 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     // --------------------- Special visuals
     IEnumerator descriptionCoroutine;
+    Tween shakeTween;
 
     public void Setup(CardData cardData, HealthSystemTemplate healthSystem, HealthSystemTemplate attackSystem)
     {
@@ -141,10 +143,16 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     #region Description
     public void OnPointerEnter(PointerEventData eventData)
     {
-        StartCoroutine(SelectionEffect(true));
-        // TODO : Animation for hovering
         descriptionCoroutine = DescriptionAppearTimer();
         StartCoroutine(descriptionCoroutine);
+
+        if (shakeTween != null && shakeTween.IsPlaying())
+        {
+            return;
+        }
+
+        StartCoroutine(SelectionEffect(true));
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -228,6 +236,16 @@ public class CardVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             yield return null;
         }
 
+    }
+
+    public void Shake()
+    {
+        if (shakeTween != null && shakeTween.IsPlaying())
+        {
+            return;
+        }
+
+        shakeTween = transform.DOShakeRotation(0.5f, new Vector3(0, 0, 20), vibrato: 15);
     }
 
     #endregion
