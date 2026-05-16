@@ -1696,6 +1696,7 @@ GameObject:
   - component: {fileID: 68372466}
   - component: {fileID: 68372468}
   - component: {fileID: 68372467}
+  - component: {fileID: 68372469}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -1762,6 +1763,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 705737214}
   shadePanel: {fileID: 1852679220}
   cardData: {fileID: 11400000, guid: 16d5d1bd03553294b84c92cfc01d7379, type: 2}
+--- !u!114 &68372469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68372465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &77237244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,6 +2535,7 @@ GameObject:
   - component: {fileID: 115217293}
   - component: {fileID: 115217295}
   - component: {fileID: 115217294}
+  - component: {fileID: 115217296}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -2586,6 +2602,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1087460447}
   shadePanel: {fileID: 624905642}
   cardData: {fileID: 11400000, guid: f35cff656d5dcaf4aa7ebf14d2cdcf52, type: 2}
+--- !u!114 &115217296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115217292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &145885536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,6 +2704,7 @@ GameObject:
   - component: {fileID: 150563494}
   - component: {fileID: 150563493}
   - component: {fileID: 150563492}
+  - component: {fileID: 150563495}
   m_Layer: 5
   m_Name: CreateDeck
   m_TagString: Untagged
@@ -2783,6 +2814,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150563490}
   m_CullTransparentMesh: 1
+--- !u!114 &150563495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150563490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.3
 --- !u!1 &163191168
 GameObject:
   m_ObjectHideFlags: 0
@@ -5634,6 +5679,7 @@ GameObject:
   - component: {fileID: 332294157}
   - component: {fileID: 332294159}
   - component: {fileID: 332294158}
+  - component: {fileID: 332294160}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -5700,6 +5746,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 213766753}
   shadePanel: {fileID: 781280922}
   cardData: {fileID: 11400000, guid: 3e053a9a6e959494ba50bc3a0193dbe0, type: 2}
+--- !u!114 &332294160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332294156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &332491868
 GameObject:
   m_ObjectHideFlags: 0
@@ -9435,6 +9495,7 @@ GameObject:
   - component: {fileID: 566391043}
   - component: {fileID: 566391045}
   - component: {fileID: 566391044}
+  - component: {fileID: 566391046}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -9501,6 +9562,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 253326557}
   shadePanel: {fileID: 559181817}
   cardData: {fileID: 11400000, guid: 663d3e560adb09d4b8e2a86c2edb26c4, type: 2}
+--- !u!114 &566391046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566391042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &575162495
 GameObject:
   m_ObjectHideFlags: 0
@@ -9512,6 +9587,7 @@ GameObject:
   - component: {fileID: 575162496}
   - component: {fileID: 575162498}
   - component: {fileID: 575162497}
+  - component: {fileID: 575162499}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -9578,6 +9654,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 664179086}
   shadePanel: {fileID: 186963536}
   cardData: {fileID: 11400000, guid: 1506e3fa213983e4e87e2ca3903f9a74, type: 2}
+--- !u!114 &575162499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575162495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &576063699
 GameObject:
   m_ObjectHideFlags: 0
@@ -10005,6 +10095,7 @@ GameObject:
   - component: {fileID: 611969033}
   - component: {fileID: 611969032}
   - component: {fileID: 611969035}
+  - component: {fileID: 611969036}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -10029,7 +10120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67, y: -38}
+  m_AnchoredPosition: {x: -58.6, y: -33.8}
   m_SizeDelta: {x: 112.5, y: 82.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &611969032
@@ -10139,6 +10230,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Pre-Game
+--- !u!114 &611969036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611969030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.3
 --- !u!1 &616071111
 GameObject:
   m_ObjectHideFlags: 0
@@ -11711,6 +11816,7 @@ GameObject:
   - component: {fileID: 686073038}
   - component: {fileID: 686073040}
   - component: {fileID: 686073039}
+  - component: {fileID: 686073041}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -11777,6 +11883,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 16428080}
   shadePanel: {fileID: 1627830102}
   cardData: {fileID: 11400000, guid: 269dd4204ebd9634ab3abd9c72a425be, type: 2}
+--- !u!114 &686073041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686073037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &694547424
 GameObject:
   m_ObjectHideFlags: 0
@@ -12155,6 +12275,7 @@ GameObject:
   - component: {fileID: 708988779}
   - component: {fileID: 708988781}
   - component: {fileID: 708988780}
+  - component: {fileID: 708988782}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -12221,6 +12342,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1584954284}
   shadePanel: {fileID: 798530}
   cardData: {fileID: 11400000, guid: db17bc1e727fb0242851e844600def0f, type: 2}
+--- !u!114 &708988782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708988778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &712958369
 GameObject:
   m_ObjectHideFlags: 0
@@ -12307,6 +12442,7 @@ GameObject:
   - component: {fileID: 716701922}
   - component: {fileID: 716701924}
   - component: {fileID: 716701923}
+  - component: {fileID: 716701925}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -12373,6 +12509,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 40941839}
   shadePanel: {fileID: 1392013841}
   cardData: {fileID: 11400000, guid: c192b5890915b6a469dc55e22e2e1633, type: 2}
+--- !u!114 &716701925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716701921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &727187079
 GameObject:
   m_ObjectHideFlags: 0
@@ -12722,6 +12872,7 @@ GameObject:
   - component: {fileID: 755467121}
   - component: {fileID: 755467123}
   - component: {fileID: 755467122}
+  - component: {fileID: 755467124}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -12788,6 +12939,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1199387251}
   shadePanel: {fileID: 1379208156}
   cardData: {fileID: 11400000, guid: 299e3cffae5b8d448babc8efbd303542, type: 2}
+--- !u!114 &755467124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755467120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &766383027
 GameObject:
   m_ObjectHideFlags: 0
@@ -13175,6 +13340,7 @@ GameObject:
   - component: {fileID: 797426324}
   - component: {fileID: 797426326}
   - component: {fileID: 797426325}
+  - component: {fileID: 797426327}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -13241,6 +13407,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 2002304242}
   shadePanel: {fileID: 295515144}
   cardData: {fileID: 11400000, guid: 3422d535feb83874598332fbb7e3f4e5, type: 2}
+--- !u!114 &797426327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797426323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &797478765
 GameObject:
   m_ObjectHideFlags: 0
@@ -15380,6 +15560,7 @@ GameObject:
   - component: {fileID: 919154895}
   - component: {fileID: 919154897}
   - component: {fileID: 919154896}
+  - component: {fileID: 919154898}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -15446,6 +15627,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 516196123}
   shadePanel: {fileID: 38827877}
   cardData: {fileID: 11400000, guid: a95f386a19bd2b540a91fe588dff2f8c, type: 2}
+--- !u!114 &919154898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919154894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &926382679
 GameObject:
   m_ObjectHideFlags: 0
@@ -15532,6 +15727,7 @@ GameObject:
   - component: {fileID: 935210113}
   - component: {fileID: 935210115}
   - component: {fileID: 935210114}
+  - component: {fileID: 935210116}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -15598,6 +15794,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 511025378}
   shadePanel: {fileID: 1278910563}
   cardData: {fileID: 11400000, guid: 176bafecb2327614f935d088a7512fcd, type: 2}
+--- !u!114 &935210116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935210112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &935492160
 GameObject:
   m_ObjectHideFlags: 0
@@ -16293,6 +16503,7 @@ GameObject:
   - component: {fileID: 1011579754}
   - component: {fileID: 1011579756}
   - component: {fileID: 1011579755}
+  - component: {fileID: 1011579757}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -16359,6 +16570,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1252559325}
   shadePanel: {fileID: 852857559}
   cardData: {fileID: 11400000, guid: 981f633539561164fa48051b21fe7e10, type: 2}
+--- !u!114 &1011579757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011579753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1033406517
 GameObject:
   m_ObjectHideFlags: 0
@@ -17106,6 +17331,7 @@ GameObject:
   - component: {fileID: 1083019889}
   - component: {fileID: 1083019891}
   - component: {fileID: 1083019890}
+  - component: {fileID: 1083019892}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -17172,6 +17398,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 695238636}
   shadePanel: {fileID: 492729489}
   cardData: {fileID: 11400000, guid: 0231f9871fe84354bbc45515cb274c49, type: 2}
+--- !u!114 &1083019892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083019888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1087460445
 GameObject:
   m_ObjectHideFlags: 0
@@ -18507,6 +18747,7 @@ GameObject:
   - component: {fileID: 1154786633}
   - component: {fileID: 1154786635}
   - component: {fileID: 1154786634}
+  - component: {fileID: 1154786636}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -18573,6 +18814,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1370318350}
   shadePanel: {fileID: 38377337}
   cardData: {fileID: 11400000, guid: 511d7899e1172f84e8ed6f26cae9dc82, type: 2}
+--- !u!114 &1154786636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154786632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1155995256
 GameObject:
   m_ObjectHideFlags: 0
@@ -23402,6 +23657,7 @@ GameObject:
   - component: {fileID: 1417075637}
   - component: {fileID: 1417075639}
   - component: {fileID: 1417075638}
+  - component: {fileID: 1417075640}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -23468,6 +23724,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 858734924}
   shadePanel: {fileID: 1878648760}
   cardData: {fileID: 11400000, guid: f5679ace40c5e5945b72179612df5076, type: 2}
+--- !u!114 &1417075640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417075636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1418201759
 GameObject:
   m_ObjectHideFlags: 0
@@ -24295,6 +24565,7 @@ GameObject:
   - component: {fileID: 1465930474}
   - component: {fileID: 1465930476}
   - component: {fileID: 1465930475}
+  - component: {fileID: 1465930477}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -24361,6 +24632,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1304462894}
   shadePanel: {fileID: 505483450}
   cardData: {fileID: 11400000, guid: b40a44ac55c543f41bb501cad4bc4eb9, type: 2}
+--- !u!114 &1465930477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465930473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1469142136
 GameObject:
   m_ObjectHideFlags: 0
@@ -26077,6 +26362,7 @@ GameObject:
   - component: {fileID: 1608479063}
   - component: {fileID: 1608479065}
   - component: {fileID: 1608479064}
+  - component: {fileID: 1608479066}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -26143,6 +26429,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1979051068}
   shadePanel: {fileID: 1126451686}
   cardData: {fileID: 11400000, guid: 21419d8b2979b5543b1becc03dc26b8a, type: 2}
+--- !u!114 &1608479066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608479062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1612836457
 GameObject:
   m_ObjectHideFlags: 0
@@ -26230,6 +26530,7 @@ GameObject:
   - component: {fileID: 1615547945}
   - component: {fileID: 1615547944}
   - component: {fileID: 1615547943}
+  - component: {fileID: 1615547946}
   m_Layer: 5
   m_Name: SaveDeck
   m_TagString: Untagged
@@ -26339,6 +26640,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615547941}
   m_CullTransparentMesh: 1
+--- !u!114 &1615547946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615547941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.3
 --- !u!1 &1616682992
 GameObject:
   m_ObjectHideFlags: 0
@@ -29552,6 +29867,7 @@ GameObject:
   - component: {fileID: 1866120573}
   - component: {fileID: 1866120575}
   - component: {fileID: 1866120574}
+  - component: {fileID: 1866120576}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -29618,6 +29934,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 436266039}
   shadePanel: {fileID: 647068430}
   cardData: {fileID: 11400000, guid: e031bc18b6dd14f4693954d6e210a31e, type: 2}
+--- !u!114 &1866120576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866120572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1877820756
 GameObject:
   m_ObjectHideFlags: 0
@@ -30750,6 +31080,7 @@ GameObject:
   - component: {fileID: 1939886968}
   - component: {fileID: 1939886970}
   - component: {fileID: 1939886969}
+  - component: {fileID: 1939886971}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -30816,6 +31147,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1104053519}
   shadePanel: {fileID: 1877820756}
   cardData: {fileID: 11400000, guid: 25330a6633e280243b259b0b40f6a85d, type: 2}
+--- !u!114 &1939886971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939886967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1945036255
 GameObject:
   m_ObjectHideFlags: 0
@@ -31167,6 +31512,7 @@ GameObject:
   - component: {fileID: 1973939981}
   - component: {fileID: 1973939983}
   - component: {fileID: 1973939982}
+  - component: {fileID: 1973939984}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -31233,6 +31579,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 163191170}
   shadePanel: {fileID: 319735600}
   cardData: {fileID: 11400000, guid: cc4166b2458bad04ab1b01649b0c9b45, type: 2}
+--- !u!114 &1973939984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973939980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &1974225159
 GameObject:
   m_ObjectHideFlags: 0
@@ -32659,6 +33019,7 @@ GameObject:
   - component: {fileID: 2041713067}
   - component: {fileID: 2041713069}
   - component: {fileID: 2041713068}
+  - component: {fileID: 2041713070}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -32725,6 +33086,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 538121694}
   shadePanel: {fileID: 1440666487}
   cardData: {fileID: 11400000, guid: 6c8de988f1bd54d41bbf67aaedb66505, type: 2}
+--- !u!114 &2041713070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041713066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &2042522476
 GameObject:
   m_ObjectHideFlags: 0
@@ -32886,6 +33261,7 @@ GameObject:
   - component: {fileID: 2059263612}
   - component: {fileID: 2059263614}
   - component: {fileID: 2059263613}
+  - component: {fileID: 2059263615}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -32952,6 +33328,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 712958371}
   shadePanel: {fileID: 679039190}
   cardData: {fileID: 11400000, guid: 0426051e4f94d1940b280576a3fbf7b6, type: 2}
+--- !u!114 &2059263615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059263611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &2059726291
 GameObject:
   m_ObjectHideFlags: 0
@@ -33347,6 +33737,7 @@ GameObject:
   - component: {fileID: 2081668511}
   - component: {fileID: 2081668513}
   - component: {fileID: 2081668512}
+  - component: {fileID: 2081668514}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -33413,6 +33804,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 608136109}
   shadePanel: {fileID: 1612836457}
   cardData: {fileID: 11400000, guid: 85abcb3e50933584594b3b3f0e96f40c, type: 2}
+--- !u!114 &2081668514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081668510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &2085965391
 GameObject:
   m_ObjectHideFlags: 0
@@ -33976,6 +34381,7 @@ GameObject:
   - component: {fileID: 2102338683}
   - component: {fileID: 2102338685}
   - component: {fileID: 2102338684}
+  - component: {fileID: 2102338686}
   m_Layer: 5
   m_Name: CardDisplay(Clone)
   m_TagString: Untagged
@@ -34042,6 +34448,20 @@ MonoBehaviour:
   backgroundComponent: {fileID: 1108365989}
   shadePanel: {fileID: 443374448}
   cardData: {fileID: 11400000, guid: e52d288d56b5b4f4d8b9e88cbebaab69, type: 2}
+--- !u!114 &2102338686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102338682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c5cd32ac02eb67419f04bc3bb764dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverEffect
+  moveTime: 0.1
+  scaleAmount: 1.1
 --- !u!1 &2109496359
 GameObject:
   m_ObjectHideFlags: 0

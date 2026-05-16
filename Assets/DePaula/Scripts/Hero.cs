@@ -3,12 +3,15 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Hero : MonoBehaviour, IGameEntity
 {
     [Header("Visuals")]
     [SerializeField] TextMeshProUGUI healthComponent;
     [SerializeField] Image healthHeart;
+    [SerializeField] ShakeComponent healthHeartShake;
+    [SerializeField] PulsatingComponent healthHeartPulse;
     [SerializeField] JM_TurnController turnController;    
 
     // ----------------------------------------------------------------IGameEntity stuff
@@ -45,6 +48,8 @@ public class Hero : MonoBehaviour, IGameEntity
     public void TakeDamage(IGameEntity source, int amount)
     {
         healthSystem.TakeDamage(amount);
+        healthHeartShake.Shake();
+        healthHeartPulse.Pulse();
         ChangeHealthComponent();
 
         if(healthSystem.CurrentHealth == 0)
@@ -70,8 +75,11 @@ public class Hero : MonoBehaviour, IGameEntity
     private void ChangeHealthComponent()
     {
         // Altera o valor do componente
+        
+
         healthComponent.text = healthSystem.CurrentHealth.ToString();
         healthHeart.fillAmount = (healthSystem.CurrentHealth * 1.0f) / (GameManager.Instance.rules.heroHealth * 1.0f);
+        
 
         if (healthSystem.IsDamaged())
         {
