@@ -24,6 +24,7 @@ public class LibraryOrganizer : MonoBehaviour
             case CardType.Spell:
                 return spellLocation;
             default:
+                //AudioManager.instance.PlaySound("Explosion");
                 return transform;
         }
     }
@@ -39,16 +40,27 @@ public class LibraryOrganizer : MonoBehaviour
 
     public void ToggleDisponibilityTargetCard(CardData card, bool available)
     {
+        
         var location = GetRightTransform(card);
+
+        //InBuildDebugger.instance.Log(location, card);
+
         for (int i = 0; i < location.childCount; i++)
         {
             var child = location.GetChild(i);
             var display = child.GetComponent<CardDisplay>();
-            if (display != null && display.cardData == card)
+
+            //if (display != null) AudioManager.instance.PlaySound("Explosion");
+            //if (card != null) AudioManager.instance.PlaySound("Mimir");
+
+            //InBuildDebugger.instance.Log(display.cardData);
+
+            if (display != null && display.cardData.addressableKey == card.addressableKey)
             {
                 display.ToggleDisponibility(available);
             }
         }
+        //AudioManager.instance.PlaySound("Explosion");
     }
 
     public void ToggleDisponibilityAllCards(bool available)
