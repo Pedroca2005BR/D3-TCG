@@ -37,8 +37,7 @@ public class CardSlot : MonoBehaviour, IDropHandler
                 await CardInstance.ConfirmPlay(this); // Feedback to card to activate its own effect
                 TryActivateSlotEffect(); // Feedback to slot to activate its own effect
 
-                // Send event to Turn Controller to store card played in turn history
-                GameManager.Instance.turnController.StoreCardToBeRevealedLater(CardInstance.gameObject);
+                
 
                 GameManager.Instance.UpdateHandsUI();   // Updates the hand UI to reflect the card being played and removed from hand
             }
@@ -76,6 +75,9 @@ public class CardSlot : MonoBehaviour, IDropHandler
         empty = false;
         CardInstance = cardInstance;
         CardInstance.CurrentSlot = gameObject;
+
+        // Send event to Turn Controller to store card played in turn history
+        GameManager.Instance.turnController.StoreCardToBeRevealedLater(CardInstance.gameObject);
 
         //return true;
     }

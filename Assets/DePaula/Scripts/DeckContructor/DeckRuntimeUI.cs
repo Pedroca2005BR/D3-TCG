@@ -183,6 +183,12 @@ public class DeckRuntimeUI : MonoBehaviour
         libraryOrganizer.ToggleDisponibilityAllCards(available);
     }
 
+    private void NeedMoreCardsVisual()
+    {
+        cardCounter.GetComponent<ShakeComponent>()?.Shake();
+        cardCounter.GetComponent<ColorChangerComponent>()?.ChangeColor();
+    }
+
     public void SaveCurrentDeck()
     {
         if (currentDeck == null)
@@ -195,6 +201,7 @@ public class DeckRuntimeUI : MonoBehaviour
 
         if (currentDeck.allCards.Count < rules.deckSize)
         {
+            NeedMoreCardsVisual();
             Debug.LogWarning($"Deck needs {rules.deckSize} cards!");
             return;
         }

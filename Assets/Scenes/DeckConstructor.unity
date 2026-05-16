@@ -1984,6 +1984,8 @@ GameObject:
   - component: {fileID: 87910656}
   - component: {fileID: 87910658}
   - component: {fileID: 87910657}
+  - component: {fileID: 87910660}
+  - component: {fileID: 87910659}
   m_Layer: 5
   m_Name: CardCounter
   m_TagString: Untagged
@@ -2110,6 +2112,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87910655}
   m_CullTransparentMesh: 1
+--- !u!114 &87910659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87910655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8db0f31ee1f3ed4b9ff8a8afb8083b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeComponent
+  loopAmount: 0
+  shakeDuration: 1
+  shakeStrength: 10
+  activator: -1
+--- !u!114 &87910660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87910655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6cec690007e034d93325467909e8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorChangerComponent
+  loopAmount: 1
+  colorChangeDuration: 0.5
+  targetColor: {r: 1, g: 0, b: 0, a: 1}
+  activator: -1
 --- !u!1 &89682405
 GameObject:
   m_ObjectHideFlags: 0
@@ -12559,7 +12593,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 172234599}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.17809673
+  m_Size: 0.17809671
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

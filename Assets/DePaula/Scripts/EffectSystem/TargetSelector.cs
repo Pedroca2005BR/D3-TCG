@@ -146,6 +146,8 @@ public class TargetSelector : MonoBehaviour
             GameObject go = Instantiate(cardPrefab, deadCardsContent.transform);
             CardInstance card = go.GetComponent<CardInstance>();
             card.SetupCardInstance(data, isPlayer1 );
+            Destroy(go.GetComponent<DraggableComponent>());
+            Destroy(go.GetComponent<CardVisuals>());
 
             deadCards.Add(card);
         }

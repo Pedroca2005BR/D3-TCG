@@ -191,10 +191,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
         CardVisuals.UpdateAttackUI(attackSystem);
         CardVisuals.UpdateHealthUI(healthSystem);
 
-        //foreach (var effect in cardData.effects)
-        //{
-        //    effectsUsed[effect] = false;
-        //}
+        transform.rotation = Quaternion.identity;
 
         return true;
     }
@@ -351,6 +348,7 @@ public class CardInstance : MonoBehaviour, IGameEntity
         }
 
         FinishedPlayCard();
+        //Debug.LogWarning("Play Effects Resolved!");
 
         //return Task.CompletedTask;
     }
