@@ -19,7 +19,7 @@ using TMPro;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+
 
 //#endif
 
@@ -104,7 +104,7 @@ public class DeckRuntimeUI : MonoBehaviour
         // If there's an existing deck with cards, ask for confirmation before creating a new one (to avoid accidental loss)
         if (currentDeck != null && currentDeck.allCards != null && currentDeck.allCards.Count > 0)
         {
-            confirmationComponent.ShowConfirmation("Seu deck atual não foi salvo. Tem certeza?", () => CreateNewDeck(null));
+            confirmationComponent.ShowConfirmation("Seu deck atual nï¿½o foi salvo. Tem certeza?", () => CreateNewDeck(null));
             return;
         }
 
