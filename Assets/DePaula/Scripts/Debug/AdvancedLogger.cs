@@ -8,4 +8,9 @@ public static class AdvancedLogger
         string allCards = string.Join(", ", deck.allCards.Select(card => card.name));
         Debug.Log($"Deck contains {deck.allCards.Count} cards: {allCards}");
     }
+
+    public static string Log(CardData card)
+    {
+        return $"Card Name: {card.name}, Type: {card.type}, Addressable Key: {card.addressableKey}";
+    }
 }

@@ -19,6 +19,8 @@ using TMPro;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+
 //#endif
 
 #if UNITY_EDITOR
@@ -160,6 +162,7 @@ public class DeckRuntimeUI : MonoBehaviour
     private void ToggleCardDisponibility(CardData card, bool available)
     {
         libraryOrganizer.ToggleDisponibilityTargetCard(card, available);
+        //AudioManager.instance.PlaySound("Mimir");
     }
 
 
@@ -262,13 +265,16 @@ public class DeckRuntimeUI : MonoBehaviour
             Debug.LogWarning("AddCardByAddressableKeyAsync: Addressables exception: " + ex.Message + ". Trying Resources fallback.");
         }
 //#endif
-
+        
+        //AudioManager.instance.PlaySound("Explosion");
         // Fallback to Resources (synchronous)
         // Try direct path
         var res = Resources.Load<CardData>(key);
         if (res != null)
         {
             AddCard(res);
+            ToggleCardDisponibility(res, false); // Toggle availability in library UI
+            wasDeckSaved = false;
             return;
         }
 
@@ -280,6 +286,8 @@ public class DeckRuntimeUI : MonoBehaviour
             if (string.Equals(c.name, key, System.StringComparison.OrdinalIgnoreCase) || string.Equals(c.cardName, key, System.StringComparison.OrdinalIgnoreCase))
             {
                 AddCard(c);
+                ToggleCardDisponibility(c, false); // Toggle availability in library UI
+                wasDeckSaved = false;
                 return;
             }
         }
