@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TutorialCheckDeckSlots : TutorialObjectBase
@@ -30,8 +31,25 @@ public class TutorialCheckDeckSlots : TutorialObjectBase
     // If all slots are filled, proceed to the next step
     private void CheckIfCanProceed()
     {
-        if (CanProceed())
+        StartCoroutine(WaitAndCheck());
+    }
+
+    IEnumerator WaitAndCheck()
+    {
+        yield return new WaitForSeconds(0.05f);
+        int counter = 0;
+
+        foreach (var slot in slots)
         {
+            if (slot.deckDisplay != null)
+            {
+                counter++;
+            }
+        }
+
+        if (counter == slots.Length)
+        {
+            //Debug.Log("All slots are filled, proceeding to the next step.");
             TryProceed();
         }
     }
