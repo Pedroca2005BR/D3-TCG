@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class FightButtonGlueCode : MonoBehaviour, IPointerClickHandler
 {
