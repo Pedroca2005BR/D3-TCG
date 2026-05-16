@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
@@ -17,17 +18,19 @@ public class DraggableDeckDisplay : DeckDisplay, IDragHandler, IEndDragHandler, 
     private Transform tempParent;
     private Transform currentParent;
     private Transform originalParent;
+    public UnityAction onEndDragAction;
 
     public override void Initialize(string deckName, Action onLoad, Action onDelete = null, string dto = null)
     {
         if (deckNameText != null) deckNameText.text = deckName ?? "(untitled)";
         this.filename = dto;
         canvasGroup = GetComponent<CanvasGroup>();
+        originalParent = transform.parent;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        originalParent = GameObject.FindGameObjectWithTag("deckContent").transform;
+        //originalParent = GameObject.FindGameObjectWithTag("deckContent").transform;
         tempParent = GameObject.FindGameObjectWithTag("tempParent").transform;
         currentParent = this.transform.parent;
         this.transform.SetParent(tempParent);
@@ -79,11 +82,11 @@ public class DraggableDeckDisplay : DeckDisplay, IDragHandler, IEndDragHandler, 
     {
         canvasGroup.blocksRaycasts = true;
         isBeingDragged = false;
+        onEndDragAction?.Invoke();
 
-        if(!dropped)
+        if (!dropped)
         {
             this.transform.SetParent(originalParent);
-           
         }
     }
 

@@ -9,6 +9,9 @@ public class DeckSlot : MonoBehaviour, IDropHandler
     public DraggableDeckDisplay deckDisplay;
     [SerializeField] private RectTransform _contentGroup;
 
+    [Header("Visual")]
+    [SerializeField] PulsatingComponent pulsatingComponent;
+
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag.TryGetComponent<DraggableDeckDisplay>(out DraggableDeckDisplay ddd))
@@ -31,6 +34,8 @@ public class DeckSlot : MonoBehaviour, IDropHandler
             ddd.canvasGroup.blocksRaycasts = false;
 
             OnDeckDropped?.Invoke(); // Notify listeners that a deck has been dropped in this slot
+            pulsatingComponent.gameObject.SetActive(false);
+            deckDisplay.onEndDragAction += CheckIfStillSelected;
         }
     }
 
@@ -39,7 +44,7 @@ public class DeckSlot : MonoBehaviour, IDropHandler
         CheckIfStillSelected();
 
         filename = null;
-        if  (deckDisplay == null) { return false; }
+        if (deckDisplay == null) { return false; }
 
         filename = deckDisplay.filename;
         return true;
@@ -49,7 +54,9 @@ public class DeckSlot : MonoBehaviour, IDropHandler
     {
         if (deckDisplay != null && deckDisplay.transform.parent != transform)
         {
+            deckDisplay.onEndDragAction -= CheckIfStillSelected;
             deckDisplay = null;
+            pulsatingComponent.gameObject.SetActive(true);
         }
     }
 }

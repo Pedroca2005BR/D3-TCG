@@ -56,12 +56,19 @@ public class PreGameManager : MonoBehaviour
         }
         else
         {
-            if (slotP1.TryGetDTO(out string deck1) && slotP2.TryGetDTO(out string deck2))
+            int deckCount = 0;
+            if (slotP1.TryGetDTO(out string deck1))
             {
                 rules.deck1 = await DeckAddressableLoader.LoadDeckAsync(deck1);
-                rules.deck2 = await DeckAddressableLoader.LoadDeckAsync(deck2);
+                deckCount++;
             }
-            else
+            if (slotP2.TryGetDTO(out string deck2))
+            {
+                rules.deck2 = await DeckAddressableLoader.LoadDeckAsync(deck2);
+                deckCount++;
+            }
+
+            if (deckCount < 2)
             {
                 Debug.LogError("Escolhe os decks, parceiro!");
                 return;
